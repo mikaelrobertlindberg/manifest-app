@@ -157,10 +157,10 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       // Kort paus
       Animated.delay(600),
       
-      // Flyg iväg upp som ett hjärta med kärlek
+      // Flyg iväg upp som ett hjärta med kärlek  
       Animated.parallel([
         Animated.timing(heartY, {
-          toValue: -200,
+          toValue: -120,  // Kortare flyg-sträcka så det inte klipps
           duration: 1400,
           useNativeDriver: true,
         }),
@@ -348,7 +348,18 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
         onTryAgain={handleTryAgain}
       />
       
-      {/* Animerat hjärta som flyger iväg med kärlek */}
+      {/* Floating Settings Button - höger hörn */}
+      <TouchableOpacity
+        style={styles.floatingSettingsButton}
+        onPress={onShowSettings}
+        activeOpacity={0.7}
+      >
+        <FigmaBody style={styles.settingsIcon}>⚙️</FigmaBody>
+      </TouchableOpacity>
+      
+      </SafeAreaView>
+
+      {/* Animerat hjärta som flyger iväg med kärlek - UTANFÖR alla containers för att undvika clipping */}
       <Animated.View
         style={[
           styles.heartContainer,
@@ -371,17 +382,6 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       >
         <FigmaBody style={styles.heartText}>❤️</FigmaBody>
       </Animated.View>
-
-      {/* Floating Settings Button - höger hörn */}
-      <TouchableOpacity
-        style={styles.floatingSettingsButton}
-        onPress={onShowSettings}
-        activeOpacity={0.7}
-      >
-        <FigmaBody style={styles.settingsIcon}>⚙️</FigmaBody>
-      </TouchableOpacity>
-      
-      </SafeAreaView>
     </LinearGradient>
   );
 };
@@ -487,13 +487,15 @@ const styles = StyleSheet.create({
   // === HEART ANIMATION ===
   heartContainer: {
     position: 'absolute',
-    top: '65%',  // Flyttat ner så hjärtat får utrymme att animera uppåt
+    top: '70%',  // Optimerad position för clean animation  
     left: '50%',
-    marginLeft: -30,
-    marginTop: -30,
-    zIndex: 1000,
+    marginLeft: -40,  // Centrerad för 60px hjärta
+    marginTop: -40,   // Centrerad för 60px hjärta
+    zIndex: 9999,     // Högsta z-index för att vara över allt
     justifyContent: 'center',
     alignItems: 'center',
+    width: 80,        // Explicit container storlek
+    height: 80,       // Explicit container storlek
   },
   
   heartText: {
