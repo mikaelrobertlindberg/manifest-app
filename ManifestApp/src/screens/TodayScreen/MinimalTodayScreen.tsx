@@ -17,6 +17,7 @@ import {
   TouchableOpacity,
   StatusBar,
   Animated,
+  Modal,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -71,6 +72,9 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   const [currentAnalysis, setCurrentAnalysis] = useState<NegativityAnalysis | null>(null);
   const [currentGuidance, setCurrentGuidance] = useState<AIGuidance | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  
+  // Heart Modal State
+  const [showHeartModal, setShowHeartModal] = useState(false);
 
   // === EFFECTS ===
   useEffect(() => {
@@ -130,9 +134,12 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
     handleAIGuidanceClose();
   };
 
-  // === HEART ANIMATION ===
+  // === HEART ANIMATION (MODAL VERSION) ===
   const showHeartAnimation = () => {
-    // Reset animation values
+    console.log('❤️ DEBUG: Starting MODAL heart animation from BOTTOM position');
+    
+    // Show modal and reset animation values
+    setShowHeartModal(true);
     heartAnim.setValue(0);
     heartOpacity.setValue(0);
     heartY.setValue(0);
@@ -171,7 +178,9 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
         })
       ])
     ]).start(() => {
-      // Rensa texten efter animationen är klar
+      console.log('❤️ DEBUG: MODAL Animation completed, hiding modal and clearing text');
+      // Hide modal and clear text
+      setShowHeartModal(false);
       setGratitudeText('');
     });
   };
@@ -361,29 +370,37 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       </SafeAreaView>
       </LinearGradient>
 
-      {/* Animerat hjärta som flyger iväg med kärlek - HELT UTANFÖR alla containers */}
-      <Animated.View
-        style={[
-          styles.heartContainer,
-          {
-            opacity: heartOpacity,
-            transform: [
-              {
-                scale: heartAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0.2, 1.2],
-                })
-              },
-              {
-                translateY: heartY
-              }
-            ]
-          }
-        ]}
+      {/* HEART AS MODAL OVERLAY - IMPOSSIBLE TO CLIP */}
+      <Modal
+        visible={showHeartModal}
+        transparent={true}
+        animationType="none"
         pointerEvents="none"
+        statusBarTranslucent={true}
       >
-        <FigmaBody style={styles.heartText}>❤️</FigmaBody>
-      </Animated.View>
+        <Animated.View
+          style={[
+            styles.heartModalContainer,
+            {
+              opacity: heartOpacity,
+              transform: [
+                {
+                  scale: heartAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0.2, 1.2],
+                  })
+                },
+                {
+                  translateY: heartY
+                }
+              ]
+            }
+          ]}
+          pointerEvents="none"
+        >
+          <FigmaBody style={styles.heartText}>❤️</FigmaBody>
+        </Animated.View>
+      </Modal>
     </View>
   );
 };
@@ -491,19 +508,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // === HEART ANIMATION ===
-  heartContainer: {
+  // === HEART ANIMATION (MODAL VERSION) ===
+  heartModalContainer: {
     position: 'absolute',
     bottom: 200,      // Start LÄNGRE NER så det alltid syns när det animeras uppåt
     left: '50%',
     marginLeft: -40,  // Centrerad för 60px hjärta
-    zIndex: 99999,    // EXTREMT hög z-index för att garantera synlighet
-    elevation: 999,   // Android elevation
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,        // Explicit container storlek
     height: 80,       // Explicit container storlek
-    overflow: 'visible', // Tillåt hjärta att synas utanför container
+    // MODAL = automatic highest z-index, no clipping possible
   },
   
   heartText: {
