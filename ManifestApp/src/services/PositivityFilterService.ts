@@ -424,7 +424,7 @@ export class PositivityFilterService {
     else if (negativityScore > 30) severity = 'moderate';
 
     return {
-      isNegative: negativityScore > 35, // Höjd tröskel för mindre false positives
+      isNegative: negativityScore > 20, // Balanserad tröskel - 1 starkt ord eller 2 svaga
       negativityScore,
       categories: Array.from(new Set(categories)), // Remove duplicates
       severity,

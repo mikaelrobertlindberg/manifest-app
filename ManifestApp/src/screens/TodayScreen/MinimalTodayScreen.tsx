@@ -160,8 +160,8 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       // Flyg iväg upp som ett hjärta med kärlek  
       Animated.parallel([
         Animated.timing(heartY, {
-          toValue: -120,  // Kortare flyg-sträcka så det inte klipps
-          duration: 1400,
+          toValue: -80,  // Mycket kortare flyg för att undvika clipping helt
+          duration: 1200,
           useNativeDriver: true,
         }),
         Animated.timing(heartOpacity, {
@@ -487,10 +487,9 @@ const styles = StyleSheet.create({
   // === HEART ANIMATION ===
   heartContainer: {
     position: 'absolute',
-    top: '70%',  // Optimerad position för clean animation  
+    bottom: 120,      // Fast position från botten istället för %
     left: '50%',
     marginLeft: -40,  // Centrerad för 60px hjärta
-    marginTop: -40,   // Centrerad för 60px hjärta
     zIndex: 9999,     // Högsta z-index för att vara över allt
     justifyContent: 'center',
     alignItems: 'center',
