@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Woman Meditation Silhouettes - 18 Named Variants</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 75%, #000000 100%);
+            margin: 0;
+            padding: 20px;
+            color: #E8F5E8;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 4em;
+            margin: 0;
+            background: linear-gradient(45deg, #FFD700, #FFF8E1, #E1F5FE, #C8E6C9, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: headerGlow 6s ease-in-out infinite alternate;
+        }
+        @keyframes headerGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        .subtitle {
+            font-size: 1.8em;
+            margin-top: 20px;
+            opacity: 0.95;
+            color: #C8E6C9;
+        }
+        .realistic-badge {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 20px 35px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.3em;
+            box-shadow: 0 15px 35px rgba(76,175,80,0.4);
+            animation: realisticPulse 4s ease-in-out infinite;
+        }
+        @keyframes realisticPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .silhouettes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin: 60px 0;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .silhouette-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 25px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .silhouette-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.06);
+        }
+        .silhouette-preview {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 25px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .woman-silhouette {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .silhouette-card:hover .woman-silhouette {
+            transform: scale(1.05);
+        }
+
+        /* Realistic Woman Silhouette SVGs */
+        
+        /* 1. AURORA LOTUS */
+        .aurora-lotus .silhouette-preview {
+            background: radial-gradient(circle, #4A148C 0%, #1A0A2E 70%, #000 100%);
+        }
+        .aurora-lotus .woman-silhouette {
+            width: 140px;
+            height: 160px;
+            background: linear-gradient(135deg, #00E5FF, #4CAF50, #9C27B0);
+            clip-path: polygon(
+                50% 0%, 
+                60% 15%, 65% 25%, 70% 35%, 75% 45%, 
+                80% 50%, 75% 55%, 70% 65%, 
+                85% 75%, 90% 85%, 80% 90%, 
+                70% 95%, 50% 100%, 30% 95%, 
+                20% 90%, 10% 85%, 15% 75%, 
+                30% 65%, 25% 55%, 20% 50%, 
+                25% 45%, 30% 35%, 35% 25%, 40% 15%
+            );
+            box-shadow: 0 0 40px rgba(0,229,255,0.6), 0 0 60px rgba(76,175,80,0.4);
+            animation: auroraGlow 6s linear infinite;
+        }
+        @keyframes auroraGlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* 2. GOLDEN SERENITY */
+        .golden-serenity .silhouette-preview {
+            background: radial-gradient(circle, #3E2723 0%, #1A0A00 70%, #000 100%);
+        }
+        .golden-serenity .woman-silhouette {
+            width: 130px;
+            height: 150px;
+            background: linear-gradient(135deg, #FFD700, #FFA000);
+            clip-path: polygon(
+                48% 0%, 55% 12%, 62% 22%, 68% 32%, 72% 42%, 
+                74% 52%, 72% 60%, 68% 70%, 
+                80% 78%, 85% 88%, 75% 92%, 
+                65% 96%, 48% 100%, 32% 96%, 
+                22% 92%, 15% 88%, 20% 78%, 
+                32% 70%, 28% 60%, 26% 52%, 
+                28% 42%, 32% 32%, 38% 22%, 45% 12%
+            );
+            box-shadow: 0 0 35px rgba(255,215,0,0.8), 0 0 55px rgba(255,160,0,0.6);
+            animation: goldenPulse 4s ease-in-out infinite;
+        }
+        @keyframes goldenPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        /* 3. MINT GODDESS */
+        .mint-goddess .silhouette-preview {
+            background: radial-gradient(circle, #1B5E20 0%, #0D2818 70%, #000 100%);
+        }
+        .mint-goddess .woman-silhouette {
+            width: 135px;
+            height: 155px;
+            background: linear-gradient(135deg, #C8E6C9, #81C784);
+            clip-path: polygon(
+                50% 0%, 58% 10%, 64% 20%, 68% 30%, 70% 40%, 
+                72% 50%, 70% 58%, 66% 68%, 
+                78% 76%, 82% 86%, 78% 90%, 
+                68% 94%, 50% 100%, 32% 94%, 
+                22% 90%, 18% 86%, 22% 76%, 
+                34% 68%, 30% 58%, 28% 50%, 
+                30% 40%, 32% 30%, 36% 20%, 42% 10%
+            );
+            box-shadow: 0 0 30px rgba(200,230,201,0.7), 0 0 50px rgba(129,199,132,0.5);
+            animation: mintBreath 6s ease-in-out infinite;
+        }
+        @keyframes mintBreath {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; filter: brightness(1.2); }
+        }
+
+        /* 4. COSMIC DANCER */
+        .cosmic-dancer .silhouette-preview {
+            background: radial-gradient(circle, #1A0A2E 0%, #0A0A20 50%, #000 100%);
+        }
+        .cosmic-dancer .woman-silhouette {
+            width: 145px;
+            height: 165px;
+            background: linear-gradient(135deg, #3F51B5, #9C27B0, #E1BEE7);
+            clip-path: polygon(
+                52% 0%, 60% 8%, 66% 18%, 70% 28%, 74% 38%, 
+                76% 48%, 74% 56%, 70% 66%, 
+                82% 74%, 88% 84%, 84% 88%, 
+                74% 92%, 52% 100%, 26% 92%, 
+                16% 88%, 12% 84%, 18% 74%, 
+                30% 66%, 26% 56%, 24% 48%, 
+                26% 38%, 30% 28%, 34% 18%, 40% 8%
+            );
+            box-shadow: 0 0 40px rgba(63,81,181,0.7), 0 0 60px rgba(156,39,176,0.5);
+            animation: cosmicSpin 10s linear infinite;
+        }
+        @keyframes cosmicSpin {
+            0% { filter: hue-rotate(0deg) brightness(1); }
+            50% { filter: hue-rotate(180deg) brightness(1.3); }
+            100% { filter: hue-rotate(360deg) brightness(1); }
+        }
+
+        /* 5. DAWN PRIESTESS */
+        .dawn-priestess .silhouette-preview {
+            background: radial-gradient(circle, #4E342E 0%, #2E1A00 70%, #000 100%);
+        }
+        .dawn-priestess .woman-silhouette {
+            width: 125px;
+            height: 145px;
+            background: linear-gradient(135deg, #FF7043, #FFB74D, #FFF176);
+            clip-path: polygon(
+                48% 0%, 56% 14%, 62% 24%, 66% 34%, 68% 44%, 
+                70% 54%, 68% 62%, 64% 72%, 
+                76% 80%, 80% 90%, 76% 94%, 
+                66% 98%, 48% 100%, 30% 98%, 
+                20% 94%, 16% 90%, 20% 80%, 
+                32% 72%, 28% 62%, 26% 54%, 
+                28% 44%, 30% 34%, 34% 24%, 40% 14%
+            );
+            box-shadow: 0 0 35px rgba(255,112,67,0.7), 0 0 55px rgba(255,183,77,0.5);
+            animation: dawnRise 8s ease-in-out infinite;
+        }
+        @keyframes dawnRise {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.06) translateY(-8px); }
+        }
+
+        /* 6. CRYSTAL SAGE */
+        .crystal-sage .silhouette-preview {
+            background: radial-gradient(circle, #263238 0%, #0F0F0F 70%, #000 100%);
+        }
+        .crystal-sage .woman-silhouette {
+            width: 138px;
+            height: 158px;
+            background: linear-gradient(135deg, #FFFFFF, #E3F2FD, #FFFFFF);
+            clip-path: polygon(
+                50% 0%, 57% 12%, 63% 22%, 67% 32%, 69% 42%, 
+                71% 52%, 69% 60%, 65% 70%, 
+                77% 78%, 81% 88%, 77% 92%, 
+                67% 96%, 50% 100%, 33% 96%, 
+                23% 92%, 19% 88%, 23% 78%, 
+                35% 70%, 31% 60%, 29% 52%, 
+                31% 42%, 33% 32%, 37% 22%, 43% 12%
+            );
+            box-shadow: 0 0 40px rgba(255,255,255,0.9), 0 0 60px rgba(227,242,253,0.6);
+            animation: crystalShimmer 5s ease-in-out infinite;
+        }
+        @keyframes crystalShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5) drop-shadow(0 0 20px rgba(255,255,255,0.8)); }
+        }
+
+        /* 7. OCEAN MYSTIC */
+        .ocean-mystic .silhouette-preview {
+            background: radial-gradient(circle, #0D47A1 0%, #0A1A2E 70%, #000 100%);
+        }
+        .ocean-mystic .woman-silhouette {
+            width: 142px;
+            height: 162px;
+            background: linear-gradient(135deg, #00BCD4, #4DB6AC, #80CBC4);
+            clip-path: polygon(
+                51% 0%, 59% 11%, 65% 21%, 69% 31%, 73% 41%, 
+                75% 51%, 73% 59%, 69% 69%, 
+                81% 77%, 85% 87%, 81% 91%, 
+                71% 95%, 51% 100%, 29% 95%, 
+                19% 91%, 15% 87%, 19% 77%, 
+                31% 69%, 27% 59%, 25% 51%, 
+                27% 41%, 31% 31%, 35% 21%, 41% 11%
+            );
+            box-shadow: 0 0 35px rgba(0,188,212,0.7), 0 0 55px rgba(77,182,172,0.5);
+            animation: oceanWave 7s ease-in-out infinite;
+        }
+        @keyframes oceanWave {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            33% { transform: scale(1.04) rotate(1deg); }
+            66% { transform: scale(1.02) rotate(-1deg); }
+        }
+
+        /* 8. FIRE GUARDIAN */
+        .fire-guardian .silhouette-preview {
+            background: radial-gradient(circle, #3E2723 0%, #1A0000 70%, #000 100%);
+        }
+        .fire-guardian .woman-silhouette {
+            width: 132px;
+            height: 152px;
+            background: linear-gradient(135deg, #FF5722, #FF9800, #FFC107);
+            clip-path: polygon(
+                49% 0%, 57% 13%, 63% 23%, 67% 33%, 69% 43%, 
+                71% 53%, 69% 61%, 65% 71%, 
+                77% 79%, 81% 89%, 77% 93%, 
+                67% 97%, 49% 100%, 31% 97%, 
+                21% 93%, 17% 89%, 21% 79%, 
+                33% 71%, 29% 61%, 27% 53%, 
+                29% 43%, 31% 33%, 35% 23%, 41% 13%
+            );
+            box-shadow: 0 0 30px rgba(255,87,34,0.8), 0 0 50px rgba(255,152,0,0.6);
+            animation: fireGlow 4s ease-in-out infinite;
+        }
+        @keyframes fireGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.4); }
+        }
+
+        /* 9. MOON PRIESTESS */
+        .moon-priestess .silhouette-preview {
+            background: radial-gradient(circle, #1A237E 0%, #0A0A2E 70%, #000 100%);
+        }
+        .moon-priestess .woman-silhouette {
+            width: 128px;
+            height: 148px;
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB, #90CAF9);
+            clip-path: polygon(
+                50% 0%, 58% 14%, 64% 24%, 68% 34%, 70% 44%, 
+                72% 54%, 70% 62%, 66% 72%, 
+                78% 80%, 82% 90%, 78% 94%, 
+                68% 98%, 50% 100%, 32% 98%, 
+                22% 94%, 18% 90%, 22% 80%, 
+                34% 72%, 30% 62%, 28% 54%, 
+                30% 44%, 32% 34%, 36% 24%, 42% 14%
+            );
+            box-shadow: 0 0 35px rgba(227,242,253,0.7), 0 0 55px rgba(187,222,251,0.5);
+            animation: moonPhase 9s ease-in-out infinite;
+        }
+        @keyframes moonPhase {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* 10. LOTUS EMPRESS */
+        .lotus-empress .silhouette-preview {
+            background: radial-gradient(circle, #2E7D32 0%, #1B5E20 50%, #0A2E0A 100%);
+        }
+        .lotus-empress .woman-silhouette {
+            width: 148px;
+            height: 168px;
+            background: linear-gradient(135deg, #F48FB1, #CE93D8, #E1BEE7);
+            clip-path: polygon(
+                52% 0%, 60% 9%, 66% 19%, 70% 29%, 74% 39%, 
+                76% 49%, 74% 57%, 70% 67%, 
+                82% 75%, 86% 85%, 82% 89%, 
+                72% 93%, 52% 100%, 28% 93%, 
+                18% 89%, 14% 85%, 18% 75%, 
+                30% 67%, 26% 57%, 24% 49%, 
+                26% 39%, 30% 29%, 34% 19%, 40% 9%
+            );
+            box-shadow: 0 0 35px rgba(244,143,177,0.7), 0 0 55px rgba(206,147,216,0.5);
+            animation: lotusBloom 6s ease-in-out infinite;
+        }
+        @keyframes lotusBloom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: brightness(1.3); }
+        }
+
+        /* 11. EMERALD SPIRIT */
+        .emerald-spirit .silhouette-preview {
+            background: radial-gradient(circle, #1B5E20 0%, #0F3010 70%, #000 100%);
+        }
+        .emerald-spirit .woman-silhouette {
+            width: 134px;
+            height: 154px;
+            background: linear-gradient(135deg, #4CAF50, #8BC34A, #CDDC39);
+            clip-path: polygon(
+                51% 0%, 58% 12%, 64% 22%, 68% 32%, 72% 42%, 
+                74% 52%, 72% 60%, 68% 70%, 
+                80% 78%, 84% 88%, 80% 92%, 
+                70% 96%, 51% 100%, 30% 96%, 
+                20% 92%, 16% 88%, 20% 78%, 
+                32% 70%, 28% 60%, 26% 52%, 
+                28% 42%, 32% 32%, 36% 22%, 42% 12%
+            );
+            box-shadow: 0 0 32px rgba(76,175,80,0.8), 0 0 52px rgba(139,195,74,0.6);
+            animation: emeraldPulse 5s ease-in-out infinite;
+        }
+        @keyframes emeraldPulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.06); filter: brightness(1.2); }
+        }
+
+        /* 12. AMETHYST SAGE */
+        .amethyst-sage .silhouette-preview {
+            background: radial-gradient(circle, #4A148C 0%, #2A0845 70%, #000 100%);
+        }
+        .amethyst-sage .woman-silhouette {
+            width: 140px;
+            height: 160px;
+            background: linear-gradient(135deg, #9C27B0, #BA68C8, #E1BEE7);
+            clip-path: polygon(
+                50% 0%, 57% 11%, 63% 21%, 67% 31%, 71% 41%, 
+                73% 51%, 71% 59%, 67% 69%, 
+                79% 77%, 83% 87%, 79% 91%, 
+                69% 95%, 50% 100%, 31% 95%, 
+                21% 91%, 17% 87%, 21% 77%, 
+                33% 69%, 29% 59%, 27% 51%, 
+                29% 41%, 33% 31%, 37% 21%, 43% 11%
+            );
+            box-shadow: 0 0 38px rgba(156,39,176,0.8), 0 0 58px rgba(186,104,200,0.6);
+            animation: amethystGlow 6s ease-in-out infinite;
+        }
+        @keyframes amethystGlow {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(15deg) brightness(1.2); }
+        }
+
+        /* 13. SILVER MOON */
+        .silver-moon .silhouette-preview {
+            background: radial-gradient(circle, #37474F 0%, #263238 70%, #000 100%);
+        }
+        .silver-moon .woman-silhouette {
+            width: 136px;
+            height: 156px;
+            background: linear-gradient(135deg, #ECEFF1, #CFD8DC, #B0BEC5);
+            clip-path: polygon(
+                49% 0%, 56% 13%, 62% 23%, 66% 33%, 70% 43%, 
+                72% 53%, 70% 61%, 66% 71%, 
+                78% 79%, 82% 89%, 78% 93%, 
+                68% 97%, 49% 100%, 30% 97%, 
+                20% 93%, 16% 89%, 20% 79%, 
+                32% 71%, 28% 61%, 26% 53%, 
+                28% 43%, 32% 33%, 36% 23%, 42% 13%
+            );
+            box-shadow: 0 0 34px rgba(236,239,241,0.8), 0 0 54px rgba(207,216,220,0.6);
+            animation: silverShimmer 7s ease-in-out infinite;
+        }
+        @keyframes silverShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 15px rgba(236,239,241,0.8)); }
+        }
+
+        /* 14. CORAL GODDESS */
+        .coral-goddess .silhouette-preview {
+            background: radial-gradient(circle, #BF360C 0%, #3E2723 70%, #000 100%);
+        }
+        .coral-goddess .woman-silhouette {
+            width: 144px;
+            height: 164px;
+            background: linear-gradient(135deg, #FF8A65, #FFAB91, #FFCCBC);
+            clip-path: polygon(
+                52% 0%, 59% 10%, 65% 20%, 69% 30%, 73% 40%, 
+                75% 50%, 73% 58%, 69% 68%, 
+                81% 76%, 85% 86%, 81% 90%, 
+                71% 94%, 52% 100%, 29% 94%, 
+                19% 90%, 15% 86%, 19% 76%, 
+                31% 68%, 27% 58%, 25% 50%, 
+                27% 40%, 31% 30%, 35% 20%, 41% 10%
+            );
+            box-shadow: 0 0 36px rgba(255,138,101,0.8), 0 0 56px rgba(255,171,145,0.6);
+            animation: coralWave 8s ease-in-out infinite;
+        }
+        @keyframes coralWave {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(2deg); }
+        }
+
+        /* 15. JADE EMPRESS */
+        .jade-empress .silhouette-preview {
+            background: radial-gradient(circle, #1B5E20 0%, #2E7D32 50%, #000 100%);
+        }
+        .jade-empress .woman-silhouette {
+            width: 139px;
+            height: 159px;
+            background: linear-gradient(135deg, #66BB6A, #81C784, #A5D6A7);
+            clip-path: polygon(
+                51% 0%, 58% 12%, 64% 22%, 68% 32%, 72% 42%, 
+                74% 52%, 72% 60%, 68% 70%, 
+                80% 78%, 84% 88%, 80% 92%, 
+                70% 96%, 51% 100%, 30% 96%, 
+                20% 92%, 16% 88%, 20% 78%, 
+                32% 70%, 28% 60%, 26% 52%, 
+                28% 42%, 32% 32%, 36% 22%, 42% 12%
+            );
+            box-shadow: 0 0 33px rgba(102,187,106,0.8), 0 0 53px rgba(129,199,132,0.6);
+            animation: jadeGlow 5s ease-in-out infinite;
+        }
+        @keyframes jadeGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.25) saturate(1.2); }
+        }
+
+        /* 16. RUBY WARRIOR */
+        .ruby-warrior .silhouette-preview {
+            background: radial-gradient(circle, #B71C1C 0%, #4A0E0E 70%, #000 100%);
+        }
+        .ruby-warrior .woman-silhouette {
+            width: 133px;
+            height: 153px;
+            background: linear-gradient(135deg, #F44336, #E57373, #FFCDD2);
+            clip-path: polygon(
+                50% 0%, 57% 13%, 63% 23%, 67% 33%, 71% 43%, 
+                73% 53%, 71% 61%, 67% 71%, 
+                79% 79%, 83% 89%, 79% 93%, 
+                69% 97%, 50% 100%, 31% 97%, 
+                21% 93%, 17% 89%, 21% 79%, 
+                33% 71%, 29% 61%, 27% 53%, 
+                29% 43%, 33% 33%, 37% 23%, 43% 13%
+            );
+            box-shadow: 0 0 35px rgba(244,67,54,0.8), 0 0 55px rgba(229,115,115,0.6);
+            animation: rubyPulse 4s ease-in-out infinite;
+        }
+        @keyframes rubyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08) rotate(1deg); }
+        }
+
+        /* 17. SAPPHIRE MYSTIC */
+        .sapphire-mystic .silhouette-preview {
+            background: radial-gradient(circle, #0D47A1 0%, #1A237E 70%, #000 100%);
+        }
+        .sapphire-mystic .woman-silhouette {
+            width: 141px;
+            height: 161px;
+            background: linear-gradient(135deg, #2196F3, #64B5F6, #BBDEFB);
+            clip-path: polygon(
+                52% 0%, 59% 11%, 65% 21%, 69% 31%, 73% 41%, 
+                75% 51%, 73% 59%, 69% 69%, 
+                81% 77%, 85% 87%, 81% 91%, 
+                71% 95%, 52% 100%, 29% 95%, 
+                19% 91%, 15% 87%, 19% 77%, 
+                31% 69%, 27% 59%, 25% 51%, 
+                27% 41%, 31% 31%, 35% 21%, 41% 11%
+            );
+            box-shadow: 0 0 37px rgba(33,150,243,0.8), 0 0 57px rgba(100,181,246,0.6);
+            animation: sapphireFlow 6s ease-in-out infinite;
+        }
+        @keyframes sapphireFlow {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(10deg) brightness(1.2); }
+        }
+
+        /* 18. VIOLET SAGE */
+        .violet-sage .silhouette-preview {
+            background: radial-gradient(circle, #6A1B9A 0%, #4A148C 70%, #000 100%);
+        }
+        .violet-sage .woman-silhouette {
+            width: 137px;
+            height: 157px;
+            background: linear-gradient(135deg, #673AB7, #9575CD, #D1C4E9);
+            clip-path: polygon(
+                50% 0%, 57% 12%, 63% 22%, 67% 32%, 71% 42%, 
+                73% 52%, 71% 60%, 67% 70%, 
+                79% 78%, 83% 88%, 79% 92%, 
+                69% 96%, 50% 100%, 31% 96%, 
+                21% 92%, 17% 88%, 21% 78%, 
+                33% 70%, 29% 60%, 27% 52%, 
+                29% 42%, 33% 32%, 37% 22%, 43% 12%
+            );
+            box-shadow: 0 0 36px rgba(103,58,183,0.8), 0 0 56px rgba(149,117,205,0.6);
+            animation: violetSpiral 8s ease-in-out infinite;
+        }
+        @keyframes violetSpiral {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.04) rotate(3deg); }
+        }
+
+        .silhouette-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        /* Name Colors */
+        .aurora-lotus .silhouette-name { color: #00E5FF; }
+        .golden-serenity .silhouette-name { color: #FFD700; }
+        .mint-goddess .silhouette-name { color: #C8E6C9; }
+        .cosmic-dancer .silhouette-name { color: #9C27B0; }
+        .dawn-priestess .silhouette-name { color: #FF7043; }
+        .crystal-sage .silhouette-name { color: #FFFFFF; }
+        .ocean-mystic .silhouette-name { color: #00BCD4; }
+        .fire-guardian .silhouette-name { color: #FF5722; }
+        .moon-priestess .silhouette-name { color: #E3F2FD; }
+        .lotus-empress .silhouette-name { color: #F48FB1; }
+        .emerald-spirit .silhouette-name { color: #4CAF50; }
+        .amethyst-sage .silhouette-name { color: #9C27B0; }
+        .silver-moon .silhouette-name { color: #ECEFF1; }
+        .coral-goddess .silhouette-name { color: #FF8A65; }
+        .jade-empress .silhouette-name { color: #66BB6A; }
+        .ruby-warrior .silhouette-name { color: #F44336; }
+        .sapphire-mystic .silhouette-name { color: #2196F3; }
+        .violet-sage .silhouette-name { color: #673AB7; }
+
+        .silhouette-description {
+            opacity: 0.9;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+
+        .selection-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(76,175,80,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            color: white;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+        .silhouette-card.selected {
+            border-color: #4CAF50;
+            background: rgba(76,175,80,0.1);
+            transform: translateY(-10px) scale(1.02);
+        }
+        .silhouette-card.selected .selection-indicator {
+            transform: scale(1);
+        }
+        
+        .selection-summary {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 15px 35px rgba(76,175,80,0.5);
+            transition: all 0.5s ease;
+            z-index: 100;
+            max-width: 90vw;
+            text-align: center;
+        }
+        .selection-summary.active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .silhouettes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+            .silhouette-preview {
+                width: 200px;
+                height: 200px;
+            }
+            .header h1 {
+                font-size: 3.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧘‍♀️ Realistic Woman Silhouettes</h1>
+        <div class="subtitle">18 Named Meditation Forms med Olika Glow Effects</div>
+        <div class="realistic-badge">✨ RIKTIGA KVINNLIGA SILUETTER - INTE EMOJIS!</div>
+    </div>
+
+    <div class="silhouettes-grid">
+        <div class="silhouette-card aurora-lotus" data-name="AURORA LOTUS">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">AURORA LOTUS</div>
+            <div class="silhouette-description">
+                Elegant woman i klassisk lotus med aurora glow effects. Northern lights energy flow.
+            </div>
+        </div>
+
+        <div class="silhouette-card golden-serenity" data-name="GOLDEN SERENITY">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">GOLDEN SERENITY</div>
+            <div class="silhouette-description">
+                Serene feminine form med warm golden radiance. Enlightenment achieved.
+            </div>
+        </div>
+
+        <div class="silhouette-card mint-goddess" data-name="MINT GODDESS">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">MINT GODDESS</div>
+            <div class="silhouette-description">
+                Gentle goddess form med healing mint green aura. Therapeutic meditation.
+            </div>
+        </div>
+
+        <div class="silhouette-card cosmic-dancer" data-name="COSMIC DANCER">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">COSMIC DANCER</div>
+            <div class="silhouette-description">
+                Flowing woman form med cosmic purple energy. Universal connection.
+            </div>
+        </div>
+
+        <div class="silhouette-card dawn-priestess" data-name="DAWN PRIESTESS">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">DAWN PRIESTESS</div>
+            <div class="silhouette-description">
+                Graceful priestess silhouette med sunrise glow. New beginnings.
+            </div>
+        </div>
+
+        <div class="silhouette-card crystal-sage" data-name="CRYSTAL SAGE">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">CRYSTAL SAGE</div>
+            <div class="silhouette-description">
+                Pure sage silhouette med crystal white luminosity. Mental clarity.
+            </div>
+        </div>
+
+        <div class="silhouette-card ocean-mystic" data-name="OCEAN MYSTIC">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">OCEAN MYSTIC</div>
+            <div class="silhouette-description">
+                Flowing woman med ocean teal energy. Deep emotional healing.
+            </div>
+        </div>
+
+        <div class="silhouette-card fire-guardian" data-name="FIRE GUARDIAN">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">FIRE GUARDIAN</div>
+            <div class="silhouette-description">
+                Strong guardian form med warm fire glow. Inner strength.
+            </div>
+        </div>
+
+        <div class="silhouette-card moon-priestess" data-name="MOON PRIESTESS">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">MOON PRIESTESS</div>
+            <div class="silhouette-description">
+                Mystical priestess med silvery moonlight. Night meditation.
+            </div>
+        </div>
+
+        <div class="silhouette-card lotus-empress" data-name="LOTUS EMPRESS">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">LOTUS EMPRESS</div>
+            <div class="silhouette-description">
+                Majestic empress form med pink lotus glow. Divine feminine.
+            </div>
+        </div>
+
+        <div class="silhouette-card emerald-spirit" data-name="EMERALD SPIRIT">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">EMERALD SPIRIT</div>
+            <div class="silhouette-description">
+                Nature spirit form med emerald green energy. Earth connection.
+            </div>
+        </div>
+
+        <div class="silhouette-card amethyst-sage" data-name="AMETHYST SAGE">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">AMETHYST SAGE</div>
+            <div class="silhouette-description">
+                Wise sage med amethyst purple glow. Spiritual wisdom.
+            </div>
+        </div>
+
+        <div class="silhouette-card silver-moon" data-name="SILVER MOON">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">SILVER MOON</div>
+            <div class="silhouette-description">
+                Ethereal form med silver moonbeam glow. Lunar magic.
+            </div>
+        </div>
+
+        <div class="silhouette-card coral-goddess" data-name="CORAL GODDESS">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">CORAL GODDESS</div>
+            <div class="silhouette-description">
+                Ocean goddess med coral pink energy. Feminine flow.
+            </div>
+        </div>
+
+        <div class="silhouette-card jade-empress" data-name="JADE EMPRESS">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">JADE EMPRESS</div>
+            <div class="silhouette-description">
+                Royal empress med jade green radiance. Prosperity energy.
+            </div>
+        </div>
+
+        <div class="silhouette-card ruby-warrior" data-name="RUBY WARRIOR">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">RUBY WARRIOR</div>
+            <div class="silhouette-description">
+                Warrior woman med ruby red power glow. Fierce strength.
+            </div>
+        </div>
+
+        <div class="silhouette-card sapphire-mystic" data-name="SAPPHIRE MYSTIC">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">SAPPHIRE MYSTIC</div>
+            <div class="silhouette-description">
+                Mystic woman med sapphire blue flow. Deep intuition.
+            </div>
+        </div>
+
+        <div class="silhouette-card violet-sage" data-name="VIOLET SAGE">
+            <div class="selection-indicator">✓</div>
+            <div class="silhouette-preview">
+                <div class="woman-silhouette"></div>
+            </div>
+            <div class="silhouette-name">VIOLET SAGE</div>
+            <div class="silhouette-description">
+                Ancient sage med violet purple aura. Timeless wisdom.
+            </div>
+        </div>
+    </div>
+
+    <div class="selection-summary" id="selectionSummary">
+        Välj dina favoriter genom att klicka! 🧘‍♀️✨
+    </div>
+
+    <script>
+        let selectedSilhouettes = [];
+
+        document.querySelectorAll('.silhouette-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const silhouetteName = this.getAttribute('data-name');
+                const summaryElement = document.getElementById('selectionSummary');
+                
+                if (this.classList.contains('selected')) {
+                    // Deselect
+                    this.classList.remove('selected');
+                    selectedSilhouettes = selectedSilhouettes.filter(name => name !== silhouetteName);
+                } else {
+                    // Select
+                    this.classList.add('selected');
+                    if (!selectedSilhouettes.includes(silhouetteName)) {
+                        selectedSilhouettes.push(silhouetteName);
+                    }
+                }
+
+                // Update summary
+                if (selectedSilhouettes.length === 0) {
+                    summaryElement.textContent = 'Välj dina favoriter genom att klicka! 🧘‍♀️✨';
+                    summaryElement.classList.remove('active');
+                } else if (selectedSilhouettes.length === 1) {
+                    summaryElement.textContent = `✅ ${selectedSilhouettes[0]} selected!`;
+                    summaryElement.classList.add('active');
+                } else {
+                    summaryElement.textContent = `✅ ${selectedSilhouettes.length} selected: ${selectedSilhouettes.slice(0, 3).join(', ')}${selectedSilhouettes.length > 3 ? '...' : ''}`;
+                    summaryElement.classList.add('active');
+                }
+            });
+
+            // Enhanced hover effects
+            card.addEventListener('mouseenter', function() {
+                const silhouette = this.querySelector('.woman-silhouette');
+                silhouette.style.transform = 'scale(1.08)';
+                silhouette.style.filter = 'brightness(1.2) saturate(1.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const silhouette = this.querySelector('.woman-silhouette');
+                if (!this.classList.contains('selected')) {
+                    silhouette.style.transform = '';
+                    silhouette.style.filter = '';
+                }
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.silhouette-card').forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = `all 0.8s ease ${index * 0.05}s`;
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
