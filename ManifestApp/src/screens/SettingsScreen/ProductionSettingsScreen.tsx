@@ -394,6 +394,9 @@ Med vänlig hälsning,
             <FigmaCaption color={DesignTokens.colors.gray[500]} align="center">
               ✨ Tacksamhet för ett lyckligare liv
             </FigmaCaption>
+            <FigmaCaption color={DesignTokens.colors.gray[400]} align="center" style={styles.creditText}>
+              🐻 Gjord av Little Bear • Tacksamhet
+            </FigmaCaption>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -502,6 +505,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: DesignTokens.spacing.xl,
     gap: DesignTokens.spacing.xs,
+  },
+  
+  creditText: {
+    marginTop: DesignTokens.spacing.sm,
+    fontSize: 11,
+    fontStyle: 'italic',
   },
 });
 
