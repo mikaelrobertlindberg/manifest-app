@@ -487,7 +487,7 @@ const styles = StyleSheet.create({
   // === HEART ANIMATION ===
   heartContainer: {
     position: 'absolute',
-    top: '50%',
+    top: '65%',  // Flyttat ner så hjärtat får utrymme att animera uppåt
     left: '50%',
     marginLeft: -30,
     marginTop: -30,

@@ -91,7 +91,7 @@ export const FadeModal: React.FC<FadeModalProps> = ({
           {
             opacity: fadeAnim.interpolate({
               inputRange: [0, 1],
-              outputRange: [0, 0.90], // Ökad backdrop opacity för mer kontrast
+              outputRange: [0, 1.0], // Helt solid bakgrund - ingen transparency
             }),
           }
         ]}>
@@ -126,7 +126,7 @@ export const FadeModal: React.FC<FadeModalProps> = ({
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    backgroundColor: '#FFFFFF',  // Helt vit bakgrund så text bakom inte lyser igenom
+    backgroundColor: '#FFFFFF',  // Helt vit bakgrund - INGEN transparency
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: DesignTokens.spacing.lg,
@@ -149,15 +149,15 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 8,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 20,
-    elevation: 15,
-    // Extra säkerhet för solid bakgrund - INGEN animation på denna
-    opacity: 1.0,  // Force helt solid, aldrig animerad
-    borderWidth: 2,  // Tjockare border
-    borderColor: '#CCCCCC',  // Mer synlig border för definition
+    shadowOpacity: 0.3,
+    shadowRadius: 16,
+    elevation: 20,
+    // Extra säkerhet för solid bakgrund 
+    opacity: 1.0,  // Force helt solid
+    borderWidth: 1,  
+    borderColor: '#E0E0E0',  // Subtle border för definition
   },
 });
 
