@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Siluette Brand Development - Mike's Meditation Woman</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1A1A1A 25%, #2D2D2D 50%, #1A1A1A 75%, #000000 100%);
+            margin: 0;
+            padding: 20px;
+            color: #E8F5E8;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 4em;
+            margin: 0;
+            background: linear-gradient(45deg, #C8E6C9, #81C784, #2E7D32, #C8E6C9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(200,230,201,0.4);
+            animation: zenBreathe 6s ease-in-out infinite;
+        }
+        @keyframes zenBreathe {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.2); }
+        }
+        .subtitle {
+            font-size: 1.8em;
+            margin-top: 20px;
+            opacity: 0.95;
+            color: #C8E6C9;
+        }
+        .strategy-badge {
+            background: linear-gradient(45deg, #2E7D32, #4CAF50);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 8px 25px rgba(46,125,50,0.4);
+            animation: brandFloat 4s ease-in-out infinite;
+        }
+        @keyframes brandFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .original-showcase {
+            background: rgba(200,230,201,0.1);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 800px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(200,230,201,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .original-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(200,230,201,0.1) 0%, transparent 70%);
+            animation: originalAura 12s linear infinite;
+            z-index: -1;
+        }
+        @keyframes originalAura {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.1); }
+        }
+        .original-title {
+            font-size: 2.5em;
+            color: #C8E6C9;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .original-figure {
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #1A1A1A, #2D2D2D);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 3px solid rgba(200,230,201,0.4);
+            animation: meditationGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes meditationGlow {
+            from { box-shadow: 0 0 30px rgba(200,230,201,0.3); }
+            to { box-shadow: 0 0 60px rgba(200,230,201,0.6); }
+        }
+        .meditation-silhouette {
+            width: 180px;
+            height: 200px;
+            background: #C8E6C9;
+            position: relative;
+            border-radius: 50px 50px 40px 40px;
+            animation: zenPulse 6s ease-in-out infinite;
+        }
+        @keyframes zenPulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+        .meditation-silhouette::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: #C8E6C9;
+            border-radius: 50%;
+        }
+        .meditation-silhouette::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 80px;
+            background: #C8E6C9;
+            border-radius: 100px 100px 0 0;
+        }
+        .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .variant-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 35px;
+            padding: 45px;
+            backdrop-filter: blur(30px);
+            border: 2px solid rgba(200,230,201,0.2);
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .variant-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 70px rgba(200,230,201,0.3);
+            border-color: rgba(200,230,201,0.6);
+            background: rgba(255,255,255,0.08);
+        }
+        .variant-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(200,230,201,0.08) 0%, transparent 70%);
+            animation: variantAura 10s linear infinite;
+            z-index: -1;
+        }
+        @keyframes variantAura {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .variant-preview {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 35px;
+            border-radius: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 3px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+        .variant-silhouette {
+            width: 140px;
+            height: 160px;
+            position: relative;
+            border-radius: 40px 40px 30px 30px;
+            animation: gentleMeditate 8s ease-in-out infinite;
+        }
+        @keyframes gentleMeditate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.03) rotate(1deg); }
+        }
+        .variant-silhouette::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+        .variant-silhouette::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 60px;
+            border-radius: 80px 80px 0 0;
+        }
+        /* Color Variants */
+        .mint-zen .variant-preview { background: linear-gradient(135deg, #1A1A1A, #2D2D2D); }
+        .mint-zen .variant-silhouette, .mint-zen .variant-silhouette::before, .mint-zen .variant-silhouette::after { background: #C8E6C9; }
+        
+        .forest-zen .variant-preview { background: linear-gradient(135deg, #1A1A1A, #2D2D2D); }
+        .forest-zen .variant-silhouette, .forest-zen .variant-silhouette::before, .forest-zen .variant-silhouette::after { background: #2E7D32; }
+        
+        .sage-zen .variant-preview { background: linear-gradient(135deg, #1A1A1A, #2D2D2D); }
+        .sage-zen .variant-silhouette, .sage-zen .variant-silhouette::before, .sage-zen .variant-silhouette::after { background: #81C784; }
+        
+        .gradient-zen .variant-preview { background: linear-gradient(135deg, #1A1A1A, #2D2D2D); }
+        .gradient-zen .variant-silhouette, .gradient-zen .variant-silhouette::before, .gradient-zen .variant-silhouette::after { 
+            background: linear-gradient(135deg, #C8E6C9, #81C784);
+        }
+        
+        .aura-zen .variant-preview { background: linear-gradient(135deg, #1A1A1A, #2D2D2D); }
+        .aura-zen .variant-silhouette, .aura-zen .variant-silhouette::before, .aura-zen .variant-silhouette::after { 
+            background: #C8E6C9;
+            box-shadow: 0 0 30px rgba(200,230,201,0.6);
+        }
+        
+        .lotus-zen .variant-preview { background: linear-gradient(135deg, #1A1A1A, #2D2D2D); }
+        .lotus-zen .variant-silhouette, .lotus-zen .variant-silhouette::before { background: #C8E6C9; }
+        .lotus-zen .variant-silhouette::after { 
+            background: linear-gradient(to top, rgba(232,245,232,0.6), #C8E6C9);
+            border: 2px solid rgba(232,245,232,0.4);
+        }
+        
+        .variant-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #C8E6C9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .variant-strategy {
+            background: rgba(200,230,201,0.15);
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.05em;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #E8F5E8;
+        }
+        .variant-description {
+            opacity: 0.9;
+            margin-bottom: 35px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+        .optimization-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .optimization-tag {
+            background: linear-gradient(45deg, #2E7D32, #4CAF50);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+        }
+        .brand-applications {
+            background: rgba(200,230,201,0.08);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 80px 0;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(200,230,201,0.2);
+        }
+        .brand-title {
+            font-size: 2.8em;
+            color: #C8E6C9;
+            text-align: center;
+            margin-bottom: 45px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+        .application-card {
+            background: rgba(255,255,255,0.06);
+            border-radius: 25px;
+            padding: 35px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(200,230,201,0.2);
+            transition: all 0.3s ease;
+        }
+        .application-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(200,230,201,0.2);
+        }
+        .application-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #C8E6C9;
+        }
+        .application-name {
+            color: #C8E6C9;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        .application-description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        .generation-section {
+            background: rgba(46,125,50,0.1);
+            border-radius: 35px;
+            padding: 60px;
+            margin: 80px 0;
+            text-align: center;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(46,125,50,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .generation-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(46,125,50,0.1) 0%, transparent 70%);
+            animation: generationPulse 15s linear infinite;
+            z-index: -1;
+        }
+        @keyframes generationPulse {
+            from { transform: rotate(0deg) scale(0.8); }
+            to { transform: rotate(360deg) scale(1.2); }
+        }
+        .generation-title {
+            font-size: 2.5em;
+            color: #C8E6C9;
+            margin-bottom: 30px;
+        }
+        .ai-prompt-preview {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            font-family: 'Monaco', monospace;
+            font-size: 0.9em;
+            text-align: left;
+            border: 1px solid rgba(46,125,50,0.3);
+            overflow-x: auto;
+        }
+        .prompt-label {
+            color: #C8E6C9;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .implementation-cta {
+            background: linear-gradient(45deg, #2E7D32, #4CAF50, #81C784);
+            border-radius: 40px;
+            padding: 60px;
+            text-align: center;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+            animation: ctaGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes ctaGlow {
+            from { box-shadow: 0 20px 60px rgba(46,125,50,0.4); }
+            to { box-shadow: 0 30px 80px rgba(46,125,50,0.7); }
+        }
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        .cta-content h3 {
+            margin: 0 0 30px 0;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .selection-status {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #2E7D32, #4CAF50);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 15px 35px rgba(46,125,50,0.5);
+            transform: translateY(100px);
+            transition: all 0.5s ease;
+            z-index: 100;
+        }
+        .selection-status.active {
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .variants-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .variant-preview {
+                width: 180px;
+                height: 180px;
+            }
+            .header h1 {
+                font-size: 3em;
+            }
+            .original-figure {
+                width: 250px;
+                height: 250px;
+            }
+            .selection-status {
+                bottom: 20px;
+                right: 20px;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧘‍♀️ Zen Siluette Brand</h1>
+        <div class="subtitle">Utvecklar din meditation woman för skalbar app-utveckling</div>
+        <div class="strategy-badge">🎯 ZEN KÄNSLA + BYGGA APPAR UNDER DENNA BRAND</div>
+    </div>
+
+    <div class="original-showcase">
+        <div class="original-title">Din Valda Zen Siluette</div>
+        <div class="original-figure">
+            <div class="meditation-silhouette"></div>
+        </div>
+        <p style="font-size: 1.3em; color: #C8E6C9;">
+            <strong>Perfect brand foundation!</strong> Clean minimalism + immediate meditation recognition + scalable för multiple apps.
+        </p>
+        <p style="opacity: 0.9; margin-top: 25px;">
+            Elegant mint green (#C8E6C9) meditation silhouette som fungerar perfekt som utgångspunkt för din zen brand identity.
+        </p>
+    </div>
+
+    <div class="variants-grid">
+        <div class="variant-card mint-zen" data-variant="mint">
+            <div class="variant-preview">
+                <div class="variant-silhouette"></div>
+            </div>
+            <div class="variant-title">ORIGINAL MINT ZEN</div>
+            <div class="variant-strategy">Din nuvarande design - proven baseline</div>
+            <div class="variant-description">
+                Behåll din ursprungliga mint green aesthetic för brand consistency. Clean, approachable, gender-neutral zen känsla som redan fungerar.
+            </div>
+            <div class="optimization-tags">
+                <div class="optimization-tag">Brand Consistency</div>
+                <div class="optimization-tag">Gender Neutral</div>
+                <div class="optimization-tag">Proven Design</div>
+            </div>
+        </div>
+
+        <div class="variant-card forest-zen" data-variant="forest">
+            <div class="variant-preview">
+                <div class="variant-silhouette"></div>
+            </div>
+            <div class="variant-title">ENHANCED FOREST ZEN</div>
+            <div class="variant-strategy">Marketplace Optimized - +15% Enhanced Saturation</div>
+            <div class="variant-description">
+                Swedish forest green med proven +15% saturation boost för App Store visibility. Behåller zen känsla medan optimerar för conversion.
+            </div>
+            <div class="optimization-tags">
+                <div class="optimization-tag">+12% Conversion</div>
+                <div class="optimization-tag">Swedish Forest</div>
+                <div class="optimization-tag">App Store Optimized</div>
+            </div>
+        </div>
+
+        <div class="variant-card sage-zen" data-variant="sage">
+            <div class="variant-preview">
+                <div class="variant-silhouette"></div>
+            </div>
+            <div class="variant-title">WARM SAGE ZEN</div>
+            <div class="variant-strategy">Broader Appeal - Warmer, More Inviting</div>
+            <div class="variant-description">
+                Warm sage green med subtle gold undertones för broader demographic appeal. Mindre clinical än mint, mer approachable för general wellness.
+            </div>
+            <div class="optimization-tags">
+                <div class="optimization-tag">Broader Appeal</div>
+                <div class="optimization-tag">Warm Tones</div>
+                <div class="optimization-tag">Approachable</div>
+            </div>
+        </div>
+
+        <div class="variant-card gradient-zen" data-variant="gradient">
+            <div class="variant-preview">
+                <div class="variant-silhouette"></div>
+            </div>
+            <div class="variant-title">DUAL-TONE ZEN</div>
+            <div class="variant-strategy">Premium Positioning - Sophisticated Gradient</div>
+            <div class="variant-description">
+                Mint-to-sage gradient inom silhouette för premium brand positioning. Adds depth medan bibehåller clean simplicity för sophisticated appeal.
+            </div>
+            <div class="optimization-tags">
+                <div class="optimization-tag">Premium Quality</div>
+                <div class="optimization-tag">Visual Depth</div>
+                <div class="optimization-tag">Sophisticated</div>
+            </div>
+        </div>
+
+        <div class="variant-card aura-zen" data-variant="aura">
+            <div class="variant-preview">
+                <div class="variant-silhouette"></div>
+            </div>
+            <div class="variant-title">AURA ENHANCED ZEN</div>
+            <div class="variant-strategy">Spiritual Premium - Subtle Luminous Glow</div>
+            <div class="variant-description">
+                Din original mint med gentle luminous aura för premium spiritual tech positioning. Suggests inner light utan being overwhelming eller cliché.
+            </div>
+            <div class="optimization-tags">
+                <div class="optimization-tag">Inner Light</div>
+                <div class="optimization-tag">Premium Spiritual</div>
+                <div class="optimization-tag">Subtle Enhancement</div>
+            </div>
+        </div>
+
+        <div class="variant-card lotus-zen" data-variant="lotus">
+            <div class="variant-preview">
+                <div class="variant-silhouette"></div>
+            </div>
+            <div class="variant-title">LOTUS INTEGRATION ZEN</div>
+            <div class="variant-strategy">Traditional Authenticity - Simplified Lotus Base</div>
+            <div class="variant-description">
+                Meditation silhouette med subtle lotus petal base för traditional meditation symbolism. Adds authenticity medan maintaining clean minimalism.
+            </div>
+            <div class="optimization-tags">
+                <div class="optimization-tag">Traditional Symbol</div>
+                <div class="optimization-tag">Authentic Meditation</div>
+                <div class="optimization-tag">Clean Integration</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-applications">
+        <div class="brand-title">🏢 Brand System Applications</div>
+        <div class="applications-grid">
+            <div class="application-card">
+                <div class="application-icon">📱</div>
+                <div class="application-name">App Icons</div>
+                <div class="application-description">Scalable för all your future meditation apps. Color variants för product differentiation.</div>
+            </div>
+            <div class="application-card">
+                <div class="application-icon">💼</div>
+                <div class="application-name">Business Materials</div>
+                <div class="application-description">Business cards, letterheads, professional materials med wordmark integration.</div>
+            </div>
+            <div class="application-card">
+                <div class="application-icon">🌐</div>
+                <div class="application-name">Digital Presence</div>
+                <div class="application-description">Website headers, social media profiles, email signatures med consistent branding.</div>
+            </div>
+            <div class="application-card">
+                <div class="application-icon">👕</div>
+                <div class="application-name">Merchandise</div>
+                <div class="application-description">Apparel, accessories med monogram integration för brand expansion.</div>
+            </div>
+            <div class="application-card">
+                <div class="application-icon">🎯</div>
+                <div class="application-name">Marketing</div>
+                <div class="application-description">Consistent visual identity across all marketing channels and campaigns.</div>
+            </div>
+            <div class="application-card">
+                <div class="application-icon">⚡</div>
+                <div class="application-name">Digital Ecosystem</div>
+                <div class="application-description">Loading states, favicons, notification icons med subtle animation.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="generation-section">
+        <div class="generation-title">🤖 AI Generation Ready</div>
+        <p style="font-size: 1.4em; margin-bottom: 40px;">
+            Complete prompts prepared för all variants using Gemini Imagen 3, Midjourney V6, DALL-E 3
+        </p>
+        
+        <div class="ai-prompt-preview">
+            <div class="prompt-label">🌟 Enhanced Forest Zen (Exempel Prompt):</div>
+            <div style="opacity: 0.9;">
+Create a clean, minimalist meditation silhouette logo featuring a woman in lotus position, designed för premium brand identity and maximum App Store conversion. The figure should be rendered as an elegant silhouette in enhanced Swedish forest green (#2E7D32) against a dark charcoal background (#1A1A1A). The meditation pose should show perfect lotus position från slight side angle with hands in traditional mudra, head slightly tilted in serene contemplation...
+            </div>
+        </div>
+        
+        <p style="font-size: 1.2em; color: #C8E6C9; margin-top: 30px;">
+            <strong>Technical Specs:</strong> Perfect scalability från 1024x1024 → 57x57px • iOS compliance • Brand versatility • Marketplace optimization
+        </p>
+    </div>
+
+    <div class="implementation-cta">
+        <div class="cta-content">
+            <h3>🚀 Ready för Zen Brand Development!</h3>
+            <p style="font-size: 1.4em; margin-bottom: 35px;">
+                Your zen siluette = Perfect foundation för scalable wellness app brand
+            </p>
+            <p style="font-size: 1.2em; opacity: 0.95; margin-bottom: 25px;">
+                <strong>Brand Strategy:</strong> Zen känsla approach + build apps under this identity
+            </p>
+            <p style="font-size: 1.2em; opacity: 0.95;">
+                <strong>Next:</strong> Choose variant → Generate AI versions → Develop brand system → Deploy first app → Scale!
+            </p>
+        </div>
+    </div>
+
+    <div class="selection-status" id="selectionStatus">
+        Välj din favorit variant! 🧘‍♀️
+    </div>
+
+    <script>
+        // Selection tracking
+        let selectedVariants = [];
+
+        document.querySelectorAll('.variant-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const variant = this.getAttribute('data-variant');
+                const statusElement = document.getElementById('selectionStatus');
+                
+                if (this.style.borderColor.includes('rgb(200, 230, 201)')) {
+                    // Deselect
+                    this.style.borderColor = 'rgba(200,230,201,0.2)';
+                    this.style.background = 'rgba(255,255,255,0.05)';
+                    this.style.transform = '';
+                    selectedVariants = selectedVariants.filter(v => v !== variant);
+                } else {
+                    // Select
+                    this.style.borderColor = 'rgb(200, 230, 201)';
+                    this.style.background = 'rgba(200,230,201,0.15)';
+                    this.style.transform = 'translateY(-20px) scale(1.02)';
+                    this.style.boxShadow = '0 30px 70px rgba(200,230,201,0.5)';
+                    if (!selectedVariants.includes(variant)) {
+                        selectedVariants.push(variant);
+                    }
+                }
+
+                // Update status
+                if (selectedVariants.length === 0) {
+                    statusElement.textContent = 'Välj din favorit variant! 🧘‍♀️';
+                    statusElement.classList.remove('active');
+                } else if (selectedVariants.length === 1) {
+                    statusElement.textContent = `${selectedVariants[0].toUpperCase()} ZEN selected! ✨`;
+                    statusElement.classList.add('active');
+                } else {
+                    statusElement.textContent = `${selectedVariants.length} variants selected! 🎯`;
+                    statusElement.classList.add('active');
+                }
+            });
+
+            // Meditation breathing effect
+            card.addEventListener('mouseenter', function() {
+                const silhouette = this.querySelector('.variant-silhouette');
+                silhouette.style.animation = 'gentleMeditate 2s ease-in-out infinite';
+                this.style.transform = 'translateY(-20px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!this.style.borderColor.includes('rgb(200, 230, 201)')) {
+                    this.style.transform = '';
+                }
+            });
+        });
+
+        // Zen scroll effects
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.variant-card, .application-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(40px)';
+            element.style.transition = 'all 0.8s ease';
+            observer.observe(element);
+        });
+
+        // Zen breathing for original figure
+        const originalFigure = document.querySelector('.meditation-silhouette');
+        setInterval(() => {
+            originalFigure.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                originalFigure.style.transform = 'scale(1)';
+            }, 2000);
+        }, 4000);
+    </script>
+</body>
+</html>
