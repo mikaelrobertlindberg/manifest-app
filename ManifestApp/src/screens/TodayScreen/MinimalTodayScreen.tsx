@@ -57,9 +57,9 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   const [gratitudeText, setGratitudeText] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [checkmarkAnim] = useState(new Animated.Value(0));
-  const [checkmarkOpacity] = useState(new Animated.Value(0));
-  const [checkmarkY] = useState(new Animated.Value(0));
+  const [heartAnim] = useState(new Animated.Value(0));
+  const [heartOpacity] = useState(new Animated.Value(0));
+  const [heartY] = useState(new Animated.Value(0));
 
   // AI State
   const [aiSettings, setAiSettings] = useState<AISettings>({
@@ -130,43 +130,43 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
     handleAIGuidanceClose();
   };
 
-  // === CHECKMARK ANIMATION ===
-  const showCheckmarkAnimation = () => {
+  // === HEART ANIMATION ===
+  const showHeartAnimation = () => {
     // Reset animation values
-    checkmarkAnim.setValue(0);
-    checkmarkOpacity.setValue(0);
-    checkmarkY.setValue(0);
+    heartAnim.setValue(0);
+    heartOpacity.setValue(0);
+    heartY.setValue(0);
     
     // Sequence of animations: fade in -> scale up -> move up and fade out
     Animated.sequence([
-      // Fade in och scale up
+      // Fade in och scale up med extra bounce för hjärta
       Animated.parallel([
-        Animated.timing(checkmarkOpacity, {
+        Animated.timing(heartOpacity, {
           toValue: 1,
-          duration: 400,
+          duration: 500,
           useNativeDriver: true,
         }),
-        Animated.spring(checkmarkAnim, {
+        Animated.spring(heartAnim, {
           toValue: 1,
-          tension: 100,
-          friction: 6,
+          tension: 80,
+          friction: 4,
           useNativeDriver: true,
         })
       ]),
       
       // Kort paus
-      Animated.delay(800),
+      Animated.delay(600),
       
-      // Flyg iväg upp som ett moln
+      // Flyg iväg upp som ett hjärta med kärlek
       Animated.parallel([
-        Animated.timing(checkmarkY, {
-          toValue: -150,
-          duration: 1200,
+        Animated.timing(heartY, {
+          toValue: -200,
+          duration: 1400,
           useNativeDriver: true,
         }),
-        Animated.timing(checkmarkOpacity, {
+        Animated.timing(heartOpacity, {
           toValue: 0,
-          duration: 1200,
+          duration: 1400,
           useNativeDriver: true,
         })
       ])
@@ -234,8 +234,8 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       // Spela success harmony (harmoniskt ljud för saved entries)
       await SoundService.playSuccessHarmony();
       
-      // Visa grön bock som fadar iväg som ett moln
-      showCheckmarkAnimation();
+      // Visa hjärta som flyger iväg med kärlek
+      showHeartAnimation();
       
     } catch (error) {
       console.error('❌ MINIMAL: Save error:', error);
@@ -348,30 +348,28 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
         onTryAgain={handleTryAgain}
       />
       
-      {/* Animerad grön bock som flyger iväg som moln */}
+      {/* Animerat hjärta som flyger iväg med kärlek */}
       <Animated.View
         style={[
-          styles.checkmarkContainer,
+          styles.heartContainer,
           {
-            opacity: checkmarkOpacity,
+            opacity: heartOpacity,
             transform: [
               {
-                scale: checkmarkAnim.interpolate({
+                scale: heartAnim.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [0.3, 1],
+                  outputRange: [0.2, 1.2],
                 })
               },
               {
-                translateY: checkmarkY
+                translateY: heartY
               }
             ]
           }
         ]}
         pointerEvents="none"
       >
-        <View style={styles.checkmarkCircle}>
-          <FigmaBody style={styles.checkmarkText}>✅</FigmaBody>
-        </View>
+        <FigmaBody style={styles.heartText}>❤️</FigmaBody>
       </Animated.View>
 
       {/* Floating Settings Button - höger hörn */}
@@ -486,40 +484,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // === CHECKMARK ANIMATION ===
-  checkmarkContainer: {
+  // === HEART ANIMATION ===
+  heartContainer: {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    marginLeft: -40,
-    marginTop: -40,
+    marginLeft: -30,
+    marginTop: -30,
     zIndex: 1000,
-  },
-  
-  checkmarkCircle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 8,
   },
   
-  checkmarkText: {
-    fontSize: 32,
+  heartText: {
+    fontSize: 60,
     textAlign: 'center',
-    lineHeight: 32,
-    width: '100%',
-    height: 32,
-    textAlignVertical: 'center',
+    lineHeight: 60,
+    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 4,
   },
 });
 
