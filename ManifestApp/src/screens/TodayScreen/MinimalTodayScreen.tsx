@@ -18,6 +18,7 @@ import {
   StatusBar,
   Animated,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 // Figma Design System
 import { 
@@ -259,13 +260,25 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
 
   // === RENDER ===
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={DesignTokens.colors.background} />
-      
-      <KeyboardAvoidingView 
-        style={styles.keyboardAvoid}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
+    <LinearGradient
+      colors={[
+        '#FFFFFF',           // Pure white at top
+        '#FFF5F0',          // Warmer cream tone
+        '#FFE4D6',          // Richer orange/peach 
+        '#FFCCCB',          // Warmer coral/pink
+        '#FFE5E5',          // Warm pink base
+      ]}
+      style={styles.container}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+    >
+      <SafeAreaView style={styles.safeArea}>
+        <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+        
+        <KeyboardAvoidingView 
+          style={styles.keyboardAvoid}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
         <ScrollView 
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
@@ -275,11 +288,9 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
           
           <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
             
-            {/* === MINIMAL HEADER - Bara björnen === */}
+            {/* === MINIMAL HEADER === */}
             <View style={styles.header}>
-              <FigmaHeading1 color={DesignTokens.colors.primary[500]} align="center">
-                🐻
-              </FigmaHeading1>
+              {/* Clean header utan björn */}
             </View>
 
             {/* === MAIN PROMPT CARD === */}
@@ -321,21 +332,9 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
               />
             </FigmaCard>
 
-            {/* === MINIMAL FOOTER MED DISKRETA CONTROLS === */}
+            {/* === CLEAN MINIMAL FOOTER === */}
             <View style={styles.footer}>
-              <FigmaBody color={DesignTokens.colors.gray[400]} align="center" style={styles.footerText}>
-                Minimal design för fokuserad tacksamhet ✨
-              </FigmaBody>
-              
-              <TouchableOpacity
-                style={styles.discreteSettingsButton}
-                onPress={onShowSettings}
-                activeOpacity={0.7}
-              >
-                <FigmaBody color={DesignTokens.colors.gray[500]}>
-                  ⚙️ inställningar
-                </FigmaBody>
-              </TouchableOpacity>
+              {/* Ingen navigation här längre - ren design */}
             </View>
 
           </Animated.View>
@@ -379,15 +378,29 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
           <FigmaBody style={styles.checkmarkText}>✅</FigmaBody>
         </View>
       </Animated.View>
-    </SafeAreaView>
+
+      {/* Floating Settings Button - höger hörn */}
+      <TouchableOpacity
+        style={styles.floatingSettingsButton}
+        onPress={onShowSettings}
+        activeOpacity={0.7}
+      >
+        <FigmaBody style={styles.settingsIcon}>⚙️</FigmaBody>
+      </TouchableOpacity>
+      
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
-// === MINIMAL DESIGN STYLES ===
+// === STYLES ===
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: DesignTokens.colors.background,
+  },
+  
+  safeArea: {
+    flex: 1,
   },
   
   keyboardAvoid: {
@@ -450,17 +463,32 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'center',
     gap: DesignTokens.spacing.md,
+    paddingBottom: DesignTokens.spacing.lg,
   },
   
-  footerText: {
-    fontSize: 12,
+  floatingSettingsButton: {
+    position: 'absolute',
+    bottom: 40,
+    right: 20,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 8,
   },
   
-  discreteSettingsButton: {
-    padding: DesignTokens.spacing.sm,
-    borderRadius: DesignTokens.radius.lg,
-    backgroundColor: DesignTokens.colors.gray[50],
-    opacity: 0.8,
+  settingsIcon: {
+    fontSize: 20,
+    textAlign: 'center',
   },
   
   // === CHECKMARK ANIMATION ===

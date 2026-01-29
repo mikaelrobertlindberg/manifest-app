@@ -14,7 +14,9 @@ import {
   TouchableOpacity,
   Alert,
   Switch,
-  StatusBar
+  StatusBar,
+  Platform,
+  Linking
 } from 'react-native';
 
 // Figma Design System
@@ -450,16 +452,37 @@ export const ExtendedSettingsScreen: React.FC<ExtendedSettingsScreenProps> = ({
   // === OTHER HANDLERS ===
   const handleAbout = () => {
     Alert.alert(
-      '🐻 Minimal Bear App',
-      `Manifest - Svenska Tacksamhetsappen\n\n` +
-      `✨ Design: Minimal & Clean\n` +
-      `🎨 Theme: Figma Cosmic Sunset\n` +
-      `📱 Platform: React Native\n` +
-      `🤖 AI: Positivitetsfilter\n` +
-      `🇸🇪 Språk: Svenska\n\n` +
-      `Utvecklad med fokus av Little Bear 🐻`,
-      [{ text: 'Stäng', style: 'default' }]
+      'Om Tacksamhet',
+      `Tacksamhet v1.0.0\n\n` +
+      `En app för daglig tacksamhetspraktik.\n` +
+      `29 SEK engångsköp, inga prenumerationer.\n\n` +
+      `✨ Minimalistisk design\n` +
+      `🤖 AI-stödd positivitetsfilter\n` +
+      `🇸🇪 Helt på svenska\n\n` +
+      `Utvecklad med ❤️`,
+      [{ text: 'OK' }]
     );
+  };
+
+  const handleBugReport = () => {
+    const deviceInfo = `
+App: Tacksamhet 1.0.0
+Device: ${Platform.OS} ${Platform.Version}
+Time: ${new Date().toLocaleString('sv-SE')}
+Backend: ${appStats.backendStatus}
+Gratitudes: ${appStats.gratitudesCount}
+    `.trim();
+    
+    const emailURL = `mailto:support@tacksamhet.app?subject=Bug Report - Tacksamhet&body=Hej! Jag upptäckte ett fel i appen.%0D%0A%0D%0ABeskrivning av problemet:%0D%0A%0D%0A%0D%0AVad förväntade jag mig:%0D%0A%0D%0A%0D%0AVad hände istället:%0D%0A%0D%0A%0D%0A--- Teknisk info ---%0D%0A${encodeURIComponent(deviceInfo)}`;
+    
+    Linking.openURL(emailURL).catch(err => {
+      console.error('Could not open email app:', err);
+      Alert.alert(
+        'Kunde inte öppna email',
+        'Skicka fel-rapporten till: support@tacksamhet.app\n\nInkludera:\n• Beskrivning av problemet\n• Vad du förväntade dig\n• Vad som hände istället',
+        [{ text: 'OK' }]
+      );
+    });
   };
 
   const handleDataExport = () => {
@@ -828,16 +851,22 @@ export const ExtendedSettingsScreen: React.FC<ExtendedSettingsScreenProps> = ({
           )}
         </FigmaCard>
 
-        {/* === ABOUT === */}
+        {/* === SUPPORT === */}
         <FigmaCard variant="default" style={styles.section}>
           <FigmaHeading3 color={DesignTokens.colors.gray[800]} style={styles.sectionTitle}>
-            📐 Om Appen
+            💬 Support
           </FigmaHeading3>
           
           {renderActionRow(
-            'Om Manifest',
-            'Version, credits och design system info',
+            'Om Tacksamhet',
+            'Version, information och credits',
             handleAbout
+          )}
+          
+          {renderActionRow(
+            '🐛 Rapportera fel',
+            'Hittade ett problem? Hjälp oss förbättra appen',
+            handleBugReport
           )}
         </FigmaCard>
 

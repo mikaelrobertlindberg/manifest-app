@@ -10,25 +10,25 @@
 // =============================================================================
 
 export const DesignTokens = {
-  // Typography Scale (Figma Standard)
+  // Typography Scale (Nunito - Mysig & Mindfulness-Optimerad)
   typography: {
     // Headlines
     headline1: {
-      fontFamily: 'System',
+      fontFamily: 'Nunito_700Bold',
       fontSize: 32,
       fontWeight: '700' as const,
       lineHeight: 40,
       letterSpacing: -0.32,
     },
     headline2: {
-      fontFamily: 'System', 
+      fontFamily: 'Nunito_600SemiBold', 
       fontSize: 24,
       fontWeight: '600' as const,
       lineHeight: 32,
       letterSpacing: -0.24,
     },
     headline3: {
-      fontFamily: 'System',
+      fontFamily: 'Nunito_600SemiBold',
       fontSize: 20,
       fontWeight: '600' as const,
       lineHeight: 28,
@@ -36,14 +36,14 @@ export const DesignTokens = {
     },
     // Body Text
     body1: {
-      fontFamily: 'System',
+      fontFamily: 'Nunito_400Regular',
       fontSize: 16,
       fontWeight: '400' as const,
       lineHeight: 24,
       letterSpacing: 0,
     },
     body2: {
-      fontFamily: 'System',
+      fontFamily: 'Nunito_400Regular',
       fontSize: 14,
       fontWeight: '400' as const,
       lineHeight: 20,
@@ -51,14 +51,14 @@ export const DesignTokens = {
     },
     // Labels & Buttons
     button: {
-      fontFamily: 'System',
+      fontFamily: 'Nunito_600SemiBold',
       fontSize: 16,
       fontWeight: '600' as const,
       lineHeight: 24,
       letterSpacing: 0.16,
     },
     caption: {
-      fontFamily: 'System',
+      fontFamily: 'Nunito_400Regular',
       fontSize: 12,
       fontWeight: '400' as const,
       lineHeight: 16,

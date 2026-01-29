@@ -11,14 +11,11 @@
       "resizeMode": "contain",
       "backgroundColor": "#1a1a2e"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.littlebear.tacksamhet",
       "buildNumber": "1",
-      "appleTeamId": "J6BB654J29",
       "infoPlist": {
         "NSUserNotificationsUsageDescription": "Denna app använder notifikationer för att påminna dig om att praktisera tacksamhet."
       }
@@ -43,16 +40,9 @@
         {
           "icon": "./assets/notification-icon.png",
           "color": "#4CAF50",
-          "sounds": [
-            "./assets/sounds/gentle-chime.wav"
-          ]
+          "sounds": ["./assets/sounds/gentle-chime.wav"]
         }
       ]
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "8480b39e-cfe3-4f49-939c-795d59ce7323"
-      }
-    }
+    ]
   }
 }

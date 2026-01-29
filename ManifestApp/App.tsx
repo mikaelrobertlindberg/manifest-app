@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { MinimalTodayScreen } from './src/screens/TodayScreen/MinimalTodayScreen';
 import { FigmaHistoryScreen } from './src/screens/HistoryScreen/FigmaHistoryScreen';
-import { ExtendedSettingsScreen } from './src/screens/SettingsScreen/ExtendedSettingsScreen';
+import { ProductionSettingsScreen } from './src/screens/SettingsScreen/ProductionSettingsScreen';
 import { DeveloperTestScreen } from './src/screens/DeveloperTestScreen/DeveloperTestScreen';
 import { NotificationService } from './src/services/NotificationService';
 import { LocalStorageService } from './src/services/LocalStorageService';
 import { SoundService } from './src/services/SoundService';
+import { useFonts, 
+  Nunito_400Regular, 
+  Nunito_500Medium,
+  Nunito_600SemiBold, 
+  Nunito_700Bold 
+} from '@expo-google-fonts/nunito';
 
 type Screen = 'today' | 'history' | 'settings' | 'devtest';
 
@@ -15,10 +21,20 @@ export default function App() {
   const [appVersion] = useState('SELF-TESTER-v1.2'); // Force reload indicator
   const [developerMode, setDeveloperMode] = useState(false);
 
+  // 🎨 NUNITO FONTS LOADING - Mysig Typography
+  const [fontsLoaded] = useFonts({
+    Nunito_400Regular,
+    Nunito_500Medium,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+  });
+
   // MOBILE-SAFE: Initiera app med förbättrad error handling
   useEffect(() => {
-    initializeApp();
-  }, []);
+    if (fontsLoaded) {
+      initializeApp();
+    }
+  }, [fontsLoaded]);
 
   const initializeApp = async () => {
     try {
@@ -111,6 +127,12 @@ export default function App() {
     });
   };
 
+  // 🎨 Wait for Nunito fonts to load before rendering app
+  if (!fontsLoaded) {
+    console.log('🎨 Loading Nunito fonts...');
+    return null; // Could add a loading screen here
+  }
+
   return (
     <>
       {currentScreen === 'today' && (
@@ -125,11 +147,8 @@ export default function App() {
         <FigmaHistoryScreen onBack={showToday} />
       )}
       {currentScreen === 'settings' && (
-        <ExtendedSettingsScreen 
+        <ProductionSettingsScreen 
           onBack={showToday}
-          onShowHistory={showHistory}
-          onShowDeveloperTest={developerMode ? showDeveloperTest : undefined}
-          onDeveloperModeToggle={handleDeveloperModeToggle}
         />
       )}
       {currentScreen === 'devtest' && (

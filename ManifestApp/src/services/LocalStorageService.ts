@@ -1,4 +1,6 @@
 // MOBILE-PERSISTENCE-FIXED: Lokal lagringsservice med persistent mobile storage
+import { SmartNotificationService } from './SmartNotificationService';
+
 export interface GratitudeEntry {
   id: string;
   text: string; // Text med integrerade emojis
@@ -85,6 +87,15 @@ export class LocalStorageService {
       
       // BACKUP: Try localStorage if available
       await this.backupToLocalStorage();
+      
+      // SMART NOTIFICATIONS: Record entry för intelligent påminnelser
+      try {
+        await SmartNotificationService.recordGratitudeEntry();
+        console.log('🤖 Smart notifications updated after save');
+      } catch (smartNotifError) {
+        console.warn('⚠️ Smart notification error (non-critical):', smartNotifError);
+        // Don't fail the save if smart notifications fail
+      }
       
       console.log(`✅ SAVED: Entry ${newEntry.id} saved successfully! Total entries: ${this.storage.getCount()}`);
       return newEntry;
@@ -218,6 +229,27 @@ export class LocalStorageService {
   // UTILITY: Text utan emojis
   static getTextWithoutEmojis(text: string): string {
     return text.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
+  }
+  
+  // SMART NOTIFICATIONS: Hämta senaste tacksamheter för personalisering
+  static async getRecentGratitudes(days: number = 7): Promise<GratitudeEntry[]> {
+    try {
+      const allEntries = await this.getAllGratitudes();
+      const daysAgo = new Date();
+      daysAgo.setDate(daysAgo.getDate() - days);
+      
+      // Filtrera entries från senaste X dagarna
+      const recentEntries = allEntries.filter(entry => {
+        const entryDate = new Date(entry.createdAt);
+        return entryDate >= daysAgo;
+      });
+      
+      console.log(`📅 Found ${recentEntries.length} gratitudes from last ${days} days`);
+      return recentEntries;
+    } catch (error) {
+      console.error('❌ Error getting recent gratitudes:', error);
+      return [];
+    }
   }
   
   // MOBILE DEBUG: Backend status med persistent storage info
