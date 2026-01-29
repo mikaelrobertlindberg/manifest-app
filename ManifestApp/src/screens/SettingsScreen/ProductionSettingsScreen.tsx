@@ -18,6 +18,7 @@ import {
   Platform,
   Linking
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 
 // Figma Design System
@@ -38,6 +39,8 @@ import {
 import { NotificationService, NotificationSettings } from '../../services/NotificationService';
 import { SmartNotificationService } from '../../services/SmartNotificationService';
 import { SoundService, AudioSettings } from '../../services/SoundService';
+// Components
+import { LanguageSelector } from '../../components/LanguageSelector';
 
 interface ProductionSettingsScreenProps {
   onBack: () => void;
@@ -46,6 +49,9 @@ interface ProductionSettingsScreenProps {
 export const ProductionSettingsScreen: React.FC<ProductionSettingsScreenProps> = ({ 
   onBack
 }) => {
+  
+  // === HOOKS ===
+  const { t } = useTranslation();
   
   // === STATE ===
   const [notificationSettings, setNotificationSettings] = useState<NotificationSettings>({
@@ -114,24 +120,24 @@ export const ProductionSettingsScreen: React.FC<ProductionSettingsScreenProps> =
           }));
           
           Alert.alert(
-            '✨ Smarta påminnelser aktiverade',
-            'Du får mjuka, personaliserade påminnelser att skriva tacksamhet (max 2 per dag).\n\nFrekvensen anpassas automatiskt efter hur ofta du använder appen. Inga påminnelser om du redan skrivit något samma dag.'
+            t('alerts.smartNotificationsEnabled'),
+            t('alerts.smartNotificationsEnabledMessage')
           );
         } else {
           Alert.alert(
-            'Behörighet nekad',
-            'Gå till Inställningar → Notifikationer för att aktivera påminnelser för Tacksamhet.'
+            t('alerts.permissionDeniedTitle'),
+            t('alerts.permissionDeniedMessage')
           );
         }
       } else {
         await SmartNotificationService.disableSmartReminders();
         setNotificationSettings(prev => ({ ...prev, dailyReminders: false }));
         
-        Alert.alert('Påminnelser avstängda', 'Inga fler smarta påminnelser kommer skickas.');
+        Alert.alert(t('alerts.notificationsDisabledTitle'), t('alerts.notificationsDisabledMessage'));
       }
     } catch (error) {
       console.error('❌ Smart notification toggle error:', error);
-      Alert.alert('Fel', 'Kunde inte uppdatera smarta påminnelser');
+      Alert.alert(t('alerts.errorTitle'), t('alerts.notificationUpdateError'));
     }
   };
 
@@ -143,7 +149,7 @@ export const ProductionSettingsScreen: React.FC<ProductionSettingsScreenProps> =
       setAudioSettings(newSettings);
     } catch (error) {
       console.error('❌ Audio toggle error:', error);
-      Alert.alert('Fel', 'Kunde inte uppdatera ljudinställningar');
+      Alert.alert(t('alerts.errorTitle'), t('alerts.audioUpdateError'));
     }
   };
 
@@ -172,15 +178,9 @@ export const ProductionSettingsScreen: React.FC<ProductionSettingsScreenProps> =
   // === SUPPORT HANDLERS ===
   const handleAbout = () => {
     Alert.alert(
-      'Om Tacksamhet',
-      `Tacksamhet v1.0.0\n\n` +
-      `En app för daglig tacksamhetspraktik.\n` +
-      `29 SEK engångsköp, inga prenumerationer.\n\n` +
-      `✨ Minimalistisk design\n` +
-      `🤖 Smart påminnelsesystem\n` +
-      `🇸🇪 Helt på svenska\n\n` +
-      `Utvecklad med ❤️`,
-      [{ text: 'OK' }]
+      t('about.title'),
+      t('about.message'),
+      [{ text: t('alerts.okButton') }]
     );
   };
 
@@ -220,9 +220,9 @@ Med vänlig hälsning,
     Linking.openURL(emailURL).catch(err => {
       console.error('Could not open email app:', err);
       Alert.alert(
-        'Kunde inte öppna email',
-        'Skicka buggrapport till:\nsupport@tacksamhet.app\n\nBeskriv problemet, vad du förväntade dig, och vad som hände istället.',
-        [{ text: 'OK' }]
+        t('alerts.couldNotOpenEmail'),
+        t('alerts.couldNotOpenEmailMessage'),
+        [{ text: t('alerts.okButton') }]
       );
     });
   };
@@ -304,10 +304,10 @@ Med vänlig hälsning,
           
           <View style={styles.headerContent}>
             <FigmaHeading1 color={DesignTokens.colors.primary[500]} align="center">
-              ⚙️ Inställningar
+              {t('settings.title')}
             </FigmaHeading1>
             <FigmaBody color={DesignTokens.colors.gray[600]} align="center">
-              Påminnelser • Ljud • Support
+              {t('settings.subtitle')}
             </FigmaBody>
           </View>
         </View>
@@ -321,12 +321,12 @@ Med vänlig hälsning,
           {/* === NOTIFICATION SETTINGS === */}
           <FigmaCard variant="default" style={styles.section}>
             <FigmaHeading3 color={DesignTokens.colors.gray[800]} style={styles.sectionTitle}>
-              🔔 Påminnelser
+              {t('settings.notificationsSectionTitle')}
             </FigmaHeading3>
             
             {renderSettingRow(
-              'Dagliga påminnelser',
-              'Få mjuka påminnelser att skriva tacksamhet (max 2/dag, smart frekvens)',
+              t('settings.dailyReminders'),
+              t('settings.dailyRemindersDescription'),
               notificationSettings.dailyReminders,
               handleNotificationToggle,
               loading
@@ -336,12 +336,12 @@ Med vänlig hälsning,
           {/* === AUDIO SETTINGS === */}
           <FigmaCard variant="default" style={styles.section}>
             <FigmaHeading3 color={DesignTokens.colors.gray[800]} style={styles.sectionTitle}>
-              🎵 Ljud
+              {t('settings.audioSectionTitle')}
             </FigmaHeading3>
             
             {renderSettingRow(
-              'Ljudnotiser',
-              'Harmoniska ljud för bättre upplevelse',
+              t('settings.soundNotifications'),
+              t('settings.soundNotificationsDescription'),
               audioSettings.enabled,
               handleAudioToggle,
               loading
@@ -350,16 +350,16 @@ Med vänlig hälsning,
             {audioSettings.enabled && (
               <>
                 {renderSettingRow(
-                  'Påminnelse-ljud',
-                  'Mjukt ljud när appen påminner om tacksamhet',
+                  t('settings.reminderSounds'),
+                  t('settings.reminderSoundsDescription'),
                   audioSettings.reminderChime,
                   handleReminderChimeToggle,
                   loading
                 )}
 
                 {renderSettingRow(
-                  'Success-ljud',
-                  'Harmoniskt ljud när tacksamhet sparas',
+                  t('settings.successSounds'),
+                  t('settings.successSoundsDescription'),
                   audioSettings.successSound,
                   handleSuccessSoundToggle,
                   loading
@@ -370,21 +370,37 @@ Med vänlig hälsning,
             )}
           </FigmaCard>
 
+          {/* === LANGUAGE SETTINGS === */}
+          <FigmaCard variant="default" style={styles.section}>
+            <FigmaHeading3 color={DesignTokens.colors.gray[800]} style={styles.sectionTitle}>
+              {t('settings.languageSectionTitle')}
+            </FigmaHeading3>
+            
+            <View style={styles.languageSelectorContainer}>
+              <LanguageSelector 
+                onLanguageChange={(languageCode) => {
+                  console.log(`🌍 Language changed to: ${languageCode}`);
+                  // Force re-render by updating state if needed
+                }}
+              />
+            </View>
+          </FigmaCard>
+
           {/* === SUPPORT === */}
           <FigmaCard variant="default" style={styles.section}>
             <FigmaHeading3 color={DesignTokens.colors.gray[800]} style={styles.sectionTitle}>
-              💬 Support
+              {t('settings.supportSectionTitle')}
             </FigmaHeading3>
             
             {renderActionRow(
-              'Om Tacksamhet',
-              'Version, information och credits',
+              t('settings.aboutApp'),
+              t('settings.aboutDescription'),
               handleAbout
             )}
             
             {renderActionRow(
-              '🐛 Rapportera fel',
-              'Hittade ett problem? Hjälp oss förbättra appen',
+              t('settings.reportBug'),
+              t('settings.reportBugDescription'),
               handleBugReport
             )}
           </FigmaCard>
@@ -392,10 +408,10 @@ Med vänlig hälsning,
           {/* === FOOTER === */}
           <View style={styles.footer}>
             <FigmaCaption color={DesignTokens.colors.gray[500]} align="center">
-              ✨ Tacksamhet för ett lyckligare liv
+              {t('general.footer')}
             </FigmaCaption>
             <FigmaCaption color={DesignTokens.colors.gray[400]} align="center" style={styles.creditText}>
-              🐻 Gjord av Little Bear • Tacksamhet
+              {t('general.credit')}
             </FigmaCaption>
           </View>
         </ScrollView>
@@ -456,6 +472,11 @@ const styles = StyleSheet.create({
   
   sectionTitle: {
     marginBottom: DesignTokens.spacing.md,
+  },
+
+  // === LANGUAGE SELECTOR ===
+  languageSelectorContainer: {
+    minHeight: 200,
   },
 
   // === SETTING ROWS ===

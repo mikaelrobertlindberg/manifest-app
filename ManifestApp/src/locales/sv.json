@@ -1,0 +1,83 @@
+{
+  "prompts": {
+    "daily": [
+      "Vad är du tacksam för idag?",
+      "Vilket litet ögonblick gjorde dig glad?",
+      "Vad fick dig att le idag?",
+      "Vilket vackert ögonblick vill du komma ihåg?",
+      "Vad värmde ditt hjärta?",
+      "Vilket ljust ögonblick stack ut?",
+      "Vad känner du tacksamhet för just nu?"
+    ]
+  },
+  "buttons": {
+    "save": "Spara 🌿",
+    "saving": "Sparar...",
+    "analyzing": "Analyserar...",
+    "back": "←",
+    "settings": "⚙️",
+    "useMyText": "Använd mitt",
+    "tryAgain": "Prova igen"
+  },
+  "alerts": {
+    "emptyTextTitle": "Skriv något",
+    "emptyTextMessage": "Dela med dig av vad du är tacksam för först 🌿",
+    "saveErrorTitle": "Något gick fel",
+    "saveErrorMessage": "Kunde inte spara just nu. Prova igen?",
+    "tryAgainButton": "Prova igen",
+    "okButton": "OK",
+    "smartNotificationsEnabled": "✨ Smarta påminnelser aktiverade",
+    "smartNotificationsEnabledMessage": "Du får mjuka, personaliserade påminnelser att skriva tacksamhet (max 2 per dag).\\n\\nFrekvensen anpassas automatiskt efter hur ofta du använder appen. Inga påminnelser om du redan skrivit något samma dag.",
+    "permissionDeniedTitle": "Behörighet nekad",
+    "permissionDeniedMessage": "Gå till Inställningar → Notifikationer för att aktivera påminnelser för Tacksamhet.",
+    "notificationsDisabledTitle": "Påminnelser avstängda",
+    "notificationsDisabledMessage": "Inga fler smarta påminnelser kommer skickas.",
+    "errorTitle": "Fel",
+    "notificationUpdateError": "Kunde inte uppdatera smarta påminnelser",
+    "audioUpdateError": "Kunde inte uppdatera ljudinställningar",
+    "couldNotOpenEmail": "Kunde inte öppna email",
+    "couldNotOpenEmailMessage": "Skicka buggrapport till:\\nsupport@tacksamhet.app\\n\\nBeskriv problemet, vad du förväntade dig, och vad som hände istället."
+  },
+  "settings": {
+    "title": "⚙️ Inställningar",
+    "subtitle": "Påminnelser • Ljud • Support • Språk",
+    "notificationsSectionTitle": "🔔 Påminnelser",
+    "audioSectionTitle": "🎵 Ljud",
+    "languageSectionTitle": "🌍 Språk",
+    "supportSectionTitle": "💬 Support",
+    "dailyReminders": "Dagliga påminnelser",
+    "dailyRemindersDescription": "Få mjuka påminnelser att skriva tacksamhet (max 2/dag, smart frekvens)",
+    "soundNotifications": "Ljudnotiser",
+    "soundNotificationsDescription": "Harmoniska ljud för bättre upplevelse",
+    "reminderSounds": "Påminnelse-ljud",
+    "reminderSoundsDescription": "Mjukt ljud när appen påminner om tacksamhet",
+    "successSounds": "Success-ljud",
+    "successSoundsDescription": "Harmoniskt ljud när tacksamhet sparas",
+    "languageSelection": "Språkval",
+    "languageSelectionDescription": "Välj språk för appen",
+    "aboutApp": "Om Tacksamhet",
+    "aboutDescription": "Version, information och credits",
+    "reportBug": "🐛 Rapportera fel",
+    "reportBugDescription": "Hittade ett problem? Hjälp oss förbättra appen"
+  },
+  "ai": {
+    "analyzing": "🤖 Analyserar..."
+  },
+  "general": {
+    "appName": "Tacksamhet",
+    "placeholder": "Börja skriva här...",
+    "footer": "✨ Tacksamhet för ett lyckligare liv",
+    "credit": "🐻 Gjord av Little Bear • Tacksamhet"
+  },
+  "about": {
+    "title": "Om Tacksamhet",
+    "message": "Tacksamhet v1.0.0\\n\\nEn app för daglig tacksamhetspraktik.\\n29 SEK engångsköp, inga prenumerationer.\\n\\n✨ Minimalistisk design\\n🤖 Smart påminnelsesystem\\n🇸🇪 Helt på svenska\\n🌍 Nu på flera språk\\n\\nUtvecklad med ❤️"
+  },
+  "languages": {
+    "sv": "🇸🇪 Svenska",
+    "de": "🇩🇪 Tyska",
+    "fi": "🇫🇮 Finska", 
+    "no": "🇳🇴 Norska",
+    "da": "🇩🇰 Danska"
+  }
+}

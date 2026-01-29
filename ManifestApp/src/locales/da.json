@@ -1,0 +1,83 @@
+{
+  "prompts": {
+    "daily": [
+      "Hvad er du taknemmelig for i dag?",
+      "Hvilket lille øjeblik gjorde dig glad?",
+      "Hvad fik dig til at smile i dag?",
+      "Hvilket smukt øjeblik vil du huske?",
+      "Hvad varmede dit hjerte?",
+      "Hvilket lyst øjeblik stak ud?",
+      "Hvad føler du taknemmelighed for lige nu?"
+    ]
+  },
+  "buttons": {
+    "save": "Gem 🌿",
+    "saving": "Gemmer...",
+    "analyzing": "Analyserer...",
+    "back": "←",
+    "settings": "⚙️",
+    "useMyText": "Brug min tekst",
+    "tryAgain": "Prøv igen"
+  },
+  "alerts": {
+    "emptyTextTitle": "Skriv noget",
+    "emptyTextMessage": "Del hvad du er taknemmelig for først 🌿",
+    "saveErrorTitle": "Noget gik galt",
+    "saveErrorMessage": "Kunne ikke gemme lige nu. Prøv igen?",
+    "tryAgainButton": "Prøv igen",
+    "okButton": "OK",
+    "smartNotificationsEnabled": "✨ Smarte påmindelser aktiveret",
+    "smartNotificationsEnabledMessage": "Du får milde, personlige påmindelser om at skrive taknemmelighed (maks 2 om dagen).\\n\\nFrekvensen tilpasser sig automatisk efter hvor ofte du bruger appen. Ingen påmindelser hvis du allerede har skrevet noget samme dag.",
+    "permissionDeniedTitle": "Tilladelse nægtet",
+    "permissionDeniedMessage": "Gå til Indstillinger → Notifikationer for at aktivere påmindelser for Taknemmelighed.",
+    "notificationsDisabledTitle": "Påmindelser slået fra",
+    "notificationsDisabledMessage": "Der sendes ikke flere smarte påmindelser.",
+    "errorTitle": "Fejl",
+    "notificationUpdateError": "Kunne ikke opdatere smarte påmindelser",
+    "audioUpdateError": "Kunne ikke opdatere lydindstillinger",
+    "couldNotOpenEmail": "Kunne ikke åbne e-mail",
+    "couldNotOpenEmailMessage": "Send fejlrapport til:\\nsupport@tacksamhet.app\\n\\nBeskriv problemet, hvad du forventede og hvad der skete i stedet."
+  },
+  "settings": {
+    "title": "⚙️ Indstillinger",
+    "subtitle": "Påmindelser • Lyd • Support • Sprog",
+    "notificationsSectionTitle": "🔔 Påmindelser",
+    "audioSectionTitle": "🎵 Lyd",
+    "languageSectionTitle": "🌍 Sprog",
+    "supportSectionTitle": "💬 Support",
+    "dailyReminders": "Daglige påmindelser",
+    "dailyRemindersDescription": "Få milde påmindelser om at skrive taknemmelighed (maks 2/dag, smart frekvens)",
+    "soundNotifications": "Lydnotifikationer",
+    "soundNotificationsDescription": "Harmoniske lyde for bedre oplevelse",
+    "reminderSounds": "Påmindelse-lyde",
+    "reminderSoundsDescription": "Mild lyd når appen påminder om taknemmelighed",
+    "successSounds": "Succes-lyde",
+    "successSoundsDescription": "Harmonisk lyd når taknemmelighed gemmes",
+    "languageSelection": "Sprogvalg",
+    "languageSelectionDescription": "Vælg sprog for appen",
+    "aboutApp": "Om Taknemmelighed",
+    "aboutDescription": "Version, information og credits",
+    "reportBug": "🐛 Rapportér fejl",
+    "reportBugDescription": "Fandt et problem? Hjælp os forbedre appen"
+  },
+  "ai": {
+    "analyzing": "🤖 Analyserer..."
+  },
+  "general": {
+    "appName": "Taknemmelighed",
+    "placeholder": "Begynd at skrive her...",
+    "footer": "✨ Taknemmelighed for et lykkeligere liv",
+    "credit": "🐻 Lavet af Little Bear • Taknemmelighed"
+  },
+  "about": {
+    "title": "Om Taknemmelighed",
+    "message": "Taknemmelighed v1.0.0\\n\\nEn app til daglig taknemmeligheds-praksis.\\n29 SEK engangskøb, ingen abonnementer.\\n\\n✨ Minimalistisk design\\n🤖 Smart påmindelsessystem\\n🇸🇪 Helt på svensk\\n🌍 Nu på flere sprog\\n\\nUdviklet med ❤️"
+  },
+  "languages": {
+    "sv": "🇸🇪 Svensk",
+    "de": "🇩🇪 Tysk",
+    "fi": "🇫🇮 Finsk", 
+    "no": "🇳🇴 Norsk",
+    "da": "🇩🇰 Dansk"
+  }
+}

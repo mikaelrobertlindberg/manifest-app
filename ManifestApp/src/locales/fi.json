@@ -1,0 +1,83 @@
+{
+  "prompts": {
+    "daily": [
+      "Mistä olet tänään kiitollinen?",
+      "Mikä pieni hetki teki sinut tänään iloiseksi?",
+      "Mikä sai sinut hymyilemään tänään?",
+      "Minkä kauniin hetken haluat muistaa?",
+      "Mikä lämmitti sydäntäsi?",
+      "Mikä valoisa hetki erottui joukosta?",
+      "Mistä tunnet kiitollisuutta juuri nyt?"
+    ]
+  },
+  "buttons": {
+    "save": "Tallenna 🌿",
+    "saving": "Tallennetaan...",
+    "analyzing": "Analysoidaan...",
+    "back": "←",
+    "settings": "⚙️",
+    "useMyText": "Käytä omaani",
+    "tryAgain": "Yritä uudelleen"
+  },
+  "alerts": {
+    "emptyTextTitle": "Kirjoita jotain",
+    "emptyTextMessage": "Jaa ensin se, mistä olet kiitollinen 🌿",
+    "saveErrorTitle": "Jokin meni pieleen",
+    "saveErrorMessage": "Ei voitu tallentaa juuri nyt. Yritätkö uudelleen?",
+    "tryAgainButton": "Yritä uudelleen",
+    "okButton": "OK",
+    "smartNotificationsEnabled": "✨ Älykkäät muistutukset käytössä",
+    "smartNotificationsEnabledMessage": "Saat helliä, henkilökohtaisia muistutuksia kiitollisuuden kirjoittamiseen (max 2 päivässä).\\n\\nTiheys mukautuu automaattisesti siihen, kuinka usein käytät sovellusta. Ei muistutuksia, jos olet jo kirjoittanut samana päivänä.",
+    "permissionDeniedTitle": "Lupa evätty",
+    "permissionDeniedMessage": "Mene Asetukset → Ilmoitukset aktivoidaksesi muistutukset Kiitollisuudelle.",
+    "notificationsDisabledTitle": "Muistutukset pois päältä",
+    "notificationsDisabledMessage": "Älykästä muistutuksia ei enää lähetetä.",
+    "errorTitle": "Virhe",
+    "notificationUpdateError": "Älykkäitä muistutuksia ei voitu päivittää",
+    "audioUpdateError": "Ääniasetuksia ei voitu päivittää",
+    "couldNotOpenEmail": "Sähköpostia ei voitu avata",
+    "couldNotOpenEmailMessage": "Lähetä vikaraportti osoitteeseen:\\nsupport@tacksamhet.app\\n\\nKuvaile ongelma, mitä odotit ja mitä sen sijaan tapahtui."
+  },
+  "settings": {
+    "title": "⚙️ Asetukset",
+    "subtitle": "Muistutukset • Ääni • Tuki • Kieli",
+    "notificationsSectionTitle": "🔔 Muistutukset",
+    "audioSectionTitle": "🎵 Ääni",
+    "languageSectionTitle": "🌍 Kieli",
+    "supportSectionTitle": "💬 Tuki",
+    "dailyReminders": "Päivittäiset muistutukset",
+    "dailyRemindersDescription": "Saa helliä muistutuksia kiitollisuuden kirjoittamiseen (max 2/päivä, älykäs tiheys)",
+    "soundNotifications": "Äänilmoitukset",
+    "soundNotificationsDescription": "Harmoniset äänet parempaa kokemusta varten",
+    "reminderSounds": "Muistutusäänet",
+    "reminderSoundsDescription": "Pehmeä ääni kun sovellus muistuttaa kiitollisuudesta",
+    "successSounds": "Onnistumisäänet",
+    "successSoundsDescription": "Harmoninen ääni kun kiitollisuus tallennetaan",
+    "languageSelection": "Kielivalinta",
+    "languageSelectionDescription": "Valitse sovelluksen kieli",
+    "aboutApp": "Tietoja Kiitollisuudesta",
+    "aboutDescription": "Versio, tiedot ja tekijät",
+    "reportBug": "🐛 Ilmoita virheestä",
+    "reportBugDescription": "Löysit ongelman? Auta meitä parantamaan sovellusta"
+  },
+  "ai": {
+    "analyzing": "🤖 Analysoidaan..."
+  },
+  "general": {
+    "appName": "Kiitollisuus",
+    "placeholder": "Ala kirjoittaa tähän...",
+    "footer": "✨ Kiitollisuus onnellisempaa elämää varten",
+    "credit": "🐻 Little Bear teki • Kiitollisuus"
+  },
+  "about": {
+    "title": "Tietoja Kiitollisuudesta",
+    "message": "Kiitollisuus v1.0.0\\n\\nSovellus päivittäiseen kiitollisuusharjoitukseen.\\n29 SEK kertamaksu, ei tilauksia.\\n\\n✨ Minimalistinen muotoilu\\n🤖 Älykäs muistutusjärjestelmä\\n🇸🇪 Täysin ruotsiksi\\n🌍 Nyt useilla kielillä\\n\\nTehty ❤️:llä"
+  },
+  "languages": {
+    "sv": "🇸🇪 Ruotsi",
+    "de": "🇩🇪 Saksa",
+    "fi": "🇫🇮 Suomi", 
+    "no": "🇳🇴 Norja",
+    "da": "🇩🇰 Tanska"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "prompts": {
+    "daily": [
+      "Wofür bist du heute dankbar?",
+      "Welcher kleine Moment hat dich heute glücklich gemacht?",
+      "Was hat dich heute zum Lächeln gebracht?",
+      "Welchen schönen Moment möchtest du dir merken?",
+      "Was hat dein Herz erwärmt?",
+      "Welcher helle Moment ist dir aufgefallen?",
+      "Wofür empfindest du gerade jetzt Dankbarkeit?"
+    ]
+  },
+  "buttons": {
+    "save": "Speichern 🌿",
+    "saving": "Speichere...",
+    "analyzing": "Analysiere...",
+    "back": "←",
+    "settings": "⚙️",
+    "useMyText": "Meinen Text verwenden",
+    "tryAgain": "Nochmal versuchen"
+  },
+  "alerts": {
+    "emptyTextTitle": "Schreibe etwas",
+    "emptyTextMessage": "Teile zuerst mit, wofür du dankbar bist 🌿",
+    "saveErrorTitle": "Etwas ist schief gelaufen",
+    "saveErrorMessage": "Konnte gerade nicht speichern. Nochmal versuchen?",
+    "tryAgainButton": "Nochmal versuchen",
+    "okButton": "OK",
+    "smartNotificationsEnabled": "✨ Intelligente Erinnerungen aktiviert",
+    "smartNotificationsEnabledMessage": "Du erhältst sanfte, personalisierte Erinnerungen zum Schreiben von Dankbarkeit (max. 2 pro Tag).\\n\\nDie Häufigkeit passt sich automatisch an, wie oft du die App nutzt. Keine Erinnerungen, wenn du bereits am selben Tag geschrieben hast.",
+    "permissionDeniedTitle": "Berechtigung verweigert",
+    "permissionDeniedMessage": "Gehe zu Einstellungen → Benachrichtigungen, um Erinnerungen für Dankbarkeit zu aktivieren.",
+    "notificationsDisabledTitle": "Erinnerungen ausgeschaltet",
+    "notificationsDisabledMessage": "Es werden keine weiteren intelligenten Erinnerungen gesendet.",
+    "errorTitle": "Fehler",
+    "notificationUpdateError": "Konnte intelligente Erinnerungen nicht aktualisieren",
+    "audioUpdateError": "Konnte Toneinstellungen nicht aktualisieren",
+    "couldNotOpenEmail": "Konnte E-Mail nicht öffnen",
+    "couldNotOpenEmailMessage": "Sende Fehlerbericht an:\\nsupport@tacksamhet.app\\n\\nBeschreibe das Problem, was du erwartet hast und was stattdessen passiert ist."
+  },
+  "settings": {
+    "title": "⚙️ Einstellungen",
+    "subtitle": "Erinnerungen • Ton • Support • Sprache",
+    "notificationsSectionTitle": "🔔 Erinnerungen",
+    "audioSectionTitle": "🎵 Ton",
+    "languageSectionTitle": "🌍 Sprache",
+    "supportSectionTitle": "💬 Support",
+    "dailyReminders": "Tägliche Erinnerungen",
+    "dailyRemindersDescription": "Erhalte sanfte Erinnerungen zum Schreiben von Dankbarkeit (max. 2/Tag, intelligente Häufigkeit)",
+    "soundNotifications": "Ton-Benachrichtigungen",
+    "soundNotificationsDescription": "Harmonische Töne für bessere Erfahrung",
+    "reminderSounds": "Erinnerungs-Töne",
+    "reminderSoundsDescription": "Sanfter Ton, wenn die App an Dankbarkeit erinnert",
+    "successSounds": "Erfolgs-Töne",
+    "successSoundsDescription": "Harmonischer Ton, wenn Dankbarkeit gespeichert wird",
+    "languageSelection": "Sprachauswahl",
+    "languageSelectionDescription": "Wähle die Sprache für die App",
+    "aboutApp": "Über Dankbarkeit",
+    "aboutDescription": "Version, Informationen und Credits",
+    "reportBug": "🐛 Fehler melden",
+    "reportBugDescription": "Problem gefunden? Hilf uns, die App zu verbessern"
+  },
+  "ai": {
+    "analyzing": "🤖 Analysiere..."
+  },
+  "general": {
+    "appName": "Dankbarkeit",
+    "placeholder": "Hier schreiben...",
+    "footer": "✨ Dankbarkeit für ein glücklicheres Leben",
+    "credit": "🐻 Gemacht von Little Bear • Dankbarkeit"
+  },
+  "about": {
+    "title": "Über Dankbarkeit",
+    "message": "Dankbarkeit v1.0.0\\n\\nEine App für tägliche Dankbarkeitspraxis.\\n29 SEK Einmalzahlung, keine Abonnements.\\n\\n✨ Minimalistisches Design\\n🤖 Intelligentes Erinnerungssystem\\n🇸🇪 Komplett auf Schwedisch\\n🌍 Jetzt in mehreren Sprachen\\n\\nMit ❤️ entwickelt"
+  },
+  "languages": {
+    "sv": "🇸🇪 Schwedisch",
+    "de": "🇩🇪 Deutsch",
+    "fi": "🇫🇮 Finnisch", 
+    "no": "🇳🇴 Norwegisch",
+    "da": "🇩🇰 Dänisch"
+  }
+}

@@ -18,6 +18,7 @@ import {
   StatusBar,
   Animated,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { LinearGradient } from 'expo-linear-gradient';
 
 // Figma Design System
@@ -48,6 +49,9 @@ interface MinimalTodayScreenProps {
 export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({ 
   onShowSettings,
 }) => {
+  
+  // === HOOKS ===
+  const { t } = useTranslation();
   
   // === STATE ===
   const [gratitudeText, setGratitudeText] = useState('');
@@ -94,16 +98,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
 
   // === UTILITY FUNCTIONS ===
   const getDailyPrompt = () => {
-    const prompts = [
-      'Vad är du tacksam för idag?',
-      'Vilket litet ögonblick gjorde dig glad?',
-      'Vad fick dig att le idag?', 
-      'Vilket vackert ögonblick vill du komma ihåg?',
-      'Vad värmde ditt hjärta?',
-      'Vilket ljust ögonblick stack ut?',
-      'Vad känner du tacksamhet för just nu?',
-    ];
-    
+    const prompts = t('prompts.daily', { returnObjects: true }) as string[];
     const today = new Date().toDateString();
     const index = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % prompts.length;
     return prompts[index];
@@ -219,7 +214,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   // === SAVE FUNCTIONALITY ===
   const handleSave = async () => {
     if (!gratitudeText.trim()) {
-      Alert.alert('Skriv något', 'Dela med dig av vad du är tacksam för först 🌿');
+      Alert.alert(t('alerts.emptyTextTitle'), t('alerts.emptyTextMessage'));
       return;
     }
 
@@ -246,11 +241,11 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       console.error('❌ MINIMAL: Save error:', error);
       
       Alert.alert(
-        'Något gick fel', 
-        'Kunde inte spara just nu. Prova igen?',
+        t('alerts.saveErrorTitle'), 
+        t('alerts.saveErrorMessage'),
         [
-          { text: 'OK', style: 'default' },
-          { text: 'Prova igen', onPress: () => performSave() }
+          { text: t('alerts.okButton'), style: 'default' },
+          { text: t('alerts.tryAgainButton'), onPress: () => performSave() }
         ]
       );
     } finally {
@@ -302,7 +297,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
               <FigmaInput
                 value={gratitudeText}
                 onChangeText={setGratitudeText}
-                placeholder="Börja skriva här..."
+                placeholder={t('general.placeholder')}
                 multiline
                 style={styles.gratitudeInput}
                 disabled={isSaving || isAnalyzing}
@@ -312,16 +307,16 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
               {isAnalyzing && aiSettings.aiFilterEnabled && (
                 <View style={styles.aiIndicator}>
                   <FigmaBody color={DesignTokens.colors.primary[600]} style={styles.aiText}>
-                    🤖 Analyserar...
+                    {t('ai.analyzing')}
                   </FigmaBody>
                 </View>
               )}
               
               <FigmaButton 
                 title={
-                  isAnalyzing ? 'Analyserar...' : 
-                  isSaving ? 'Sparar...' : 
-                  'Spara 🌿'
+                  isAnalyzing ? t('buttons.analyzing') : 
+                  isSaving ? t('buttons.saving') : 
+                  t('buttons.save')
                 }
                 onPress={handleSave}
                 loading={isSaving || isAnalyzing}

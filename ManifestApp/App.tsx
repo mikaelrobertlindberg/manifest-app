@@ -13,6 +13,9 @@ import { useFonts,
   Nunito_600SemiBold, 
   Nunito_700Bold 
 } from '@expo-google-fonts/nunito';
+// 🌍 Internationalization
+import './src/locales';
+import { loadSavedLanguage } from './src/locales';
 
 type Screen = 'today' | 'history' | 'settings' | 'devtest';
 
@@ -41,7 +44,11 @@ export default function App() {
       console.log(`🌿 Little Bear's Manifest App startar... (${appVersion})`);
       console.log('🔧 SELF-TESTER: Inbyggd testsuite tillgänglig');
       
-      // Test backend connection först
+      // 🌍 Load saved language först
+      await loadSavedLanguage();
+      console.log('🌍 Språkinställningar laddade');
+      
+      // Test backend connection
       const backendStatus = await LocalStorageService.getBackendStatus();
       console.log('💾 Backend status:', backendStatus);
       

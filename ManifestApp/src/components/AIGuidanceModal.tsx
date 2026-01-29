@@ -12,6 +12,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { AIGuidance, NegativityAnalysis } from '../services/PositivityFilterService';
 import { FadeModal } from './FadeModal';
 import { 
@@ -44,6 +45,8 @@ export const AIGuidanceModal: React.FC<AIGuidanceModalProps> = ({
   onKeepOriginal,
   onTryAgain,
 }) => {
+
+  const { t } = useTranslation();
 
   if (!guidance || !analysis) return null;
 
@@ -93,14 +96,14 @@ export const AIGuidanceModal: React.FC<AIGuidanceModalProps> = ({
         {/* === ACTIONS - CLEAN === */}
         <View style={styles.actions}>
           <FigmaButton
-            title="Använd mitt"
+            title={t('buttons.useMyText')}
             variant="ghost"
             onPress={onKeepOriginal}
             style={styles.actionButton}
           />
           
           <FigmaButton
-            title="Prova igen"
+            title={t('buttons.tryAgain')}
             variant="primary"
             onPress={onTryAgain}
             style={styles.actionButton}
