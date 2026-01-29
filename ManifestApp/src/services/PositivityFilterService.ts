@@ -415,8 +415,37 @@ export class PositivityFilterService {
       negativityScore += 20; // Flera kategorier = mer negativt
     }
 
+    // SMART KONTEXTVIKTNING baserat på ordlengd
+    const wordCount = lowerText.trim().split(/\s+/).length;
+    const negativeWordRatio = triggeredKeywords.length / wordCount;
+    
+    // Vikta negativiteten baserat på kontext:
+    // - Korta texter med negativa ord = högre score
+    // - Långa texter med få negativa ord = lägre score
+    if (wordCount > 10) {
+      // Lång text: minska negativitet om den är "utspädd"
+      negativityScore = negativityScore * (1 + negativeWordRatio);
+    } else if (wordCount <= 3) {
+      // Mycket kort text: öka negativitet (bara negativa ord)
+      negativityScore = negativityScore * 1.5;
+    }
+    
+    // Check för positiva ord som balanserar negativitet
+    const positiveKeywords = [
+      'tacksam', 'tacksamhet', 'uppskattar', 'älskar', 'glad', 'lycklig',
+      'bra', 'fin', 'vacker', 'underbar', 'fantastisk', 'grattis',
+      'inte längre', 'inte mer', 'slutat med', 'förbättrat',
+      'lärt mig', 'växer', 'utvecklas', 'framsteg', 'bättre nu'
+    ];
+    
+    const positiveMatches = positiveKeywords.filter(keyword => lowerText.includes(keyword)).length;
+    if (positiveMatches > 0) {
+      // Minska negativitet om det finns positiva element  
+      negativityScore = negativityScore * Math.max(0.3, 1 - (positiveMatches * 0.3));
+    }
+
     // Begränsa till 0-100
-    negativityScore = Math.min(100, negativityScore);
+    negativityScore = Math.min(100, Math.max(0, negativityScore));
 
     // Bestäm severity
     let severity: NegativityAnalysis['severity'] = 'mild';
@@ -424,7 +453,7 @@ export class PositivityFilterService {
     else if (negativityScore > 30) severity = 'moderate';
 
     return {
-      isNegative: negativityScore > 20, // Balanserad tröskel - 1 starkt ord eller 2 svaga
+      isNegative: negativityScore > 18, // Justerad för ny viktning - 1 starkt ord i kort kontext
       negativityScore,
       categories: Array.from(new Set(categories)), // Remove duplicates
       severity,
