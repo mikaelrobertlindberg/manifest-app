@@ -37,10 +37,10 @@ export class PositivityFilterService {
       'ska aldrig klara', 'för svag', 'för dum', 'ingen bryr sig',
       'kass', 'usel', 'eländig', 'urusel', 'bedrövlig',
       'miserabel', 'sorglig', 'usling', 'nolla', 'förlust',
-      'fiasko', 'katastof', 'total misslyckning', 'helt fel',
+      'fiasko', 'katastof', 'total misslyckning',
       'fattig på', 'saknar allt', 'har inget', 'är ingenting',
       'pajas', 'tönt', 'mongo', 'cp', 'psykfall',
-      'galen', 'knäpp', 'störd', 'helt fel i huvudet',
+      'galen', 'knäpp', 'störd',
       'borde inte existera', 'borde dö', 'hatar mitt utseende',
       'är så ful', 'ser förfärlig ut', 'äcklig kropp',
       'fet', 'tjock', 'ful som stryk', 'ser ut som skit'
@@ -50,14 +50,14 @@ export class PositivityFilterService {
     pessimism: [
       'allt är skit', 'ingenting fungerar', 'bara går fel', 'är kört',
       'meningslöst', 'hopplöst', 'aldrig blir bättre', 'ger upp',
-      'ingen mening', 'orkar inte', 'kan inte', 'pallar inte',
+      'ingen mening', 'orkar inte', 'pallar inte',
       'slutar aldrig', 'bara blir värre', 'ingen poäng', 'dömt att misslyckas',
-      'aldrig lyckas', 'alltid fel', 'helvete', 'mörkt', 'deppigt',
+      'aldrig lyckas', 'helvete', 'mörkt', 'deppigt',
       'trist', 'jobbigt', 'fruktansvärt', 'förfärligt', 'hemska',
-      'allt är fel', 'inget går rätt', 'bara skit', 'kass dag',
+      'inget går rätt', 'bara skit', 'kass dag',
       'allt suger', 'livet är skit', 'vill bara dö', 'inget vits',
       'går åt helvete', 'bara problem', 'aldrig fred', 'ständigt kaos',
-      'uruselt', 'totalt kört', 'fullständigt hopplöst', 'går inte',
+      'uruselt', 'totalt kört', 'fullständigt hopplöst',
       'omöjligt', 'kommer aldrig', 'ingen chans', 'aldrig lyckas',
       'förstört', 'trasigt', 'kraschar', 'havererar', 'kollapsar',
       'går under', 'faller sönder', 'allt dött', 'inget kvar',
@@ -94,7 +94,7 @@ export class PositivityFilterService {
       'förstör allt', 'saboterar', 'förtjänar inte', 'ska få betala',
       'fan också', 'skit också', 'så less', 'så trött på',
       'arg', 'irriterad', 'frustrerad', 'förtvivlad', 'rasande',
-      'vill bara skrika', 'orkar inte mer', 'så fel', 'så jävla fel',
+      'vill bara skrika', 'orkar inte mer',
       'kokar av ilska', 'exploderar', 'går i taket', 'ser rött',
       'vill slå', 'vill krossa', 'vill förstöra', 'vill bara skada',
       'hatar livet', 'hatar världen', 'hatar allt', 'hatar alla',
@@ -102,7 +102,7 @@ export class PositivityFilterService {
       'svin', 'äckel', 'as', 'skitstövel', 'rövhål', 'hora',
       'jävla hora', 'cp-skada', 'mongo', 'retard', 'handicappad',
       'så sjukt less', 'mår spy illa', 'vill kräkas', 'äckligt',
-      'så jävla dåligt', 'piss', 'bajs', 'skit i det', 'skitsamma',
+      'piss', 'bajs', 'skit i det', 'skitsamma',
       'bryr mig inte', 'skiter i', 'kan dra åt helvete',
       'kan gå och dö', 'hoppas de dör', 'önskar de var döda'
     ],
@@ -383,7 +383,7 @@ export class PositivityFilterService {
    * Analyserar text för negativa mönster med svenska keywords
    */
   public static analyzeLocalSentiment(text: string): NegativityAnalysis {
-    if (!text || text.trim().length < 3) {
+    if (!text || text.trim().length < 15) {
       return {
         isNegative: false,
         negativityScore: 0,
@@ -424,7 +424,7 @@ export class PositivityFilterService {
     else if (negativityScore > 30) severity = 'moderate';
 
     return {
-      isNegative: negativityScore > 10, // Lowered from 20 to 10
+      isNegative: negativityScore > 35, // Höjd tröskel för mindre false positives
       negativityScore,
       categories: Array.from(new Set(categories)), // Remove duplicates
       severity,
