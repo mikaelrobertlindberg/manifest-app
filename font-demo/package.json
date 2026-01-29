@@ -1,0 +1,17 @@
+{
+  "name": "tacksamhet-font-demo",
+  "version": "1.0.0",
+  "description": "Font demo för Tacksamhet app - olika mysiga fonter",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "build": "echo 'Static site, no build needed'",
+    "start": "serve ."
+  },
+  "keywords": ["tacksamhet", "font-demo", "mindfulness", "app", "typography"],
+  "author": "Little Bear Apps",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
