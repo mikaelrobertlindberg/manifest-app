@@ -53,7 +53,7 @@ export const AIGuidanceModal: React.FC<AIGuidanceModalProps> = ({
       onClose={onClose}
       animationDuration={600}  // Långsam fade som Mike ville
       closeOnBackdrop={false}
-      backdropOpacity={0.85}   // Mer solid backdrop för bättre kontrast
+      backdropOpacity={1.0}   // Helt vit bakgrund så text bakom inte lyser igenom
     >
       <ScrollView 
         style={styles.content}
@@ -62,10 +62,7 @@ export const AIGuidanceModal: React.FC<AIGuidanceModalProps> = ({
       >
         {/* === CLEAN HEADER === */}
         <View style={styles.header}>
-          <FigmaText style={styles.emoji}>🐻</FigmaText>
-          <FigmaHeading2 color={DesignTokens.colors.primary[500]} align="center">
-            Little Bear
-          </FigmaHeading2>
+          {/* Björnikon och Little Bear text borttagen per Mike's request */}
         </View>
 
         {/* === MAIN MESSAGE - CLEAN === */}
@@ -126,7 +123,7 @@ const styles = StyleSheet.create({
   // === CLEAN HEADER ===
   header: {
     alignItems: 'center',
-    marginBottom: DesignTokens.spacing.xl,
+    marginBottom: DesignTokens.spacing.xs,  // Mindre margin eftersom header är tom
   },
   
   emoji: {

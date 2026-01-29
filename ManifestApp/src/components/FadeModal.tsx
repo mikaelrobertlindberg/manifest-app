@@ -126,7 +126,7 @@ export const FadeModal: React.FC<FadeModalProps> = ({
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    backgroundColor: '#000000',  // Solid svart istället för rgba
+    backgroundColor: '#FFFFFF',  // Helt vit bakgrund så text bakom inte lyser igenom
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: DesignTokens.spacing.lg,
