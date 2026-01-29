@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Manifest App - Förhandsvisning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #F8F9FA;
+            color: #2D3748;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 24px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .app-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4A7C59;
+            margin-bottom: 8px;
+        }
+        
+        .date {
+            font-size: 18px;
+            color: #718096;
+            font-style: italic;
+        }
+        
+        .input-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.1);
+        }
+        
+        .prompt {
+            font-size: 18px;
+            font-weight: 500;
+            color: #2D3748;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .text-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 2px solid #A0AEC0;
+            border-radius: 12px;
+            font-size: 18px;
+            color: #2D3748;
+            line-height: 1.6;
+            resize: none;
+            margin-bottom: 24px;
+            font-family: inherit;
+        }
+        
+        .text-input:focus {
+            border-color: #4A7C59;
+            outline: none;
+        }
+        
+        .save-button {
+            width: 100%;
+            background: #4A7C59;
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            min-height: 48px;
+        }
+        
+        .save-button:hover {
+            background: #3D6B4A;
+        }
+        
+        .save-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .footer {
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-size: 18px;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+        
+        .footer-subtext {
+            font-size: 16px;
+            color: #718096;
+        }
+        
+        .status {
+            background: #E6FFFA;
+            border: 1px solid #4A7C59;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .expo-info {
+            background: #FFF5F5;
+            border: 1px solid #F6AD55;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="expo-info">
+            <strong>📱 Full React Native version:</strong> Metro Bundler startar på DevPi. Fullständig app tillgänglig snart på: 
+            <a href="http://192.168.1.224:8081">http://192.168.1.224:8081</a>
+        </div>
+        
+        <div class="status">
+            <strong>🌿 Manifest App Förhandsvisning</strong><br>
+            Detta är en statisk förhandsvisning av appen medan React Native-versionen startar.
+        </div>
+        
+        <div class="header">
+            <div class="app-title">🌿 Manifest</div>
+            <div class="date">Idag, måndag 27 januari</div>
+        </div>
+        
+        <div class="input-card">
+            <div class="prompt">Vad är du tacksam för idag? 🌿</div>
+            
+            <textarea 
+                class="text-input" 
+                id="gratitudeInput"
+                placeholder="Börja skriva här..."
+            ></textarea>
+            
+            <button class="save-button" onclick="saveGratitude()">
+                Spara
+            </button>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-text">📚 Tidigare tacksamheter</div>
+            <div class="footer-subtext">🔔 Påminnelser: Påslagna</div>
+        </div>
+    </div>
+    
+    <script>
+        function saveGratitude() {
+            const input = document.getElementById('gratitudeInput');
+            const text = input.value.trim();
+            
+            if (!text) {
+                alert('Skriv något du är tacksam för först.');
+                return;
+            }
+            
+            // Simulera sparande
+            const button = document.querySelector('.save-button');
+            button.textContent = 'Sparar...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                alert('Tack för idag! 🌿\nDin tacksamhet har sparats.\n\n(Detta är en förhandsvisning. Fullständiga funktioner kommer med React Native-versionen)');
+                input.value = '';
+                button.textContent = 'Spara';
+                button.disabled = false;
+            }, 1000);
+        }
+        
+        // Uppdatera datum
+        function updateDate() {
+            const now = new Date();
+            const weekdays = ['söndag', 'måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag'];
+            const months = [
+                'januari', 'februari', 'mars', 'april', 'maj', 'juni',
+                'juli', 'augusti', 'september', 'oktober', 'november', 'december'
+            ];
+            
+            const weekday = weekdays[now.getDay()];
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            
+            document.querySelector('.date').textContent = `Idag, ${weekday} ${day} ${month}`;
+        }
+        
+        updateDate();
+        
+        // Rotera prompts
+        const prompts = [
+            'Vad är du tacksam för idag? 🌿',
+            'Vilket litet ögonblick gjorde dig glad idag?',
+            'Vad fick dig att le idag?',
+            'Vilket vackert ögonblick vill du komma ihåg?',
+            'Vad värmde ditt hjärta idag?',
+            'Vilket ljust ögonblick stack ut idag?',
+            'Vad känner du tacksamhet för just nu?',
+        ];
+        
+        const today = new Date().toDateString();
+        const index = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % prompts.length;
+        document.querySelector('.prompt').textContent = prompts[index];
+    </script>
+</body>
+</html>

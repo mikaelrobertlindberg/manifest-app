@@ -1,0 +1,8 @@
+{
+  "apiKey": "demo-key",
+  "authDomain": "manifest-app-demo.firebaseapp.com",
+  "projectId": "manifest-app-demo",
+  "storageBucket": "manifest-app-demo.appspot.com",
+  "messagingSenderId": "123456789",
+  "appId": "demo-app-id"
+}

@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Manifest - Figma Design System",
+    "slug": "manifest-figma-app",
+    "version": "2.0.0",
+    "description": "Pixel-perfect gratitude app built with Figma Design System - Cosmic Sunset theme",
+    "owner": "littlebear",
+    "primaryColor": "#FF6B6B",
+    "orientation": "portrait",
+    "icon": "./assets/icons/app-icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "githubUrl": "https://github.com/littlebear/manifest-app",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "icon": "./assets/icons/app-icon.png"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "name": "Manifest Tacksamhet",
+      "shortName": "Manifest", 
+      "description": "Svenska tacksamhetsappen som fungerar offline",
+      "lang": "sv",
+      "scope": "/",
+      "startUrl": "/",
+      "display": "standalone",
+      "orientation": "portrait",
+      "themeColor": "#FF6B6B",
+      "backgroundColor": "#ffffff",
+      "preferRelatedApplications": false,
+      "bundler": "metro"
+    }
+  }
+}

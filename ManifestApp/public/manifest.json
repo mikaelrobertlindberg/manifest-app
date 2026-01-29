@@ -1,0 +1,25 @@
+{
+  "name": "Manifest Tacksamhet",
+  "short_name": "Manifest",
+  "description": "Svenska tacksamhetsappen som fungerar offline", 
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#FF6B6B",
+  "background_color": "#ffffff",
+  "lang": "sv",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/assets/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/adaptive-icon.png", 
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
