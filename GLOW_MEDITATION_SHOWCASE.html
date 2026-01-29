@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Meditation Siluettes - Named Collection för Mike's Selection</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 75%, #000000 100%);
+            margin: 0;
+            padding: 20px;
+            color: #E8F5E8;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 4.2em;
+            margin: 0;
+            background: linear-gradient(45deg, #FFD700, #FFF8E1, #E1F5FE, #C8E6C9, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255,215,0,0.4);
+            animation: headerGlow 6s ease-in-out infinite alternate;
+        }
+        @keyframes headerGlow {
+            from { filter: brightness(1) drop-shadow(0 0 10px rgba(255,215,0,0.3)); }
+            to { filter: brightness(1.3) drop-shadow(0 0 25px rgba(255,215,0,0.8)); }
+        }
+        .subtitle {
+            font-size: 1.8em;
+            margin-top: 20px;
+            opacity: 0.95;
+            color: #C8E6C9;
+        }
+        .instruction-badge {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 20px 35px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.3em;
+            box-shadow: 0 15px 35px rgba(76,175,80,0.4);
+            animation: instructionPulse 4s ease-in-out infinite;
+        }
+        @keyframes instructionPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 20px 45px rgba(76,175,80,0.6); }
+        }
+        .glow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 45px;
+            margin: 80px 0;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .glow-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 35px;
+            padding: 40px;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .glow-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .glow-preview {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 2px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+        .glow-silhouette {
+            width: 120px;
+            height: 140px;
+            position: relative;
+            border-radius: 30px 30px 20px 20px;
+            animation: meditationBreath 8s ease-in-out infinite;
+        }
+        @keyframes meditationBreath {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .glow-silhouette::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+        .glow-silhouette::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 50px;
+            border-radius: 65px 65px 0 0;
+        }
+        /* Glow Variants */
+        .aurora-glow .glow-preview {
+            background: radial-gradient(circle, #4A148C 0%, #1A0A2E 70%, #000 100%);
+        }
+        .aurora-glow .glow-silhouette, .aurora-glow .glow-silhouette::before, .aurora-glow .glow-silhouette::after {
+            background: linear-gradient(45deg, #00E5FF, #4CAF50, #9C27B0);
+            box-shadow: 0 0 40px rgba(0,229,255,0.6), 0 0 60px rgba(76,175,80,0.4), 0 0 80px rgba(156,39,176,0.3);
+            animation: auroraFlow 6s linear infinite;
+        }
+        @keyframes auroraFlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .golden-enlightenment .glow-preview {
+            background: radial-gradient(circle, #3E2723 0%, #1A0A00 70%, #000 100%);
+        }
+        .golden-enlightenment .glow-silhouette, .golden-enlightenment .glow-silhouette::before, .golden-enlightenment .glow-silhouette::after {
+            background: linear-gradient(45deg, #FFD700, #FFA000);
+            box-shadow: 0 0 30px rgba(255,215,0,0.8), 0 0 50px rgba(255,160,0,0.6), 0 0 70px rgba(255,193,7,0.4);
+            animation: enlightenmentPulse 4s ease-in-out infinite;
+        }
+        @keyframes enlightenmentPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255,215,0,0.8), 0 0 50px rgba(255,160,0,0.6); }
+            50% { transform: scale(1.1); box-shadow: 0 0 40px rgba(255,215,0,1), 0 0 70px rgba(255,160,0,0.8); }
+        }
+
+        .serene-mint .glow-preview {
+            background: radial-gradient(circle, #1B5E20 0%, #0D2818 70%, #000 100%);
+        }
+        .serene-mint .glow-silhouette, .serene-mint .glow-silhouette::before, .serene-mint .glow-silhouette::after {
+            background: linear-gradient(45deg, #C8E6C9, #81C784);
+            box-shadow: 0 0 25px rgba(200,230,201,0.7), 0 0 45px rgba(129,199,132,0.5);
+            animation: serenePulse 6s ease-in-out infinite;
+        }
+        @keyframes serenePulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        .cosmic-meditation .glow-preview {
+            background: radial-gradient(circle, #1A0A2E 0%, #0A0A20 50%, #000 100%);
+        }
+        .cosmic-meditation .glow-silhouette, .cosmic-meditation .glow-silhouette::before, .cosmic-meditation .glow-silhouette::after {
+            background: linear-gradient(45deg, #3F51B5, #9C27B0, #E1BEE7);
+            box-shadow: 0 0 35px rgba(63,81,181,0.7), 0 0 55px rgba(156,39,176,0.5), 0 0 75px rgba(225,190,231,0.3);
+            animation: cosmicSpin 10s linear infinite;
+        }
+        @keyframes cosmicSpin {
+            0% { filter: hue-rotate(0deg) brightness(1); }
+            50% { filter: hue-rotate(180deg) brightness(1.2); }
+            100% { filter: hue-rotate(360deg) brightness(1); }
+        }
+
+        .dawn-awakening .glow-preview {
+            background: radial-gradient(circle, #4E342E 0%, #2E1A00 70%, #000 100%);
+        }
+        .dawn-awakening .glow-silhouette, .dawn-awakening .glow-silhouette::before, .dawn-awakening .glow-silhouette::after {
+            background: linear-gradient(45deg, #FF7043, #FFB74D, #FFF176);
+            box-shadow: 0 0 30px rgba(255,112,67,0.7), 0 0 50px rgba(255,183,77,0.5);
+            animation: dawnRise 8s ease-in-out infinite;
+        }
+        @keyframes dawnRise {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.05) translateY(-5px); }
+        }
+
+        .crystal-clarity .glow-preview {
+            background: radial-gradient(circle, #263238 0%, #0F0F0F 70%, #000 100%);
+        }
+        .crystal-clarity .glow-silhouette, .crystal-clarity .glow-silhouette::before, .crystal-clarity .glow-silhouette::after {
+            background: linear-gradient(45deg, #FFFFFF, #E3F2FD, #FFFFFF);
+            box-shadow: 0 0 35px rgba(255,255,255,0.9), 0 0 55px rgba(227,242,253,0.6);
+            animation: crystalShimmer 5s ease-in-out infinite;
+        }
+        @keyframes crystalShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.4) drop-shadow(0 0 15px rgba(255,255,255,0.8)); }
+        }
+
+        .ocean-depths .glow-preview {
+            background: radial-gradient(circle, #0D47A1 0%, #0A1A2E 70%, #000 100%);
+        }
+        .ocean-depths .glow-silhouette, .ocean-depths .glow-silhouette::before, .ocean-depths .glow-silhouette::after {
+            background: linear-gradient(45deg, #00BCD4, #4DB6AC, #80CBC4);
+            box-shadow: 0 0 30px rgba(0,188,212,0.7), 0 0 50px rgba(77,182,172,0.5);
+            animation: oceanWave 7s ease-in-out infinite;
+        }
+        @keyframes oceanWave {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.03) rotate(1deg); }
+        }
+
+        .inner-fire .glow-preview {
+            background: radial-gradient(circle, #3E2723 0%, #1A0000 70%, #000 100%);
+        }
+        .inner-fire .glow-silhouette, .inner-fire .glow-silhouette::before, .inner-fire .glow-silhouette::after {
+            background: linear-gradient(45deg, #FF5722, #FF9800, #FFC107);
+            box-shadow: 0 0 25px rgba(255,87,34,0.8), 0 0 45px rgba(255,152,0,0.6);
+            animation: fireGlow 4s ease-in-out infinite;
+        }
+        @keyframes fireGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .moonlight-meditation .glow-preview {
+            background: radial-gradient(circle, #1A237E 0%, #0A0A2E 70%, #000 100%);
+        }
+        .moonlight-meditation .glow-silhouette, .moonlight-meditation .glow-silhouette::before, .moonlight-meditation .glow-silhouette::after {
+            background: linear-gradient(45deg, #E3F2FD, #BBDEFB, #90CAF9);
+            box-shadow: 0 0 30px rgba(227,242,253,0.7), 0 0 50px rgba(187,222,251,0.5);
+            animation: moonPhase 9s ease-in-out infinite;
+        }
+        @keyframes moonPhase {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .lotus-bloom .glow-preview {
+            background: radial-gradient(circle, #2E7D32 0%, #1B5E20 50%, #0A2E0A 100%);
+        }
+        .lotus-bloom .glow-silhouette, .lotus-bloom .glow-silhouette::before, .lotus-bloom .glow-silhouette::after {
+            background: linear-gradient(45deg, #F48FB1, #CE93D8, #E1BEE7);
+            box-shadow: 0 0 30px rgba(244,143,177,0.7), 0 0 50px rgba(206,147,216,0.5);
+            animation: lotusBloom 6s ease-in-out infinite;
+        }
+        @keyframes lotusBloom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); filter: brightness(1.2); }
+        }
+
+        .glow-name {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            animation: nameGlow 4s ease-in-out infinite alternate;
+        }
+        @keyframes nameGlow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+        .aurora-glow .glow-name { color: #00E5FF; }
+        .golden-enlightenment .glow-name { color: #FFD700; }
+        .serene-mint .glow-name { color: #C8E6C9; }
+        .cosmic-meditation .glow-name { color: #9C27B0; }
+        .dawn-awakening .glow-name { color: #FF7043; }
+        .crystal-clarity .glow-name { color: #FFFFFF; }
+        .ocean-depths .glow-name { color: #00BCD4; }
+        .inner-fire .glow-name { color: #FF5722; }
+        .moonlight-meditation .glow-name { color: #E3F2FD; }
+        .lotus-bloom .glow-name { color: #F48FB1; }
+
+        .glow-description {
+            background: rgba(0,0,0,0.4);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            backdrop-filter: blur(10px);
+        }
+        .glow-mood {
+            background: rgba(255,255,255,0.1);
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .selection-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(76,175,80,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: white;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+        .glow-card.selected {
+            border-color: #4CAF50;
+            background: rgba(76,175,80,0.1);
+            transform: translateY(-15px) scale(1.05);
+        }
+        .glow-card.selected .selection-indicator {
+            transform: scale(1);
+        }
+        .selection-summary {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 15px 35px rgba(76,175,80,0.5);
+            transition: all 0.5s ease;
+            z-index: 100;
+            max-width: 90vw;
+            text-align: center;
+        }
+        .selection-summary.active {
+            transform: translateX(-50%) translateY(0);
+        }
+        .category-section {
+            margin: 80px 0 60px 0;
+            text-align: center;
+        }
+        .category-title {
+            font-size: 2.5em;
+            color: #C8E6C9;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .category-description {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 768px) {
+            .glow-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .glow-preview {
+                width: 200px;
+                height: 200px;
+            }
+            .header h1 {
+                font-size: 3.2em;
+            }
+            .selection-summary {
+                bottom: 20px;
+                padding: 15px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌟 Glow Meditation Siluettes</h1>
+        <div class="subtitle">10 Named Variants för Mike's Selection</div>
+        <div class="instruction-badge">👆 Klicka på de du gillar mest - de märks med ✓</div>
+    </div>
+
+    <div class="category-section">
+        <div class="category-title">✨ Luminous Meditation Collection</div>
+        <div class="category-description">
+            10 uniquely named glow meditation siluettes - varje med sin egen energi, färgpalett och glow-effekt. 
+            Klicka för att välja dina favoriter så Mike kan referera till dem med namn.
+        </div>
+    </div>
+
+    <div class="glow-grid">
+        <div class="glow-card aurora-glow" data-name="AURORA GLOW">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">AURORA GLOW</div>
+            <div class="glow-description">
+                Soft aurora-like glow around meditation figure. Northern lights inspired med flowing greens, blues, gentle purples. Ethereal aurora effect around silhouette.
+            </div>
+            <div class="glow-mood">Mystical • Nordic Inspired • Spiritual Awakening</div>
+        </div>
+
+        <div class="glow-card golden-enlightenment" data-name="GOLDEN ENLIGHTENMENT">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">GOLDEN ENLIGHTENMENT</div>
+            <div class="glow-description">
+                Warm golden glow radiating från meditation figure. Rich gold center fading to soft amber edges. Radiant enlightenment energy emanating från figure.
+            </div>
+            <div class="glow-mood">Wisdom • Enlightenment • Inner Peace Achieved</div>
+        </div>
+
+        <div class="glow-card serene-mint" data-name="SERENE MINT">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">SERENE MINT</div>
+            <div class="glow-description">
+                Gentle mint green glow med calming energy. Soft mint core med sage green outer glow. Calm, steady luminance - peaceful meditation energy.
+            </div>
+            <div class="glow-mood">Tranquil • Healing • Gentle Mindfulness</div>
+        </div>
+
+        <div class="glow-card cosmic-meditation" data-name="COSMIC MEDITATION">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">COSMIC MEDITATION</div>
+            <div class="glow-description">
+                Multi-colored cosmic glow med spiritual depth. Deep purples, cosmic blues, silver highlights. Cosmic energy field around figure - universe connection.
+            </div>
+            <div class="glow-mood">Universal Connection • Cosmic Consciousness • Transcendence</div>
+        </div>
+
+        <div class="glow-card dawn-awakening" data-name="DAWN AWAKENING">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">DAWN AWAKENING</div>
+            <div class="glow-description">
+                Sunrise-inspired glow suggesting new beginnings. Soft coral, warm peach, gentle yellow glow. Sunrise energy radiating från figure - fresh start.
+            </div>
+            <div class="glow-mood">Hope • Renewal • Morning Practice • Fresh Start</div>
+        </div>
+
+        <div class="glow-card crystal-clarity" data-name="CRYSTAL CLARITY">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">CRYSTAL CLARITY</div>
+            <div class="glow-description">
+                Clear, pure white glow med crystalline quality. Pure white center med prismatic rainbow edge hints. Clean, crystal-clear energy - mental clarity achieved.
+            </div>
+            <div class="glow-mood">Mental Clarity • Pure Awareness • Enlightened State</div>
+        </div>
+
+        <div class="glow-card ocean-depths" data-name="OCEAN DEPTHS">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">OCEAN DEPTHS</div>
+            <div class="glow-description">
+                Deep blue-green glow like underwater meditation. Teal center fading to deep ocean blues. Flowing, wave-like glow patterns around figure.
+            </div>
+            <div class="glow-mood">Depth • Flow State • Emotional Healing • Inner Peace</div>
+        </div>
+
+        <div class="glow-card inner-fire" data-name="INNER FIRE">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">INNER FIRE</div>
+            <div class="glow-description">
+                Warm ember glow suggesting inner strength. Warm orange-red center med golden outer glow. Gentle fire energy - warm and comforting, not aggressive.
+            </div>
+            <div class="glow-mood">Inner Strength • Grounded Power • Warm Confidence</div>
+        </div>
+
+        <div class="glow-card moonlight-meditation" data-name="MOONLIGHT MEDITATION">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">MOONLIGHT MEDITATION</div>
+            <div class="glow-description">
+                Cool, silvery moonlight glow för night practice. Silver-white center med cool blue edge glow. Soft moonbeam effect - gentle night meditation energy.
+            </div>
+            <div class="glow-mood">Night Practice • Introspection • Lunar Feminine Energy</div>
+        </div>
+
+        <div class="glow-card lotus-bloom" data-name="LOTUS BLOOM">
+            <div class="selection-indicator">✓</div>
+            <div class="glow-preview">
+                <div class="glow-silhouette"></div>
+            </div>
+            <div class="glow-name">LOTUS BLOOM</div>
+            <div class="glow-description">
+                Pink-purple glow suggesting blooming lotus energy. Soft pink center fading to gentle purple edges. Blooming energy radiating outward like opening petals.
+            </div>
+            <div class="glow-mood">Opening Heart • Blooming Consciousness • Feminine Divine</div>
+        </div>
+    </div>
+
+    <div class="selection-summary" id="selectionSummary">
+        Välj dina favoriter så Mike kan referera till dem med namn! 🌟
+    </div>
+
+    <script>
+        let selectedGlows = [];
+
+        document.querySelectorAll('.glow-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const glowName = this.getAttribute('data-name');
+                const summaryElement = document.getElementById('selectionSummary');
+                
+                if (this.classList.contains('selected')) {
+                    // Deselect
+                    this.classList.remove('selected');
+                    selectedGlows = selectedGlows.filter(name => name !== glowName);
+                } else {
+                    // Select
+                    this.classList.add('selected');
+                    if (!selectedGlows.includes(glowName)) {
+                        selectedGlows.push(glowName);
+                    }
+                }
+
+                // Update summary
+                if (selectedGlows.length === 0) {
+                    summaryElement.textContent = 'Välj dina favoriter så Mike kan referera till dem med namn! 🌟';
+                    summaryElement.classList.remove('active');
+                } else if (selectedGlows.length === 1) {
+                    summaryElement.textContent = `✅ ${selectedGlows[0]} selected!`;
+                    summaryElement.classList.add('active');
+                } else {
+                    summaryElement.textContent = `✅ ${selectedGlows.length} glow variants selected: ${selectedGlows.join(', ')}`;
+                    summaryElement.classList.add('active');
+                }
+            });
+
+            // Enhanced hover effects för glow previews
+            card.addEventListener('mouseenter', function() {
+                const silhouette = this.querySelector('.glow-silhouette');
+                const preview = this.querySelector('.glow-preview');
+                
+                // Enhance glow effect on hover
+                silhouette.style.filter = 'brightness(1.3) saturate(1.2)';
+                preview.style.transform = 'scale(1.05)';
+                
+                // Add extra animation
+                silhouette.style.animation = 'meditationBreath 2s ease-in-out infinite';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const silhouette = this.querySelector('.glow-silhouette');
+                const preview = this.querySelector('.glow-preview');
+                
+                // Reset glow effect
+                silhouette.style.filter = '';
+                preview.style.transform = '';
+                
+                // Reset animation
+                silhouette.style.animation = 'meditationBreath 8s ease-in-out infinite';
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glow-card').forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            element.style.transition = `all 0.8s ease ${index * 0.1}s`;
+            observer.observe(element);
+        });
+
+        // Random subtle glow variations för added magic
+        setInterval(() => {
+            document.querySelectorAll('.glow-silhouette').forEach(silhouette => {
+                const randomBrightness = 0.9 + Math.random() * 0.3;
+                const randomSaturation = 0.8 + Math.random() * 0.4;
+                silhouette.style.filter = `brightness(${randomBrightness}) saturate(${randomSaturation})`;
+                
+                setTimeout(() => {
+                    silhouette.style.filter = '';
+                }, 2000);
+            });
+        }, 8000);
+    </script>
+</body>
+</html>

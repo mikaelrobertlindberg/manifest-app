@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Siluette Brand Development - Mike's Meditation Woman</title>
+    <title>Glow Meditation Siluettes - Mike's Named Collection</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1A1A1A 25%, #2D2D2D 50%, #1A1A1A 75%, #000000 100%);
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 75%, #000000 100%);
             margin: 0;
             padding: 40px 20px;
             color: #E8F5E8;
@@ -15,83 +15,81 @@
             min-height: 100vh;
         }
         .header h1 {
-            font-size: 4.5em;
+            font-size: 5em;
             margin-bottom: 15px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
-            background: linear-gradient(45deg, #C8E6C9, #81C784, #2E7D32, #C8E6C9);
+            background: linear-gradient(45deg, #FFD700, #FFF8E1, #E1F5FE, #C8E6C9, #FFD700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: zenBreath 8s ease-in-out infinite;
+            animation: headerGlow 8s ease-in-out infinite;
         }
-        @keyframes zenBreath {
-            0%, 100% { transform: scale(1); filter: brightness(1); }
-            50% { transform: scale(1.05); filter: brightness(1.3); }
+        @keyframes headerGlow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 10px rgba(255,215,0,0.4)); }
+            50% { filter: brightness(1.4) drop-shadow(0 0 30px rgba(255,215,0,0.8)); }
         }
         .subtitle {
-            font-size: 1.8em;
+            font-size: 2em;
             margin-bottom: 25px;
             opacity: 0.95;
             color: #C8E6C9;
         }
-        .brand-announcement {
-            background: linear-gradient(45deg, #2E7D32, #4CAF50);
-            padding: 30px 40px;
+        .clarification-badge {
+            background: linear-gradient(45deg, #FF9800, #FFC107);
+            color: #000;
+            padding: 25px 40px;
             border-radius: 45px;
             display: inline-block;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             font-weight: bold;
-            font-size: 1.5em;
-            border: 2px solid rgba(46,125,50,0.5);
-            box-shadow: 0 20px 40px rgba(46,125,50,0.4);
-            animation: brandPulse 5s ease-in-out infinite;
-            color: white;
+            font-size: 1.4em;
+            border: 2px solid rgba(255,152,0,0.5);
+            box-shadow: 0 20px 40px rgba(255,152,0,0.4);
+            animation: clarificationPulse 5s ease-in-out infinite;
         }
-        @keyframes brandPulse {
+        @keyframes clarificationPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); box-shadow: 0 25px 50px rgba(46,125,50,0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(255,152,0,0.6); }
         }
         .section {
             margin-bottom: 80px;
         }
         .section-title {
-            font-size: 3.2em;
+            font-size: 3.5em;
             margin-bottom: 35px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            color: #C8E6C9;
+            color: #FFD700;
+            animation: sectionGlow 6s ease-in-out infinite alternate;
         }
-        .zen-highlight {
-            animation: zenGlow 6s ease-in-out infinite alternate;
-        }
-        @keyframes zenGlow {
+        @keyframes sectionGlow {
             from { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-            to { text-shadow: 0 0 20px rgba(200,230,201,0.8), 2px 2px 4px rgba(0,0,0,0.5); }
+            to { text-shadow: 0 0 25px rgba(255,215,0,0.8), 2px 2px 4px rgba(0,0,0,0.5); }
         }
         .guide-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 40px;
-            max-width: 1800px;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 50px;
+            max-width: 1600px;
             margin: 0 auto;
         }
         .guide-card {
-            background: rgba(200,230,201,0.08);
+            background: rgba(255,255,255,0.05);
             color: #E8F5E8;
-            padding: 45px;
-            border-radius: 30px;
+            padding: 50px;
+            border-radius: 35px;
             text-decoration: none;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-            transition: all 0.5s ease;
-            backdrop-filter: blur(25px);
-            border: 2px solid rgba(200,230,201,0.2);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+            transition: all 0.6s ease;
+            backdrop-filter: blur(30px);
+            border: 2px solid rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
         }
         .guide-card:hover {
-            transform: translateY(-20px);
-            box-shadow: 0 40px 90px rgba(0,0,0,0.6);
-            background: rgba(200,230,201,0.15);
-            border-color: rgba(200,230,201,0.5);
+            transform: translateY(-25px);
+            box-shadow: 0 45px 100px rgba(0,0,0,0.7);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
         }
         .guide-card::before {
             content: '';
@@ -100,8 +98,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(200,230,201,0.1) 0%, transparent 70%);
-            animation: cardAura 12s linear infinite;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: cardAura 15s linear infinite;
             z-index: -1;
         }
         @keyframes cardAura {
@@ -109,91 +107,91 @@
             to { transform: rotate(360deg); }
         }
         .guide-title {
-            font-size: 2.2em;
+            font-size: 2.5em;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            color: #C8E6C9;
+            color: #FFD700;
         }
         .guide-description {
-            font-size: 1.2em;
+            font-size: 1.3em;
             opacity: 0.95;
-            margin-bottom: 25px;
-            line-height: 1.7;
+            margin-bottom: 30px;
+            line-height: 1.8;
         }
         .guide-stats {
-            background: rgba(46,125,50,0.3);
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-size: 1em;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
-            font-weight: 600;
-            border: 1px solid rgba(46,125,50,0.4);
-        }
-        .zen-emoji {
-            font-size: 4em;
+            background: rgba(255,215,0,0.2);
+            padding: 18px 30px;
+            border-radius: 30px;
+            font-size: 1.1em;
             margin-bottom: 25px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: emojiFloat 8s ease-in-out infinite;
+            backdrop-filter: blur(15px);
+            font-weight: 600;
+            border: 1px solid rgba(255,215,0,0.3);
         }
-        @keyframes emojiFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+        .glow-emoji {
+            font-size: 5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glowFloat 10s ease-in-out infinite;
+        }
+        @keyframes glowFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); filter: brightness(1); }
+            50% { transform: translateY(-20px) rotate(5deg); filter: brightness(1.3); }
         }
         .primary-badge {
             position: absolute;
+            top: -18px;
+            right: -18px;
+            background: linear-gradient(45deg, #FFD700, #FFA000);
+            color: #000;
+            padding: 15px 25px;
+            border-radius: 40px;
+            font-size: 1em;
+            font-weight: bold;
+            animation: primaryFloat 5s ease-in-out infinite;
+            box-shadow: 0 12px 30px rgba(255,215,0,0.7);
+        }
+        @keyframes primaryFloat {
+            0%, 100% { transform: scale(1) rotate(-5deg); }
+            50% { transform: scale(1.15) rotate(5deg); box-shadow: 0 18px 40px rgba(255,215,0,0.9); }
+        }
+        .collection-badge {
+            position: absolute;
             top: -15px;
             right: -15px;
-            background: linear-gradient(45deg, #C8E6C9, #81C784);
-            color: #1A1A1A;
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
             padding: 12px 20px;
             border-radius: 35px;
             font-size: 0.9em;
             font-weight: bold;
-            animation: primaryPulse 4s ease-in-out infinite;
-            box-shadow: 0 10px 25px rgba(200,230,201,0.6);
+            animation: collectionPulse 4s ease-in-out infinite;
         }
-        @keyframes primaryPulse {
+        @keyframes collectionPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); box-shadow: 0 15px 35px rgba(200,230,201,0.8); }
-        }
-        .brand-badge {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            background: linear-gradient(45deg, #2E7D32, #4CAF50);
-            color: white;
-            padding: 10px 18px;
-            border-radius: 30px;
-            font-size: 0.85em;
-            font-weight: bold;
-            animation: brandFloat 4s ease-in-out infinite;
-        }
-        @keyframes brandFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+            50% { transform: scale(1.1); }
         }
         .previous-badge {
             position: absolute;
-            top: -10px;
-            right: -10px;
+            top: -12px;
+            right: -12px;
             background: linear-gradient(45deg, #666, #888);
             color: white;
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-size: 0.75em;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 0.8em;
             font-weight: bold;
             opacity: 0.8;
         }
         .summary {
-            background: rgba(200,230,201,0.12);
-            border-radius: 40px;
-            padding: 60px;
-            margin: 90px auto;
-            max-width: 1000px;
-            backdrop-filter: blur(30px);
-            border: 2px solid rgba(200,230,201,0.3);
+            background: rgba(255,215,0,0.15);
+            border-radius: 45px;
+            padding: 70px;
+            margin: 100px auto;
+            max-width: 1100px;
+            backdrop-filter: blur(35px);
+            border: 2px solid rgba(255,215,0,0.3);
             position: relative;
             overflow: hidden;
         }
@@ -204,120 +202,119 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(200,230,201,0.1) 0%, transparent 70%);
-            animation: summaryGlow 20s linear infinite;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: summaryGlow 25s linear infinite;
             z-index: -1;
         }
         @keyframes summaryGlow {
-            from { transform: rotate(0deg) scale(0.8); }
-            to { transform: rotate(360deg) scale(1.2); }
+            from { transform: rotate(0deg) scale(0.7); }
+            to { transform: rotate(360deg) scale(1.3); }
         }
         .summary h3 {
-            color: #C8E6C9;
+            color: #FFD700;
             margin-top: 0;
-            font-size: 2.5em;
+            font-size: 3em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .summary p {
-            font-size: 1.2em;
-            line-height: 1.8;
+            font-size: 1.3em;
+            line-height: 1.9;
         }
         @media (max-width: 768px) {
-            .header h1 { font-size: 3.5em; }
-            .guide-card { padding: 35px; }
+            .header h1 { font-size: 3.8em; }
+            .guide-card { padding: 40px; }
             .guide-links { grid-template-columns: 1fr; }
-            .brand-announcement { font-size: 1.3em; padding: 25px 35px; }
+            .clarification-badge { font-size: 1.2em; padding: 20px 35px; }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🧘‍♀️ Zen Siluette Brand</h1>
-        <div class="subtitle">Mike's Meditation Woman - Skalbar Brand Identity för App-Utveckling</div>
-        <div class="brand-announcement">🎯 ZEN KÄNSLA + BYGGA APPAR UNDER DENNA BRAND</div>
+        <h1>🌟 Glow Meditation Siluettes</h1>
+        <div class="subtitle">10 Named Variants för Mike's Selection</div>
+        <div class="clarification-badge">🔄 Nu förstår jag! Glow siluettes i meditation position - märkta med namn!</div>
     </div>
 
     <div class="section">
-        <div class="section-title zen-highlight">🌟 PRIMARY: Zen Siluette Development</div>
+        <div class="section-title">✨ PRIMARY: Glow Collection</div>
+        <div class="guide-links">
+            <a href="glow-meditation-variants.html" class="guide-card">
+                <div class="primary-badge">GLOW!</div>
+                <div class="glow-emoji">🌟</div>
+                <div class="guide-title">10 Glow Meditation Variants</div>
+                <div class="guide-description">Aurora Glow • Golden Enlightenment • Serene Mint • Cosmic Meditation • Dawn Awakening • Crystal Clarity • Ocean Depths • Inner Fire • Moonlight Meditation • Lotus Bloom</div>
+                <div class="guide-stats">Interactive Selection • Named Variants • Click to Choose Favorites</div>
+            </a>
+            
+            <a href="glow-meditation-collection.md" class="guide-card" download>
+                <div class="collection-badge">DATA</div>
+                <div class="glow-emoji">📊</div>
+                <div class="guide-title">Glow Collection Documentation</div>
+                <div class="guide-description">Complete specifications, AI generation prompts, color families, och mood categorizations för alla 10 glow variants.</div>
+                <div class="guide-stats">AI Prompts • Color Psychology • Generation Ready</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🧘‍♀️ Previous: Zen Siluette Research</div>
         <div class="guide-links">
             <a href="zen-silhouette-variants.html" class="guide-card">
-                <div class="primary-badge">PRIMARY!</div>
-                <div class="zen-emoji">🧘‍♀️</div>
-                <div class="guide-title">Zen Siluette Variants</div>
-                <div class="guide-description">6 marketplace-optimized variants baserat på din valda meditation woman siluette. Clean minimalism för skalbar brand identity.</div>
-                <div class="guide-stats">Original Mint • Enhanced Forest • Warm Sage • Dual-Tone • Aura • Lotus</div>
+                <div class="previous-badge">V2.0</div>
+                <div class="glow-emoji">🎯</div>
+                <div class="guide-title">Zen Siluette Brand System</div>
+                <div class="guide-description">Solid minimalist zen siluettes för brand development. Foundation research som contributed to glow variant understanding.</div>
+                <div class="guide-stats">Brand System • 6 Variants • Clean Minimalism</div>
             </a>
             
-            <a href="zen-brand-development.md" class="guide-card" download>
-                <div class="brand-badge">BRAND</div>
-                <div class="zen-emoji">📊</div>
-                <div class="guide-title">Brand System Development</div>
-                <div class="guide-description">Complete brand strategy, AI prompts, marketplace optimization data för din zen meditation woman brand identity.</div>
-                <div class="guide-stats">Brand Guidelines • AI Prompts • Implementation Roadmap</div>
-            </a>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">🧘‍♀️ Previous: Meditation Woman Research</div>
-        <div class="guide-links">
             <a href="zen-meditation-woman.html" class="guide-card">
                 <div class="previous-badge">V1.0</div>
-                <div class="zen-emoji">🌟</div>
+                <div class="glow-emoji">🌸</div>
                 <div class="guide-title">Meditation Woman Concepts</div>
-                <div class="guide-description">Original meditation woman variants innan siluette focus. Human connection + Swedish authenticity approach.</div>
-                <div class="guide-stats">Premium • Authentic • Modern • +30-40% Expected Conversion</div>
-            </a>
-            
-            <a href="zen-meditation-woman.md" class="guide-card" download>
-                <div class="previous-badge">DATA</div>
-                <div class="zen-emoji">📈</div>
-                <div class="guide-title">Market Analysis Applied</div>
-                <div class="guide-description">Marketplace research applied to meditation woman concept. Foundation för siluette optimization.</div>
-                <div class="guide-stats">Competitive Analysis • Psychology • AI Strategies</div>
+                <div class="guide-description">Original meditation woman exploration innan siluette focus. Marketplace optimization research foundation.</div>
+                <div class="guide-stats">Market Research • Human Connection • Swedish Authenticity</div>
             </a>
         </div>
     </div>
 
     <div class="section">
-        <div class="section-title">🎯 Foundation: Marketplace Research</div>
+        <div class="section-title">📊 Foundation: Research Archive</div>
         <div class="guide-links">
             <a href="marketplace-optimized.html" class="guide-card">
                 <div class="previous-badge">RESEARCH</div>
-                <div class="zen-emoji">🥇</div>
+                <div class="glow-emoji">📈</div>
                 <div class="guide-title">Marketplace Optimization Data</div>
-                <div class="guide-description">Original bear research som provided +25% conversion insights now applied to zen siluette strategy.</div>
-                <div class="guide-stats">+25% Proven Data • Color Psychology • User Research</div>
+                <div class="guide-description">+25% conversion research som applies to all variants. Color psychology, user behavior, competitive analysis.</div>
+                <div class="guide-stats">Proven Data • Conversion Science • User Psychology</div>
             </a>
             
             <a href="ultra-realistic.html" class="guide-card">
                 <div class="previous-badge">ARCHIVE</div>
-                <div class="zen-emoji">📸</div>
-                <div class="guide-title">Ultra-Realistic Generation Methods</div>
-                <div class="guide-description">Advanced AI generation techniques som applies to all concepts. Technical foundation för quality execution.</div>
-                <div class="guide-stats">Gemini • Midjourney • DALL-E • Cinema Quality</div>
+                <div class="glow-emoji">🎨</div>
+                <div class="guide-title">Advanced AI Generation</div>
+                <div class="guide-description">Technical foundation för quality execution. Generation methods som apply to glow effects och premium branding.</div>
+                <div class="guide-stats">AI Techniques • Quality Standards • Professional Execution</div>
             </a>
         </div>
     </div>
 
     <div class="summary">
-        <h3>🧘‍♀️ Zen Siluette Brand Strategy:</h3>
-        <p><strong>• Foundation:</strong> Din valda clean meditation siluette = perfect brand base för scalability</p>
-        <p><strong>• Brand Approach:</strong> Zen känsla som unifies all future app development under one identity</p>
-        <p><strong>• Market Positioning:</strong> Clean minimalism stands out från busy competitors (Headspace, Calm)</p>
-        <p><strong>• Technical Excellence:</strong> Perfect scalability från app icons to business materials</p>
+        <h3>🌟 Glow Meditation Collection:</h3>
+        <p><strong>• 10 Named Variants:</strong> Aurora Glow, Golden Enlightenment, Serene Mint, Cosmic Meditation, Dawn Awakening, Crystal Clarity, Ocean Depths, Inner Fire, Moonlight Meditation, Lotus Bloom</p>
+        <p><strong>• Interactive Selection:</strong> Click to choose favorites, clearly marked med names för easy reference</p>
+        <p><strong>• Diverse Energy Types:</strong> Cool glows, warm glows, mystical glows - olika moods och spiritual energies</p>
+        <p><strong>• Meditation Position:</strong> All variants feature woman i lotus position med unique glow effects</p>
         
-        <h3>📊 Applied Marketplace Research:</h3>
-        <p><strong>• Color Optimization:</strong> Enhanced saturation variants för proven +15% App Store attention</p>
-        <p><strong>• Human Connection:</strong> Meditation figure provides emotional resonance vs abstract symbols</p>  
-        <p><strong>• Premium Positioning:</strong> Sophisticated execution commands higher perceived value</p>
-        <p><strong>• Category Differentiation:</strong> Clean zen aesthetic vs cluttered mindfulness market</p>
+        <h3>🎯 Perfect för Mike's Request:</h3>
+        <p><strong>• "Glow siluette sittandes i meditation position"</strong> ✅ - Exactly what you wanted</p>
+        <p><strong>• "Märk de med namn så jag kan säga vilken jag gillar mest"</strong> ✅ - Each variant clearly named</p>
+        <p><strong>• Easy Selection Process:</strong> Click favorites → Reference by name → Generate chosen variants</p>
         
-        <h3>🚀 Implementation Ready:</h3>
-        <p><strong>6 Optimized Variants:</strong> Original, Enhanced Forest, Warm Sage, Dual-Tone, Aura, Lotus Integration</p>
-        <p><strong>AI Generation:</strong> Complete Gemini/Midjourney/DALL-E prompts för immediate production</p>
-        <p><strong>Brand System:</strong> Scalable identity för multiple apps under zen umbrella</p>
-        <p><strong>Next:</strong> Choose variant → Generate → Deploy Manifest → Develop next apps under same brand!</p>
+        <h3>🚀 Next Steps:</h3>
+        <p><strong>Choose Favorites:</strong> Browse the 10 glow variants → Select preferred ones by clicking</p>
+        <p><strong>AI Generation:</strong> Complete prompts ready för immediate generation of chosen variants</p>
+        <p><strong>Brand Development:</strong> Develop chosen glow style into complete brand identity</p>
+        <p><strong>Deploy:</strong> Manifest app med your perfect glow meditation siluette! 🧘‍♀️✨🌟</p>
     </div>
 </body>
 </html>
