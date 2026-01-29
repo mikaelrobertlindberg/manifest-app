@@ -157,10 +157,10 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       // Kort paus
       Animated.delay(600),
       
-      // Flyg iväg upp från mitten som ett hjärta med kärlek  
+      // Flyg iväg upp från botten som ett hjärta med kärlek  
       Animated.parallel([
         Animated.timing(heartY, {
-          toValue: -100,  // Flyg uppåt från mitten - säker distance
+          toValue: -150,  // Flyg uppåt från botten - garanterat synligt
           duration: 1300,
           useNativeDriver: true,
         }),
@@ -494,10 +494,9 @@ const styles = StyleSheet.create({
   // === HEART ANIMATION ===
   heartContainer: {
     position: 'absolute',
-    top: '50%',       // Mitten av skärmen - där prompt-kortet är
+    bottom: 200,      // Start LÄNGRE NER så det alltid syns när det animeras uppåt
     left: '50%',
     marginLeft: -40,  // Centrerad för 60px hjärta
-    marginTop: -40,   // Centrerad för 60px hjärta  
     zIndex: 99999,    // EXTREMT hög z-index för att garantera synlighet
     elevation: 999,   // Android elevation
     justifyContent: 'center',

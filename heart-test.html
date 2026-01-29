@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Animation Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: visible !important; /* Try to prevent clipping */
+            background: linear-gradient(45deg, #FFFFFF, #FFE4D6, #FFCCCB);
+        }
+        
+        .container {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            overflow: visible !important;
+        }
+        
+        .prompt-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            top: 50%; /* Same as prompt */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            z-index: 99999;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 1.3s ease-out;
+        }
+        
+        .heart.animate {
+            opacity: 1;
+            transform: translate(-50%, -150px); /* Fly up */
+        }
+        
+        .heart.fade-out {
+            opacity: 0;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .debug {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            z-index: 100000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="prompt-card">
+            <h3>Test Hjärta Animation</h3>
+            <p>Click button to test heart flying up from center</p>
+            <button onclick="triggerHeart()">Trigger Heart ❤️</button>
+            <br><br>
+            <input type="text" placeholder="Skriv tacksamhet här..." style="padding: 8px; width: 200px;">
+        </div>
+        
+        <div class="heart" id="heart">❤️</div>
+        
+        <div class="debug" id="debug">
+            Debug info will appear here
+        </div>
+    </div>
+
+    <script>
+        function updateDebug(msg) {
+            const debug = document.getElementById('debug');
+            debug.innerHTML += msg + '<br>';
+        }
+        
+        function triggerHeart() {
+            const heart = document.getElementById('heart');
+            const container = document.querySelector('.container');
+            
+            updateDebug('Heart triggered at: ' + new Date().toLocaleTimeString());
+            updateDebug('Heart position: ' + heart.style.top + ', ' + heart.style.left);
+            updateDebug('Container height: ' + container.offsetHeight);
+            updateDebug('Viewport height: ' + window.innerHeight);
+            
+            // Reset heart
+            heart.classList.remove('animate', 'fade-out');
+            heart.style.opacity = '1';
+            
+            // Start animation
+            setTimeout(() => {
+                heart.classList.add('animate');
+                updateDebug('Animation started');
+            }, 100);
+            
+            // Fade out
+            setTimeout(() => {
+                heart.classList.add('fade-out');
+                updateDebug('Fade out started');
+            }, 1000);
+            
+            // Reset after animation
+            setTimeout(() => {
+                heart.classList.remove('animate', 'fade-out');
+                heart.style.opacity = '0';
+                updateDebug('Animation reset');
+            }, 2300);
+        }
+        
+        // Initial debug info
+        updateDebug('Page loaded');
+        updateDebug('Body overflow: ' + getComputedStyle(document.body).overflow);
+        updateDebug('Container overflow: ' + getComputedStyle(document.querySelector('.container')).overflow);
+        updateDebug('Viewport: ' + window.innerWidth + 'x' + window.innerHeight);
+    </script>
+</body>
+</html>
