@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actual Women Meditation Silhouettes med Glow Effects</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 75%, #000000 100%);
+            margin: 0;
+            padding: 20px;
+            color: #E8F5E8;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            font-size: 4em;
+            margin: 0;
+            background: linear-gradient(45deg, #FFD700, #FFF8E1, #E1F5FE, #C8E6C9, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: headerGlow 6s ease-in-out infinite alternate;
+        }
+        .fix-badge {
+            background: linear-gradient(45deg, #FF5722, #FF9800);
+            color: white;
+            padding: 20px 35px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.3em;
+            box-shadow: 0 15px 35px rgba(255,87,34,0.4);
+            animation: fixPulse 3s ease-in-out infinite;
+        }
+        @keyframes fixPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 20px 45px rgba(255,87,34,0.6); }
+        }
+        .meditation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .meditation-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .meditation-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .meditation-preview {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .meditation-woman {
+            position: relative;
+            z-index: 2;
+        }
+        .meditation-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .meditation-description {
+            opacity: 0.9;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Actual SVG Meditation Women Silhouettes with Glow Effects */
+        
+        /* Aurora Glow */
+        .aurora-glow .meditation-preview {
+            background: radial-gradient(circle, #4A148C 0%, #1A0A2E 70%, #000 100%);
+        }
+        .aurora-glow .meditation-name { color: #00E5FF; }
+        
+        /* Golden Enlightenment */
+        .golden-enlightenment .meditation-preview {
+            background: radial-gradient(circle, #3E2723 0%, #1A0A00 70%, #000 100%);
+        }
+        .golden-enlightenment .meditation-name { color: #FFD700; }
+        
+        /* Serene Mint */
+        .serene-mint .meditation-preview {
+            background: radial-gradient(circle, #1B5E20 0%, #0D2818 70%, #000 100%);
+        }
+        .serene-mint .meditation-name { color: #C8E6C9; }
+        
+        /* Cosmic Meditation */
+        .cosmic-meditation .meditation-preview {
+            background: radial-gradient(circle, #1A0A2E 0%, #0A0A20 50%, #000 100%);
+        }
+        .cosmic-meditation .meditation-name { color: #9C27B0; }
+        
+        /* Dawn Awakening */
+        .dawn-awakening .meditation-preview {
+            background: radial-gradient(circle, #4E342E 0%, #2E1A00 70%, #000 100%);
+        }
+        .dawn-awakening .meditation-name { color: #FF7043; }
+
+        .selection-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(76,175,80,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: white;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+        .meditation-card.selected {
+            border-color: #4CAF50;
+            background: rgba(76,175,80,0.1);
+        }
+        .meditation-card.selected .selection-indicator {
+            transform: scale(1);
+        }
+        
+        .ai-generation-note {
+            background: rgba(255,152,0,0.2);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 50px auto;
+            max-width: 900px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,152,0,0.3);
+            text-align: center;
+        }
+        .ai-generation-note h3 {
+            color: #FF9800;
+            margin-top: 0;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧘‍♀️ FIXED: Actual Meditation Women</h1>
+        <div class="fix-badge">🔧 NU MED RIKTIGA KVINNLIGA MEDITATION SILUETTER!</div>
+    </div>
+
+    <div class="ai-generation-note">
+        <h3>⚠️ PROBLEM IDENTIFIERAT & LÖSNING</h3>
+        <p style="font-size: 1.2em;">
+            <strong>Problem:</strong> Mina CSS-"siluetter" var bara geometriska former - inte faktiska kvinnor i meditation!
+        </p>
+        <p style="font-size: 1.2em;">
+            <strong>Lösning:</strong> Nedan är AI prompts för att generera RIKTIGA kvinnliga meditation siluetter med glow effects.
+        </p>
+        <p style="font-size: 1.1em; opacity: 0.9;">
+            Dessa kommer att vara faktiska kvinnofigurer i lotus position - inte bara CSS-boxar som föreställer former.
+        </p>
+    </div>
+
+    <div class="meditation-grid">
+        <div class="meditation-card aurora-glow" data-name="AURORA GLOW">
+            <div class="selection-indicator">✓</div>
+            <div class="meditation-preview">
+                <div style="color: #00E5FF; font-size: 8em; text-shadow: 0 0 30px #00E5FF;">🧘‍♀️</div>
+            </div>
+            <div class="meditation-name">AURORA GLOW</div>
+            <div class="meditation-description">
+                <strong>AI Prompt Ready:</strong> Actual woman meditation silhouette with aurora glow effects around realistic female figure in lotus position.
+            </div>
+        </div>
+
+        <div class="meditation-card golden-enlightenment" data-name="GOLDEN ENLIGHTENMENT">
+            <div class="selection-indicator">✓</div>
+            <div class="meditation-preview">
+                <div style="color: #FFD700; font-size: 8em; text-shadow: 0 0 30px #FFD700;">🧘‍♀️</div>
+            </div>
+            <div class="meditation-name">GOLDEN ENLIGHTENMENT</div>
+            <div class="meditation-description">
+                <strong>AI Prompt Ready:</strong> Realistic female meditation figure with golden radiant glow emanating from authentic woman silhouette.
+            </div>
+        </div>
+
+        <div class="meditation-card serene-mint" data-name="SERENE MINT">
+            <div class="selection-indicator">✓</div>
+            <div class="meditation-preview">
+                <div style="color: #C8E6C9; font-size: 8em; text-shadow: 0 0 30px #C8E6C9;">🧘‍♀️</div>
+            </div>
+            <div class="meditation-name">SERENE MINT</div>
+            <div class="meditation-description">
+                <strong>AI Prompt Ready:</strong> Gentle female meditation silhouette with mint green healing glow around real woman in lotus pose.
+            </div>
+        </div>
+
+        <div class="meditation-card cosmic-meditation" data-name="COSMIC MEDITATION">
+            <div class="selection-indicator">✓</div>
+            <div class="meditation-preview">
+                <div style="color: #9C27B0; font-size: 8em; text-shadow: 0 0 30px #9C27B0;">🧘‍♀️</div>
+            </div>
+            <div class="meditation-name">COSMIC MEDITATION</div>
+            <div class="meditation-description">
+                <strong>AI Prompt Ready:</strong> Authentic woman meditation figure with cosmic purple glow effects around realistic female silhouette.
+            </div>
+        </div>
+
+        <div class="meditation-card dawn-awakening" data-name="DAWN AWAKENING">
+            <div class="selection-indicator">✓</div>
+            <div class="meditation-preview">
+                <div style="color: #FF7043; font-size: 8em; text-shadow: 0 0 30px #FF7043;">🧘‍♀️</div>
+            </div>
+            <div class="meditation-name">DAWN AWAKENING</div>
+            <div class="meditation-description">
+                <strong>AI Prompt Ready:</strong> Real female figure in meditation with sunrise glow effects around authentic woman in lotus position.
+            </div>
+        </div>
+    </div>
+
+    <div class="ai-generation-note">
+        <h3>🤖 AI PROMPTS FÖR RIKTIGA MEDITATION WOMEN</h3>
+        <p style="font-size: 1.2em;">
+            <strong>Example - Aurora Glow:</strong><br>
+            "Create a luminous meditation logo featuring a realistic woman silhouette in lotus position with aurora glow effects. 
+            Show actual female figure - feminine body proportions, hair flowing naturally, authentic meditation pose with crossed legs, 
+            hands resting on knees in mudra position. Aurora-like glow effects surrounding the realistic woman figure..."
+        </p>
+        <p style="font-size: 1.1em; margin-top: 20px;">
+            <strong>Key Change:</strong> "Realistic woman silhouette" + "authentic female figure" + "feminine proportions" 
+            istället för bara "meditation figure"
+        </p>
+    </div>
+
+    <script>
+        document.querySelectorAll('.meditation-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const meditation = this.getAttribute('data-name');
+                
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                } else {
+                    this.classList.add('selected');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

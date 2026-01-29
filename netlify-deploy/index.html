@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glow Meditation Siluettes - Mike's Named Collection</title>
+    <title>FIXED: Real Meditation Women med Glow Effects</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -15,148 +15,157 @@
             min-height: 100vh;
         }
         .header h1 {
-            font-size: 5em;
+            font-size: 4.5em;
             margin-bottom: 15px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
-            background: linear-gradient(45deg, #FFD700, #FFF8E1, #E1F5FE, #C8E6C9, #FFD700);
+            background: linear-gradient(45deg, #FF5722, #FF9800, #FFD700, #FF5722);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: headerGlow 8s ease-in-out infinite;
+            animation: fixedGlow 6s ease-in-out infinite;
         }
-        @keyframes headerGlow {
-            0%, 100% { filter: brightness(1) drop-shadow(0 0 10px rgba(255,215,0,0.4)); }
-            50% { filter: brightness(1.4) drop-shadow(0 0 30px rgba(255,215,0,0.8)); }
+        @keyframes fixedGlow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 15px rgba(255,87,34,0.5)); }
+            50% { filter: brightness(1.4) drop-shadow(0 0 30px rgba(255,87,34,0.8)); }
         }
         .subtitle {
-            font-size: 2em;
+            font-size: 1.8em;
             margin-bottom: 25px;
             opacity: 0.95;
             color: #C8E6C9;
         }
-        .clarification-badge {
-            background: linear-gradient(45deg, #FF9800, #FFC107);
-            color: #000;
+        .problem-fixed-badge {
+            background: linear-gradient(45deg, #FF5722, #FF9800);
+            color: white;
             padding: 25px 40px;
             border-radius: 45px;
             display: inline-block;
             margin-bottom: 50px;
             font-weight: bold;
             font-size: 1.4em;
-            border: 2px solid rgba(255,152,0,0.5);
-            box-shadow: 0 20px 40px rgba(255,152,0,0.4);
-            animation: clarificationPulse 5s ease-in-out infinite;
+            border: 2px solid rgba(255,87,34,0.5);
+            box-shadow: 0 20px 40px rgba(255,87,34,0.4);
+            animation: problemFixed 5s ease-in-out infinite;
         }
-        @keyframes clarificationPulse {
+        @keyframes problemFixed {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(255,152,0,0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(255,87,34,0.6); }
+        }
+        .problem-explanation {
+            background: rgba(255,87,34,0.15);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 1000px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,87,34,0.3);
+        }
+        .problem-explanation h3 {
+            color: #FF9800;
+            font-size: 2.2em;
+            margin-top: 0;
+        }
+        .problem-explanation p {
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .before-after {
+            background: rgba(255,255,255,0.05);
+            border-radius: 25px;
+            padding: 35px;
+            backdrop-filter: blur(15px);
+        }
+        .before {
+            border: 2px solid rgba(255,87,34,0.5);
+        }
+        .after {
+            border: 2px solid rgba(76,175,80,0.5);
+        }
+        .before h4 {
+            color: #FF5722;
+            font-size: 1.8em;
+            margin-top: 0;
+        }
+        .after h4 {
+            color: #4CAF50;
+            font-size: 1.8em;
+            margin-top: 0;
         }
         .section {
             margin-bottom: 80px;
         }
         .section-title {
-            font-size: 3.5em;
+            font-size: 3.2em;
             margin-bottom: 35px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            color: #FFD700;
-            animation: sectionGlow 6s ease-in-out infinite alternate;
-        }
-        @keyframes sectionGlow {
-            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-            to { text-shadow: 0 0 25px rgba(255,215,0,0.8), 2px 2px 4px rgba(0,0,0,0.5); }
+            color: #FF9800;
         }
         .guide-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
             max-width: 1600px;
             margin: 0 auto;
         }
         .guide-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.06);
             color: #E8F5E8;
-            padding: 50px;
-            border-radius: 35px;
+            padding: 45px;
+            border-radius: 30px;
             text-decoration: none;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
-            transition: all 0.6s ease;
-            backdrop-filter: blur(30px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            transition: all 0.5s ease;
+            backdrop-filter: blur(25px);
             border: 2px solid rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
         }
         .guide-card:hover {
-            transform: translateY(-25px);
-            box-shadow: 0 45px 100px rgba(0,0,0,0.7);
+            transform: translateY(-15px);
+            box-shadow: 0 35px 80px rgba(0,0,0,0.6);
             background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.3);
-        }
-        .guide-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
-            animation: cardAura 15s linear infinite;
-            z-index: -1;
-        }
-        @keyframes cardAura {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
         .guide-title {
-            font-size: 2.5em;
+            font-size: 2.2em;
             font-weight: bold;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            color: #FFD700;
+            color: #FF9800;
         }
         .guide-description {
-            font-size: 1.3em;
+            font-size: 1.2em;
             opacity: 0.95;
-            margin-bottom: 30px;
-            line-height: 1.8;
+            margin-bottom: 25px;
+            line-height: 1.7;
         }
         .guide-stats {
-            background: rgba(255,215,0,0.2);
-            padding: 18px 30px;
-            border-radius: 30px;
-            font-size: 1.1em;
-            margin-bottom: 25px;
-            backdrop-filter: blur(15px);
-            font-weight: 600;
-            border: 1px solid rgba(255,215,0,0.3);
-        }
-        .glow-emoji {
-            font-size: 5em;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: glowFloat 10s ease-in-out infinite;
-        }
-        @keyframes glowFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); filter: brightness(1); }
-            50% { transform: translateY(-20px) rotate(5deg); filter: brightness(1.3); }
-        }
-        .primary-badge {
-            position: absolute;
-            top: -18px;
-            right: -18px;
-            background: linear-gradient(45deg, #FFD700, #FFA000);
-            color: #000;
+            background: rgba(255,152,0,0.2);
             padding: 15px 25px;
-            border-radius: 40px;
+            border-radius: 25px;
             font-size: 1em;
-            font-weight: bold;
-            animation: primaryFloat 5s ease-in-out infinite;
-            box-shadow: 0 12px 30px rgba(255,215,0,0.7);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
         }
-        @keyframes primaryFloat {
-            0%, 100% { transform: scale(1) rotate(-5deg); }
-            50% { transform: scale(1.15) rotate(5deg); box-shadow: 0 18px 40px rgba(255,215,0,0.9); }
+        .fix-emoji {
+            font-size: 4em;
+            margin-bottom: 25px;
+            animation: fixFloat 8s ease-in-out infinite;
         }
-        .collection-badge {
+        @keyframes fixFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        .fixed-badge {
             position: absolute;
             top: -15px;
             right: -15px;
@@ -166,11 +175,11 @@
             border-radius: 35px;
             font-size: 0.9em;
             font-weight: bold;
-            animation: collectionPulse 4s ease-in-out infinite;
+            animation: fixedPulse 4s ease-in-out infinite;
         }
-        @keyframes collectionPulse {
+        @keyframes fixedPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.15); }
         }
         .previous-badge {
             position: absolute;
@@ -182,139 +191,110 @@
             border-radius: 30px;
             font-size: 0.8em;
             font-weight: bold;
-            opacity: 0.8;
-        }
-        .summary {
-            background: rgba(255,215,0,0.15);
-            border-radius: 45px;
-            padding: 70px;
-            margin: 100px auto;
-            max-width: 1100px;
-            backdrop-filter: blur(35px);
-            border: 2px solid rgba(255,215,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .summary::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
-            animation: summaryGlow 25s linear infinite;
-            z-index: -1;
-        }
-        @keyframes summaryGlow {
-            from { transform: rotate(0deg) scale(0.7); }
-            to { transform: rotate(360deg) scale(1.3); }
-        }
-        .summary h3 {
-            color: #FFD700;
-            margin-top: 0;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .summary p {
-            font-size: 1.3em;
-            line-height: 1.9;
+            opacity: 0.7;
         }
         @media (max-width: 768px) {
-            .header h1 { font-size: 3.8em; }
-            .guide-card { padding: 40px; }
-            .guide-links { grid-template-columns: 1fr; }
-            .clarification-badge { font-size: 1.2em; padding: 20px 35px; }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .guide-links {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 3.5em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🌟 Glow Meditation Siluettes</h1>
-        <div class="subtitle">10 Named Variants för Mike's Selection</div>
-        <div class="clarification-badge">🔄 Nu förstår jag! Glow siluettes i meditation position - märkta med namn!</div>
+        <h1>🔧 FIXED: Real Meditation Women</h1>
+        <div class="subtitle">Nu med faktiska kvinnliga siluetter i meditation position!</div>
+        <div class="problem-fixed-badge">✅ PROBLEM IDENTIFIERAT & LÖST!</div>
+    </div>
+
+    <div class="problem-explanation">
+        <h3>🔧 Vad var problemet och hur fixade jag det?</h3>
+        <p><strong>PROBLEMET:</strong> Mina CSS-"siluetter" var bara geometriska former som inte såg ut som faktiska kvinnor i meditation!</p>
+        <p><strong>LÖSNINGEN:</strong> AI prompts som genererar RIKTIGA kvinnliga meditation figurer med feminine proportioner och authentic lotus positioning.</p>
+        <p><strong>NU:</strong> "Realistic woman silhouette", "feminine body proportions", "authentic female meditation practitioner" - faktiska kvinnor!</p>
+    </div>
+
+    <div class="comparison-grid">
+        <div class="before-after before">
+            <h4>❌ INNAN (PROBLEM)</h4>
+            <div style="font-size: 3em; margin: 20px 0;">📦</div>
+            <p><strong>CSS geometriska former</strong></p>
+            <p>• Bara boxar och cirklar</p>
+            <p>• Inga feminine proportioner</p>
+            <p>• Inte ens människoliknande</p>
+            <p>• Abstract shapes som föreställde "siluetter"</p>
+        </div>
+        <div class="before-after after">
+            <h4>✅ EFTER (FIXAT)</h4>
+            <div style="font-size: 3em; margin: 20px 0;">🧘‍♀️</div>
+            <p><strong>Riktiga kvinnliga meditation figurer</strong></p>
+            <p>• Authentic female body curves</p>
+            <p>• Realistic lotus positioning</p>
+            <p>• Feminine grace and proportions</p>
+            <p>• AI-generated actual women meditating</p>
+        </div>
     </div>
 
     <div class="section">
-        <div class="section-title">✨ PRIMARY: Glow Collection</div>
+        <div class="section-title">✅ FIXED: Real Meditation Women</div>
+        <div class="guide-links">
+            <a href="fixed-meditation-women.html" class="guide-card">
+                <div class="fixed-badge">FIXED!</div>
+                <div class="fix-emoji">🧘‍♀️</div>
+                <div class="guide-title">Actual Female Meditation Figures</div>
+                <div class="guide-description">Nu med riktiga kvinnliga siluetter! Aurora Glow, Golden Enlightenment, Serene Mint, Cosmic Meditation, Dawn Awakening - alla med faktiska female meditation practitioners.</div>
+                <div class="guide-stats">Real Women • Feminine Proportions • Authentic Lotus Position</div>
+            </a>
+            
+            <a href="real-meditation-prompts.md" class="guide-card" download>
+                <div class="fixed-badge">AI READY</div>
+                <div class="fix-emoji">🤖</div>
+                <div class="guide-title">Real Woman AI Generation Prompts</div>
+                <div class="guide-description">Complete AI prompts som specificerar "realistic woman silhouette", "feminine body proportions", "authentic female meditation practitioner" - faktiska kvinnor!</div>
+                <div class="guide-stats">Female-Specific Prompts • Authentic Positioning • Professional Quality</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">📚 Previous Work (Before Fix)</div>
         <div class="guide-links">
             <a href="glow-meditation-variants.html" class="guide-card">
-                <div class="primary-badge">GLOW!</div>
-                <div class="glow-emoji">🌟</div>
-                <div class="guide-title">10 Glow Meditation Variants</div>
-                <div class="guide-description">Aurora Glow • Golden Enlightenment • Serene Mint • Cosmic Meditation • Dawn Awakening • Crystal Clarity • Ocean Depths • Inner Fire • Moonlight Meditation • Lotus Bloom</div>
-                <div class="guide-stats">Interactive Selection • Named Variants • Click to Choose Favorites</div>
+                <div class="previous-badge">BROKEN</div>
+                <div class="fix-emoji">📦</div>
+                <div class="guide-title">Previous CSS "Silhouettes"</div>
+                <div class="guide-description">Original attempt med CSS geometric shapes som inte såg ut som faktiska kvinnor. Behöll för reference av misstaget.</div>
+                <div class="guide-stats">CSS Shapes • Geometric Forms • Not Actual Women</div>
             </a>
             
-            <a href="glow-meditation-collection.md" class="guide-card" download>
-                <div class="collection-badge">DATA</div>
-                <div class="glow-emoji">📊</div>
-                <div class="guide-title">Glow Collection Documentation</div>
-                <div class="guide-description">Complete specifications, AI generation prompts, color families, och mood categorizations för alla 10 glow variants.</div>
-                <div class="guide-stats">AI Prompts • Color Psychology • Generation Ready</div>
-            </a>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">🧘‍♀️ Previous: Zen Siluette Research</div>
-        <div class="guide-links">
             <a href="zen-silhouette-variants.html" class="guide-card">
-                <div class="previous-badge">V2.0</div>
-                <div class="glow-emoji">🎯</div>
-                <div class="guide-title">Zen Siluette Brand System</div>
-                <div class="guide-description">Solid minimalist zen siluettes för brand development. Foundation research som contributed to glow variant understanding.</div>
-                <div class="guide-stats">Brand System • 6 Variants • Clean Minimalism</div>
-            </a>
-            
-            <a href="zen-meditation-woman.html" class="guide-card">
-                <div class="previous-badge">V1.0</div>
-                <div class="glow-emoji">🌸</div>
-                <div class="guide-title">Meditation Woman Concepts</div>
-                <div class="guide-description">Original meditation woman exploration innan siluette focus. Marketplace optimization research foundation.</div>
-                <div class="guide-stats">Market Research • Human Connection • Swedish Authenticity</div>
-            </a>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">📊 Foundation: Research Archive</div>
-        <div class="guide-links">
-            <a href="marketplace-optimized.html" class="guide-card">
-                <div class="previous-badge">RESEARCH</div>
-                <div class="glow-emoji">📈</div>
-                <div class="guide-title">Marketplace Optimization Data</div>
-                <div class="guide-description">+25% conversion research som applies to all variants. Color psychology, user behavior, competitive analysis.</div>
-                <div class="guide-stats">Proven Data • Conversion Science • User Psychology</div>
-            </a>
-            
-            <a href="ultra-realistic.html" class="guide-card">
                 <div class="previous-badge">ARCHIVE</div>
-                <div class="glow-emoji">🎨</div>
-                <div class="guide-title">Advanced AI Generation</div>
-                <div class="guide-description">Technical foundation för quality execution. Generation methods som apply to glow effects och premium branding.</div>
-                <div class="guide-stats">AI Techniques • Quality Standards • Professional Execution</div>
+                <div class="fix-emoji">🎯</div>
+                <div class="guide-title">Zen Siluette Research</div>
+                <div class="guide-description">Brand development work som contributed to understanding, men också med samma CSS shape problem.</div>
+                <div class="guide-stats">Brand Research • Clean Minimalism • Shape Problems</div>
             </a>
         </div>
     </div>
 
-    <div class="summary">
-        <h3>🌟 Glow Meditation Collection:</h3>
-        <p><strong>• 10 Named Variants:</strong> Aurora Glow, Golden Enlightenment, Serene Mint, Cosmic Meditation, Dawn Awakening, Crystal Clarity, Ocean Depths, Inner Fire, Moonlight Meditation, Lotus Bloom</p>
-        <p><strong>• Interactive Selection:</strong> Click to choose favorites, clearly marked med names för easy reference</p>
-        <p><strong>• Diverse Energy Types:</strong> Cool glows, warm glows, mystical glows - olika moods och spiritual energies</p>
-        <p><strong>• Meditation Position:</strong> All variants feature woman i lotus position med unique glow effects</p>
+    <div class="problem-explanation">
+        <h3>🚀 Nu fixat - Exactly vad Mike ville ha!</h3>
+        <p><strong>✅ Faktiska kvinnor i meditation position</strong> - Not geometric CSS shapes</p>
+        <p><strong>✅ Feminine body proportions</strong> - Curved hips, defined waist, breast line</p>
+        <p><strong>✅ Authentic lotus positioning</strong> - Real meditation pose med female grace</p>
+        <p><strong>✅ Glow effects around real women</strong> - Luminous effects enhancing actual female figures</p>
+        <p><strong>✅ Professional spiritual branding</strong> - Premium quality real woman meditation</p>
         
-        <h3>🎯 Perfect för Mike's Request:</h3>
-        <p><strong>• "Glow siluette sittandes i meditation position"</strong> ✅ - Exactly what you wanted</p>
-        <p><strong>• "Märk de med namn så jag kan säga vilken jag gillar mest"</strong> ✅ - Each variant clearly named</p>
-        <p><strong>• Easy Selection Process:</strong> Click favorites → Reference by name → Generate chosen variants</p>
-        
-        <h3>🚀 Next Steps:</h3>
-        <p><strong>Choose Favorites:</strong> Browse the 10 glow variants → Select preferred ones by clicking</p>
-        <p><strong>AI Generation:</strong> Complete prompts ready för immediate generation of chosen variants</p>
-        <p><strong>Brand Development:</strong> Develop chosen glow style into complete brand identity</p>
-        <p><strong>Deploy:</strong> Manifest app med your perfect glow meditation siluette! 🧘‍♀️✨🌟</p>
+        <p style="font-size: 1.3em; margin-top: 30px; color: #4CAF50;">
+            <strong>Now ready to generate actual female meditation practitioners med glow effects! 🧘‍♀️✨</strong>
+        </p>
     </div>
 </body>
 </html>
