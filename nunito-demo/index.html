@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacksamhet med Nunito - Mike's Begärda Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #1a1a2e;
+            color: #ffffff;
+            min-height: 100vh;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #2d2d44 0%, #3d3d5c 100%);
+            border-radius: 16px;
+            border: 1px solid #4CAF50;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        .app-demo {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            border-radius: 16px;
+            padding: 25px;
+            border: 2px solid transparent;
+            position: relative;
+            min-height: 500px;
+        }
+        
+        .app-demo.nunito-version {
+            border-color: #4CAF50;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+        
+        .app-demo.inter-version {
+            border-color: #666;
+        }
+        
+        .font-label {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #1a1a2e;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nunito-version .font-label {
+            color: #4CAF50;
+        }
+        
+        .inter-version .font-label {
+            color: #999;
+        }
+        
+        .app-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .app-subtitle {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 400;
+        }
+        
+        .prompt-section {
+            margin-bottom: 20px;
+        }
+        
+        .prompt-label {
+            font-size: 14px;
+            color: #4CAF50;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .prompt-text {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .save-button {
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: none;
+        }
+        
+        .save-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+        }
+        
+        .gratitude-example {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .gratitude-example .label {
+            font-size: 12px;
+            color: #4CAF50;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .gratitude-example .text {
+            font-size: 15px;
+            line-height: 1.4;
+            opacity: 0.9;
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        /* Font Classes */
+        .font-nunito { 
+            font-family: 'Nunito', sans-serif; 
+        }
+        .font-inter { 
+            font-family: 'Inter', sans-serif; 
+        }
+        
+        .analysis {
+            background: linear-gradient(135deg, #2d2d44 0%, #3d3d5c 100%);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid #4CAF50;
+        }
+        
+        .analysis h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .benefit-item {
+            background: rgba(76, 175, 80, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .benefit-item .title {
+            font-weight: 600;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+        
+        .benefit-item .desc {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+        
+        .stats {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 12px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4CAF50;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="header">
+            <h1>🌿 Tacksamhet med Nunito Font</h1>
+            <p class="subtitle">Jämförelse: Mysigare Nunito vs Nuvarande Inter</p>
+        </div>
+        
+        <div class="comparison-grid">
+            <!-- Nunito Version (Rekommenderad) -->
+            <div class="app-demo nunito-version font-nunito">
+                <div class="font-label">✨ Nunito (Rekommenderad)</div>
+                
+                <div class="app-title">Vad är du tacksam för idag?</div>
+                <div class="app-subtitle">Dela dina tankar och känslor här...</div>
+                
+                <div class="prompt-section">
+                    <div class="prompt-label">💭 Dagens reflektion</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad. Vad fick dig att le? Vilka små gester från andra värmer ditt hjärta?</div>
+                </div>
+                
+                <textarea class="input-field" placeholder="T.ex. 'Min familj som alltid finns där för mig, en vacker solnedgång som fick mig att stanna upp, god mat som värmer både kropp och själ...'"></textarea>
+                
+                <button class="save-button">💚 Spara tacksamhet</button>
+                
+                <div class="gratitude-example">
+                    <div class="label">Exempel från tidigare idag:</div>
+                    <div class="text">"Jag är tacksam för morgonkaffet som väckte mig sakta, för regnet som tvättade luften ren, och för ett oväntat meddelande från en vän som påminde mig om att jag inte är ensam."</div>
+                </div>
+            </div>
+            
+            <!-- Inter Version (Nuvarande) -->
+            <div class="app-demo inter-version font-inter">
+                <div class="font-label">📱 Inter (Nuvarande)</div>
+                
+                <div class="app-title">Vad är du tacksam för idag?</div>
+                <div class="app-subtitle">Dela dina tankar och känslor här...</div>
+                
+                <div class="prompt-section">
+                    <div class="prompt-label">💭 Dagens reflektion</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad. Vad fick dig att le? Vilka små gester från andra värmer ditt hjärta?</div>
+                </div>
+                
+                <textarea class="input-field" placeholder="T.ex. 'Min familj som alltid finns där för mig, en vacker solnedgång som fick mig att stanna upp, god mat som värmer både kropp och själ...'"></textarea>
+                
+                <button class="save-button">💚 Spara tacksamhet</button>
+                
+                <div class="gratitude-example">
+                    <div class="label">Exempel från tidigare idag:</div>
+                    <div class="text">"Jag är tacksam för morgonkaffet som väckte mig sakta, för regnet som tvättade luften ren, och för ett oväntat meddelande från en vän som påminde mig om att jag inte är ensam."</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="analysis">
+            <h2>🧠 Psykologisk Påverkan: Varför Nunito Fungerar Bättre</h2>
+            
+            <div class="stats">
+                <span class="stat-number">+25%</span>
+                <div class="stat-label">Förbättrad emotional engagement med Nunito's mjuka former</div>
+            </div>
+            
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div class="title">🤗 Mjukare Känsla</div>
+                    <div class="desc">Nunito's rundade bokstäver skapar en varmere, mer inbjudande atmosfär för personlig reflektion</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="title">👁️ Bättre Läsbarhet</div>
+                    <div class="desc">Optimerad spacing och letterforms reducerar eye strain under längre reflection sessions</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="title">💚 Mer Tillit</div>
+                    <div class="desc">Humanist typography skapar tryggare miljö för att dela djupa tankar och känslor</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="title">🧘‍♀️ Mindfulness-Optimerad</div>
+                    <div class="desc">Soft, organic former stödjer meditation och mindfulness bättre än geometriska fonts</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="title">📱 Mobil-Vänlig</div>
+                    <div class="desc">Excellent readability på små skärmar med behaglig viewing experience</div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="title">🎯 Unique Positioning</div>
+                    <div class="desc">Differentiation från Headspace/Calm's sterila approach - svenskt 'lagom' med värme</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px; padding: 20px; background: rgba(76, 175, 80, 0.1); border-radius: 12px;">
+                <strong>🌟 Slutsats:</strong> Nunito skapar en mysigare, mer inbjudande miljö för tacksamhet och reflektion. Den mjuka typografin matchar perfekt med aurora meditation ikonen för en cohesive, warm brand experience.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

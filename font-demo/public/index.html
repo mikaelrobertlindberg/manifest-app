@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacksamhet App - Font Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Nunito:wght@300;400;500;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&family=Raleway:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #1a1a2e;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .font-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .font-demo {
+            background: #2d2d44;
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid #3d3d5c;
+            transition: all 0.3s ease;
+        }
+        
+        .font-demo:hover {
+            border-color: #4CAF50;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+        }
+        
+        .font-name {
+            font-size: 14px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .app-mockup {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 280px;
+        }
+        
+        .app-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        
+        .app-subtitle {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        
+        .prompt-text {
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            width: 100%;
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .save-button {
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .save-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Font Classes */
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-source { font-family: 'Source Sans Pro', sans-serif; }
+        .font-nunito { font-family: 'Nunito', sans-serif; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
+        .font-opensans { font-family: 'Open Sans', sans-serif; }
+        .font-roboto { font-family: 'Roboto', sans-serif; }
+        .font-raleway { font-family: 'Raleway', sans-serif; }
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #3d3d5c;
+        }
+        
+        .footer p {
+            opacity: 0.6;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="header">
+            <h1>🌿 Tacksamhet App - Font Demo</h1>
+            <p>Testa olika fonter för en mer mysig känsla i appen</p>
+            <div style="background: rgba(76, 175, 80, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px;">
+                <strong>Nuvarande font:</strong> Inter (standard) → <strong>Vi testar mysigare alternativ!</strong>
+            </div>
+        </div>
+        
+        <div class="font-grid">
+            <!-- Font 1: Poppins -->
+            <div class="font-demo">
+                <div class="font-name">1. Poppins - Friendly & Modern</div>
+                <div class="app-mockup font-poppins">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tankar och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 2: Nunito -->
+            <div class="font-demo">
+                <div class="font-name">2. Nunito - Warm & Gentle</div>
+                <div class="app-mockup font-nunito">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 3: Source Sans Pro -->
+            <div class="font-demo">
+                <div class="font-name">3. Source Sans Pro - Clean & Readable</div>
+                <div class="app-mockup font-source">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 4: Lato -->
+            <div class="font-demo">
+                <div class="font-name">4. Lato - Humanist & Approachable</div>
+                <div class="app-mockup font-lato">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 5: Montserrat -->
+            <div class="font-demo">
+                <div class="font-name">5. Montserrat - Elegant & Sophisticated</div>
+                <div class="app-mockup font-montserrat">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 6: Open Sans -->
+            <div class="font-demo">
+                <div class="font-name">6. Open Sans - Neutral & Friendly</div>
+                <div class="app-mockup font-opensans">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 7: Roboto -->
+            <div class="font-demo">
+                <div class="font-name">7. Roboto - Modern & Geometric</div>
+                <div class="app-mockup font-roboto">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 8: Raleway -->
+            <div class="font-demo">
+                <div class="font-name">8. Raleway - Elegant & Thin</div>
+                <div class="app-mockup font-raleway">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 9: Playfair Display -->
+            <div class="font-demo">
+                <div class="font-name">9. Playfair Display - Luxury & Serif</div>
+                <div class="app-mockup font-playfair">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+            
+            <!-- Font 10: Inter (Current) -->
+            <div class="font-demo">
+                <div class="font-name">10. Inter - Current Font (Reference)</div>
+                <div class="app-mockup font-inter">
+                    <div class="app-title">Vad är du tacksam för idag?</div>
+                    <div class="app-subtitle">Dela dina tanker och känslor här...</div>
+                    <div class="prompt-text">Reflektera över dagens positiva stunder och skriv ned tre saker som gjorde dig glad.</div>
+                    <input type="text" class="input-field" placeholder="T.ex. 'Min familj, en vacker solnedgång, god mat...'" readonly>
+                    <button class="save-button">Spara tacksamhet</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🌿 Tacksamhet App - Font Demo för Mike's feedback<br>
+            Vilken font känns mest mysig och inbjudande för mindfulness-appen?</p>
+        </div>
+    </div>
+</body>
+</html>
