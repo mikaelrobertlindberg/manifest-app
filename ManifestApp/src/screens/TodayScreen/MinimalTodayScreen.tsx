@@ -255,18 +255,19 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
 
   // === RENDER ===
   return (
-    <LinearGradient
-      colors={[
-        '#FFFFFF',           // Pure white at top
-        '#FFF5F0',          // Warmer cream tone
-        '#FFE4D6',          // Richer orange/peach 
-        '#FFCCCB',          // Warmer coral/pink
-        '#FFE5E5',          // Warm pink base
-      ]}
-      style={styles.container}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-    >
+    <View style={styles.fullScreenContainer}>
+      <LinearGradient
+        colors={[
+          '#FFFFFF',           // Pure white at top
+          '#FFF5F0',          // Warmer cream tone
+          '#FFE4D6',          // Richer orange/peach 
+          '#FFCCCB',          // Warmer coral/pink
+          '#FFE5E5',          // Warm pink base
+        ]}
+        style={styles.container}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+      >
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
         
@@ -358,8 +359,9 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       </TouchableOpacity>
       
       </SafeAreaView>
+      </LinearGradient>
 
-      {/* Animerat hjärta som flyger iväg med kärlek - UTANFÖR alla containers för att undvika clipping */}
+      {/* Animerat hjärta som flyger iväg med kärlek - HELT UTANFÖR alla containers */}
       <Animated.View
         style={[
           styles.heartContainer,
@@ -382,12 +384,17 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       >
         <FigmaBody style={styles.heartText}>❤️</FigmaBody>
       </Animated.View>
-    </LinearGradient>
+    </View>
   );
 };
 
 // === STYLES ===
 const styles = StyleSheet.create({
+  fullScreenContainer: {
+    flex: 1,
+    overflow: 'visible', // CRITICALLY IMPORTANT - tillåter hjärta att flyga fritt
+  },
+  
   container: {
     flex: 1,
   },
@@ -491,11 +498,13 @@ const styles = StyleSheet.create({
     left: '50%',
     marginLeft: -40,  // Centrerad för 60px hjärta
     marginTop: -40,   // Centrerad för 60px hjärta  
-    zIndex: 9999,     // Högsta z-index för att vara över allt
+    zIndex: 99999,    // EXTREMT hög z-index för att garantera synlighet
+    elevation: 999,   // Android elevation
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,        // Explicit container storlek
     height: 80,       // Explicit container storlek
+    overflow: 'visible', // Tillåt hjärta att synas utanför container
   },
   
   heartText: {
