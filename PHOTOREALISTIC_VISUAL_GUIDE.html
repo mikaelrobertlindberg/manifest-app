@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest Photorealistic - 24 Verkliga Björn-Varianter</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2D5A3D 0%, #1B3B1C 50%, #5D4037 100%);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: white;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: white;
+            font-size: 2.8em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            color: #E8F5E8;
+            font-size: 1.3em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .photo-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+        }
+        .category {
+            margin-bottom: 60px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+        .category-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+        }
+        .category-title {
+            font-size: 2.2em;
+            color: white;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .category-description {
+            font-size: 1.1em;
+            color: #E8F5E8;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .variant-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .variant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            background: rgba(255,255,255,0.25);
+        }
+        .variant-preview {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .variant-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .variant-subtitle {
+            font-size: 1em;
+            color: #E8F5E8;
+            margin-bottom: 12px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        .variant-description {
+            color: #E8F5E8;
+            line-height: 1.4;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        .variant-vibe {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.85em;
+            color: #E8F5E8;
+            font-style: italic;
+            backdrop-filter: blur(5px);
+        }
+        .photo-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Photorealistic Gradient Elegant Styles */
+        .photographic-premium { 
+            background: linear-gradient(135deg, #2D5A3D, #FFFFFF);
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><filter id="noise"><feTurbulence baseFrequency="0.9" numOctaves="1"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.1"/></svg>');
+        }
+        .golden-wildlife { 
+            background: linear-gradient(135deg, #5D4037, #FFD700, #FFF8E1);
+            background-image: radial-gradient(circle at 30% 70%, rgba(255,215,0,0.3) 0%, transparent 50%);
+        }
+        .forest-depth-portrait { 
+            background: linear-gradient(135deg, #3E2723, #2E7D32, #1B5E20);
+            background-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.3) 0%, transparent 70%);
+        }
+        .scandinavian-mist { 
+            background: linear-gradient(135deg, #2D5A3D, #B0BEC5, #FFFFFF);
+            background-image: linear-gradient(45deg, rgba(176,190,197,0.3) 25%, transparent 25%);
+        }
+        .arctic-aurora { 
+            background: linear-gradient(135deg, #37474F, #81C784, #E8F5E8);
+            background-image: radial-gradient(ellipse at 20% 80%, rgba(129,199,132,0.4) 0%, transparent 50%);
+        }
+        .copper-fur-detail { 
+            background: linear-gradient(135deg, #8D6E63, #D7954F, #FFF8E1);
+            background-image: repeating-linear-gradient(45deg, rgba(215,149,79,0.2) 0px, transparent 2px);
+        }
+        .monochrome-wildlife { 
+            background: linear-gradient(135deg, #212121, #757575, #F5F5F5);
+            background-image: linear-gradient(90deg, rgba(0,0,0,0.3) 50%, rgba(255,255,255,0.1) 50%);
+        }
+        .natural-pearl-tones { 
+            background: linear-gradient(135deg, #8D6E63, #F1F8E9, #FFFFFF);
+            background-image: radial-gradient(circle at 70% 30%, rgba(241,248,233,0.5) 0%, transparent 60%);
+        }
+        
+        /* Photorealistic Friendly Realistic Styles */
+        .gentle-giant-portrait { 
+            background: linear-gradient(135deg, #795548, #BCAAA4, #EFEBE9);
+            background-image: radial-gradient(circle at 40% 60%, rgba(188,170,164,0.4) 0%, transparent 50%);
+        }
+        .playful-nature-moment { 
+            background: linear-gradient(135deg, #8BC34A, #AED581, #F1F8E9);
+            background-image: radial-gradient(circle at 60% 40%, rgba(174,213,129,0.3) 0%, transparent 60%);
+        }
+        .cub-innocence { 
+            background: linear-gradient(135deg, #D7CCC8, #F3E5AB, #FFF9C4);
+            background-image: radial-gradient(circle at 50% 80%, rgba(243,229,171,0.4) 0%, transparent 50%);
+        }
+        .forest-companion { 
+            background: linear-gradient(135deg, #4CAF50, #81C784, #C8E6C9);
+            background-image: linear-gradient(45deg, rgba(129,199,132,0.2) 25%, transparent 25%);
+        }
+        .cozy-winter-bear { 
+            background: linear-gradient(135deg, #90A4AE, #CFD8DC, #ECEFF1);
+            background-image: radial-gradient(circle at 30% 30%, rgba(207,216,220,0.3) 0%, transparent 70%);
+        }
+        .protective-parent { 
+            background: linear-gradient(135deg, #6D4C41, #A1887F, #D7CCC8);
+            background-image: linear-gradient(135deg, rgba(161,136,127,0.3) 0%, transparent 70%);
+        }
+        .peaceful-meadow { 
+            background: linear-gradient(135deg, #66BB6A, #A5D6A7, #E8F5E8);
+            background-image: radial-gradient(circle at 70% 70%, rgba(165,214,167,0.4) 0%, transparent 60%);
+        }
+        .meditation-nature { 
+            background: linear-gradient(135deg, #A5D6A7, #E8F5E8, #F1F8E9);
+            background-image: radial-gradient(circle at 50% 50%, rgba(232,245,232,0.5) 0%, transparent 80%);
+        }
+        
+        /* Photorealistic Nature Integration Styles */
+        .forest-camouflage { 
+            background: linear-gradient(135deg, #1B5E20, #2E7D32, #388E3C);
+            background-image: repeating-linear-gradient(60deg, rgba(46,125,50,0.3) 0px, transparent 10px);
+        }
+        .seasonal-adaptation { 
+            background: linear-gradient(90deg, #4CAF50, #FFB74D, #F44336, #607D8B);
+            background-image: linear-gradient(45deg, rgba(255,183,77,0.2) 25%, transparent 50%);
+        }
+        .habitat-portrait { 
+            background: linear-gradient(135deg, #2E7D32, #4CAF50, #66BB6A);
+            background-image: radial-gradient(circle at 40% 40%, rgba(102,187,106,0.3) 0%, transparent 60%);
+        }
+        .ancient-forest-wisdom { 
+            background: linear-gradient(135deg, #3E2723, #5D4037, #8D6E63);
+            background-image: linear-gradient(180deg, rgba(62,39,35,0.4) 0%, transparent 70%);
+        }
+        .wildflower-sanctuary { 
+            background: linear-gradient(135deg, #66BB6A, #FFE0B2, #F8BBD9);
+            background-image: radial-gradient(circle at 80% 20%, rgba(255,224,178,0.4) 0%, transparent 50%);
+        }
+        .pine-forest-native { 
+            background: linear-gradient(135deg, #1B5E20, #2E7D32, #C8E6C9);
+            background-image: linear-gradient(90deg, rgba(200,230,201,0.2) 0%, transparent 100%);
+        }
+        .lakeside-reflection { 
+            background: linear-gradient(135deg, #0277BD, #4FC3F7, #B3E5FC);
+            background-image: linear-gradient(180deg, rgba(79,195,247,0.3) 50%, transparent 50%);
+        }
+        .root-earth-connection { 
+            background: linear-gradient(135deg, #3E2723, #8D6E63, #A1887F);
+            background-image: repeating-linear-gradient(45deg, rgba(141,110,99,0.2) 0px, transparent 15px);
+        }
+
+        .bear-icon {
+            font-size: 60px;
+            opacity: 0.9;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .selection-bar {
+            position: sticky;
+            bottom: 20px;
+            background: rgba(45, 90, 61, 0.95);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .selection-bar h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .selection-instruction {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .comparison-note {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .variants-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            .variant-preview {
+                width: 90px;
+                height: 90px;
+            }
+            .header h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📸 Manifest Photorealistic - 24 Verkliga Björn-Varianter</h1>
+        <div class="subtitle">Samma stilar som tidigare men med fotorealistisk approach</div>
+        <div class="photo-badge">🐻 VERKLIGA BJÖRNAR - INGA TECKNINGAR</div>
+    </div>
+
+    <div class="comparison-note">
+        <h3>📸 PHOTOREALISTIC vs 🎨 STYLISERADE</h3>
+        <p><strong>Nya varianter:</strong> Verklig björn-anatomi, naturfoto-kvalitet, genuine Swedish forest environments</p>
+        <p><strong>Tidigare varianter:</strong> Illustration, design interpretation, artistic expression</p>
+        <p><strong>Total:</strong> 48 logotyp-optioner att välja mellan! (24 + 24)</p>
+    </div>
+
+    <!-- PHOTOREALISTIC GRADIENT ELEGANT -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-title">📸 #5R: PHOTOREALISTIC GRADIENT ELEGANT</div>
+            <div class="category-description">Verkliga björn-foton med premium gradients, wildlife photography aesthetic</div>
+        </div>
+        <div class="variants-grid">
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview photographic-premium">
+                    <span class="bear-icon">🐻</span>
+                </div>
+                <div class="variant-title">5R-A. Photographic Premium</div>
+                <div class="variant-subtitle">High-res Nature Photo</div>
+                <div class="variant-description">Professionell naturfoto-silhuett med radial gradient. Magazine-quality feel.</div>
+                <div class="variant-vibe">Premium nature documentary, National Geographic style</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview golden-wildlife">
+                    <span class="bear-icon">🌅</span>
+                </div>
+                <div class="variant-title">5R-B. Golden Wildlife</div>
+                <div class="variant-subtitle">Golden Hour Photography</div>
+                <div class="variant-description">Verklig björn i sunset-ljus från wildlife photography. Natural fur colors enhanced.</div>
+                <div class="variant-vibe">Aspirational nature, luxury wildlife experience</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview forest-depth-portrait">
+                    <span class="bear-icon">🌲</span>
+                </div>
+                <div class="variant-title">5R-C. Forest Depth Portrait</div>
+                <div class="variant-subtitle">Close-up Wildlife Portrait</div>
+                <div class="variant-description">Intimate björn huvud/profil från deep forest photo. Shallow depth of field.</div>
+                <div class="variant-vibe">Deep forest wisdom, natural sophistication</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview scandinavian-mist">
+                    <span class="bear-icon">🌫️</span>
+                </div>
+                <div class="variant-title">5R-D. Scandinavian Mist</div>
+                <div class="variant-subtitle">Nordic Landscape Photo</div>
+                <div class="variant-description">Björn silhouette mot dimmig skandinavisk skog. Atmospheric morning light.</div>
+                <div class="variant-vibe">Mystical Nordic wilderness, sophisticated calm</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview arctic-aurora">
+                    <span class="bear-icon">✨</span>
+                </div>
+                <div class="variant-title">5R-E. Arctic Aurora</div>
+                <div class="variant-subtitle">Epic Nature Cinematography</div>
+                <div class="variant-description">Verklig polar/brown björn mot aurora-inspired bakgrund. Arctic wildlife aesthetic.</div>
+                <div class="variant-vibe">Majestic Nordic nature, premium wilderness</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview copper-fur-detail">
+                    <span class="bear-icon">🔶</span>
+                </div>
+                <div class="variant-title">5R-F. Copper Fur Detail</div>
+                <div class="variant-subtitle">Macro Wildlife Photography</div>
+                <div class="variant-description">Ultra-close-up naturlig björn-päls texture. Textural luxury detail shots.</div>
+                <div class="variant-vibe">Natural luxury materials, handcrafted premium feel</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview monochrome-wildlife">
+                    <span class="bear-icon">⚫</span>
+                </div>
+                <div class="variant-title">5R-G. Monochrome Wildlife</div>
+                <div class="variant-subtitle">Classic Wildlife Photography</div>
+                <div class="variant-description">Stark black/white björn portrait från sidan. Ansel Adams inspired nature.</div>
+                <div class="variant-vibe">Classic elegance, timeless wildlife art</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview natural-pearl-tones">
+                    <span class="bear-icon">🤍</span>
+                </div>
+                <div class="variant-title">5R-H. Natural Pearl Tones</div>
+                <div class="variant-subtitle">Contemporary Nature Portrait</div>
+                <div class="variant-description">Soft-lit verklig björn med natural ljus. Pearl post-processing enhancement.</div>
+                <div class="variant-vibe">Gentle natural luxury, mindful wildlife beauty</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTOREALISTIC FRIENDLY REALISTIC -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-title">📸 #6R: FRIENDLY REALISTIC</div>
+            <div class="category-description">Verkliga björnar med vänlig, approachable wildlife photography</div>
+        </div>
+        <div class="variants-grid">
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview gentle-giant-portrait">
+                    <span class="bear-icon">🧸</span>
+                </div>
+                <div class="variant-title">6R-A. Gentle Giant Portrait</div>
+                <div class="variant-subtitle">Wildlife Sanctuary Photo</div>
+                <div class="variant-description">Verklig stor björn med friendly, gentle uttryck. Naturliga warm eyes.</div>
+                <div class="variant-vibe">Safe gentle giant, protective friend, trustworthy</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview playful-nature-moment">
+                    <span class="bear-icon">😊</span>
+                </div>
+                <div class="variant-title">6R-B. Playful Nature Moment</div>
+                <div class="variant-subtitle">Wildlife Behavior Photo</div>
+                <div class="variant-description">Action-foto av lekfull björn i naturlig miljö. Candid wildlife moments.</div>
+                <div class="variant-vibe">Playful authenticity, natural joy, approachable</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview cub-innocence">
+                    <span class="bear-icon">💚</span>
+                </div>
+                <div class="variant-title">6R-C. Cub Innocence</div>
+                <div class="variant-subtitle">Baby Wildlife Photography</div>
+                <div class="variant-description">Ung björn (cub) med innocent, curious uttryck. Conservation imagery style.</div>
+                <div class="variant-vibe">Pure innocence, new beginnings, sweet nature</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview forest-companion">
+                    <span class="bear-icon">🎨</span>
+                </div>
+                <div class="variant-title">6R-D. Forest Companion</div>
+                <div class="variant-subtitle">Environmental Portrait</div>
+                <div class="variant-description">Björn i naturlig forest setting med companion-feeling. Calm intelligent eyes.</div>
+                <div class="variant-vibe">Nature companion, forest guide, wise friend</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview cozy-winter-bear">
+                    <span class="bear-icon">🤗</span>
+                </div>
+                <div class="variant-title">6R-E. Cozy Winter Bear</div>
+                <div class="variant-subtitle">Seasonal Wildlife Photo</div>
+                <div class="variant-description">Björn i winter coat, cozy natural setting. Thick winter fur photography.</div>
+                <div class="variant-vibe">Comfort, warmth, seasonal security, hygge</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview protective-parent">
+                    <span class="bear-icon">🛡️</span>
+                </div>
+                <div class="variant-title">6R-F. Protective Parent</div>
+                <div class="variant-subtitle">Family Wildlife Photography</div>
+                <div class="variant-description">Parent björn i protective men gentle pose. Family nature photography style.</div>
+                <div class="variant-vibe">Reliable protection, nurturing strength, guardian</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview peaceful-meadow">
+                    <span class="bear-icon">🦋</span>
+                </div>
+                <div class="variant-title">6R-G. Peaceful Meadow</div>
+                <div class="variant-subtitle">Tranquil Nature Photography</div>
+                <div class="variant-description">Björn resting i natural flower meadow. Environmental peace photography.</div>
+                <div class="variant-vibe">Natural peace, harmony, meadow tranquility</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview meditation-nature">
+                    <span class="bear-icon">🧘</span>
+                </div>
+                <div class="variant-title">6R-H. Meditation in Nature</div>
+                <div class="variant-subtitle">Mindful Wildlife Photography</div>
+                <div class="variant-description">Calm björn i natural stillhet. Contemplative wildlife photography moments.</div>
+                <div class="variant-vibe">Natural meditation, inner peace, mindfulness</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTOREALISTIC NATURE INTEGRATION -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-title">📸 #8R: NATURE INTEGRATION REALISTIC</div>
+            <div class="category-description">Verkliga björnar fully integrated i genuine Swedish forest environments</div>
+        </div>
+        <div class="variants-grid">
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview forest-camouflage">
+                    <span class="bear-icon">🍂</span>
+                </div>
+                <div class="variant-title">8R-A. Forest Camouflage</div>
+                <div class="variant-subtitle">Wildlife Stealth Photography</div>
+                <div class="variant-description">Björn naturligt integrated i forest environment. Natural camouflage photography.</div>
+                <div class="variant-vibe">Perfect nature harmony, ecological balance, stealth</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview seasonal-adaptation">
+                    <span class="bear-icon">👑</span>
+                </div>
+                <div class="variant-title">8R-B. Seasonal Adaptation</div>
+                <div class="variant-subtitle">Scientific Wildlife Photography</div>
+                <div class="variant-description">Björn showing natural seasonal changes. Evolution documentation photography.</div>
+                <div class="variant-vibe">Natural adaptation, environmental wisdom, evolution</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview habitat-portrait">
+                    <span class="bear-icon">🔄</span>
+                </div>
+                <div class="variant-title">8R-C. Habitat Portrait</div>
+                <div class="variant-subtitle">Conservation Photography</div>
+                <div class="variant-description">Björn as integral del av forest ecosystem. Environmental context documentation.</div>
+                <div class="variant-vibe">Ecosystem integration, environmental consciousness</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview ancient-forest-wisdom">
+                    <span class="bear-icon">🪨</span>
+                </div>
+                <div class="variant-title">8R-D. Ancient Forest Wisdom</div>
+                <div class="variant-subtitle">Old Forest Wildlife Photography</div>
+                <div class="variant-description">Mature björn among old-growth forest trees. Ancient nature photography.</div>
+                <div class="variant-vibe">Ancient wisdom, forest elder, timeless knowledge</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview wildflower-sanctuary">
+                    <span class="bear-icon">🌸</span>
+                </div>
+                <div class="variant-title">8R-E. Wildflower Sanctuary</div>
+                <div class="variant-subtitle">Botanical Wildlife Photography</div>
+                <div class="variant-description">Björn naturally among genuine Swedish wildflowers. Seasonal beauty photography.</div>
+                <div class="variant-vibe">Natural sanctuary, flower harmony, gentle nature</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview pine-forest-native">
+                    <span class="bear-icon">🌲</span>
+                </div>
+                <div class="variant-title">8R-F. Pine Forest Native</div>
+                <div class="variant-subtitle">Boreal Forest Wildlife Photo</div>
+                <div class="variant-description">Björn as natural pine forest inhabitant. Swedish pine ecosystem photography.</div>
+                <div class="variant-vibe">Forest citizenship, pine wilderness, Swedish nature</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview lakeside-reflection">
+                    <span class="bear-icon">💧</span>
+                </div>
+                <div class="variant-title">8R-G. Lakeside Reflection</div>
+                <div class="variant-subtitle">Water Wildlife Photography</div>
+                <div class="variant-description">Björn vid naturlig forest lake med real reflections. Natural mirror captures.</div>
+                <div class="variant-vibe">Reflection & contemplation, water wisdom, natural mirror</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="photo-tag">📸 PHOTO</div>
+                <div class="variant-preview root-earth-connection">
+                    <span class="bear-icon">🌿</span>
+                </div>
+                <div class="variant-title">8R-H. Root & Earth Connection</div>
+                <div class="variant-subtitle">Ecological Photography</div>
+                <div class="variant-description">Björn interacting med real tree roots. Underground ecosystem photography.</div>
+                <div class="variant-vibe">Deep earth connection, root wisdom, natural grounding</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="selection-bar">
+        <h3>📸 Välj dina favoriter från 48 totala optioner!</h3>
+        <div class="selection-instruction">
+            24 Photorealistic + 24 Styliserade = 48 logotyp-varianter för Mike att välja mellan! 🎨🐻📸
+        </div>
+    </div>
+
+    <script>
+        // Enhanced click functionality för photorealistic selection
+        let selectedCards = new Set();
+        
+        document.querySelectorAll('.variant-card').forEach(card => {
+            card.addEventListener('click', function() {
+                if (selectedCards.has(this)) {
+                    selectedCards.delete(this);
+                    this.style.border = '1px solid rgba(255,255,255,0.2)';
+                    this.style.transform = '';
+                } else {
+                    selectedCards.add(this);
+                    this.style.border = '3px solid #FFD700';
+                    this.style.transform = 'scale(1.03)';
+                    this.style.background = 'rgba(255,255,255,0.3)';
+                }
+                
+                updateSelectionBar();
+            });
+            
+            card.addEventListener('mouseenter', function() {
+                if (!selectedCards.has(this)) {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!selectedCards.has(this)) {
+                    this.style.transform = '';
+                }
+            });
+        });
+        
+        function updateSelectionBar() {
+            const selectionBar = document.querySelector('.selection-instruction');
+            if (selectedCards.size > 0) {
+                selectionBar.innerHTML = `${selectedCards.size} photorealistic varianter valda! Kombinera med styliserade för final selection! 📸✨`;
+            } else {
+                selectionBar.innerHTML = '24 Photorealistic + 24 Styliserade = 48 logotyp-varianter för Mike att välja mellan! 🎨🐻📸';
+            }
+        }
+    </script>
+</body>
+</html>

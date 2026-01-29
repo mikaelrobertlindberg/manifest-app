@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest Logo Development - Alla Guider</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2D5A3D 0%, #4CAF50 50%, #1B3B1C 100%);
+            margin: 0;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+        }
+        .header h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .stats {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .guide-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .guide-card {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-decoration: none;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .guide-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            background: rgba(255,255,255,0.25);
+        }
+        .guide-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .guide-description {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .guide-stats {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(5px);
+        }
+        .bear-emoji {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .new-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #FFD700;
+            color: #1B3B1C;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        .guide-card {
+            position: relative;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5em; }
+            .guide-card { padding: 25px; }
+            .guide-links { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐻 Manifest Logo Development</h1>
+        <div class="subtitle">Fullständig utveckling av Manifest-appens björn-logotyp</div>
+        <div class="stats">📊 TOTAL: 48 Logotyp-Varianter Att Välja Mellan</div>
+    </div>
+    
+    <div class="guide-links">
+        <a href="photorealistic.html" class="guide-card">
+            <div class="new-badge">NYA!</div>
+            <div class="bear-emoji">📸</div>
+            <div class="guide-title">Photorealistic Bears</div>
+            <div class="guide-description">24 verkliga björn-varianter baserade på naturfotografi. Inga teckningar eller animationer - bara äkta wildlife photography aesthetic.</div>
+            <div class="guide-stats">24 Varianter • 3 Stilar • Verklig Björn-Anatomi</div>
+        </a>
+        
+        <a href="top3.html" class="guide-card">
+            <div class="bear-emoji">🎯</div>
+            <div class="guide-title">TOP 3 Styliserade</div>
+            <div class="guide-description">Mike's valda stilar utvecklade: Gradient Elegant, Friendly Cute, Nature Integration. Konstnärlig interpretation och design-fokus.</div>
+            <div class="guide-stats">24 Varianter • Mikes Val • Styliserade Design</div>
+        </a>
+        
+        <a href="LOGO_VISUAL_GUIDE.html" class="guide-card">
+            <div class="bear-emoji">🎨</div>
+            <div class="guide-title">Original 10 Koncept</div>
+            <div class="guide-description">Alla ursprungliga 10 logotyp-stilar för Manifest. Foundation för alla senare utvecklingar och stil-decisions.</div>
+            <div class="guide-stats">10 Varianter • Grund-Stilar • Full Spektrum</div>
+        </a>
+    </div>
+
+    <div style="margin-top: 60px; background: rgba(0,0,0,0.3); border-radius: 15px; padding: 25px; backdrop-filter: blur(10px);">
+        <h3 style="margin-top: 0;">🎯 Nästa Steg För Mike:</h3>
+        <p style="font-size: 1.1em; line-height: 1.6;">
+            1. 👀 <strong>Bläddra alla 3 guiderna</strong> för att se alla 48 optioner<br>
+            2. ✅ <strong>Välj 3-5 favoriter</strong> (kan mixa photorealistic + styliserade)<br>
+            3. 🎨 <strong>Professional asset creation</strong> av valda designs<br>
+            4. 📱 <strong>EAS Build setup</strong> → TestFlight → Riktig iPhone app!
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest Top 3 - 24 Björn-Varianter</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #2D5A3D;
+            font-size: 2.8em;
+            margin: 0;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+        .category {
+            margin-bottom: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .category-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2D5A3D;
+        }
+        .category-title {
+            font-size: 2.2em;
+            color: #2D5A3D;
+            margin: 0;
+        }
+        .category-description {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 10px;
+        }
+        .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .variant-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .variant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .variant-preview {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .variant-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2D5A3D;
+            margin-bottom: 8px;
+        }
+        .variant-subtitle {
+            font-size: 1em;
+            color: #777;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .variant-description {
+            color: #666;
+            line-height: 1.4;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .variant-vibe {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.85em;
+            color: #555;
+            font-style: italic;
+        }
+        
+        /* Gradient Elegant Styles */
+        .classic-premium { background: linear-gradient(135deg, #2D5A3D, #FFFFFF); }
+        .golden-hour { background: linear-gradient(135deg, #2D5A3D, #FFD700, #FFFFFF); }
+        .deep-forest { background: linear-gradient(180deg, #1B3B1C, #2D5A3D, #4CAF50); }
+        .silver-mist { background: radial-gradient(circle at bottom left, #2D5A3D, #B0BEC5, #FFFFFF); }
+        .aurora-dream { background: linear-gradient(45deg, #2D5A3D, #81C784, #E8F5E8); }
+        .copper-warmth { background: radial-gradient(circle at top right, #2D5A3D, #D7954F, #FFF8E1); }
+        .monochrome-elite { background: linear-gradient(90deg, #1A1A1A, #2D5A3D, #F5F5F5); }
+        .pearl-gentle { background: radial-gradient(circle, #2D5A3D, #F1F8E9, #FFFFFF); }
+        
+        /* Friendly Cute Styles */
+        .teddy-classic { background: linear-gradient(45deg, #8D6E63, #FFCCBC); }
+        .cartoon-friendly { background: linear-gradient(45deg, #FF8A65, #FFCCBC); }
+        .kawaii-forest { background: linear-gradient(45deg, #A5D6A7, #FFF8E1); }
+        .watercolor-soft { background: linear-gradient(45deg, #BCAAA4, #D7CCC8); }
+        .plushie-texture { background: linear-gradient(45deg, #8D6E63, #EFEBE9); }
+        .gentle-giant { background: linear-gradient(45deg, #795548, #EFEBE9); }
+        .forest-friend { background: linear-gradient(45deg, #8BC34A, #FFF8E1); }
+        .meditation-bear { background: linear-gradient(45deg, #A5D6A7, #EFEBE9); }
+        
+        /* Nature Integration Styles */
+        .leafy-silhouette { background: linear-gradient(45deg, #2E7D32, #66BB6A, #C8E6C9); }
+        .forest-crown { background: linear-gradient(45deg, #1B5E20, #4CAF50, #8BC34A); }
+        .seasonal-cycle { background: linear-gradient(90deg, #4CAF50, #FFB74D, #D32F2F, #78909C); }
+        .moss-stone { background: linear-gradient(45deg, #2E7D32, #5D4037, #90A4AE); }
+        .flower-meadow { background: linear-gradient(45deg, #66BB6A, #E1F5FE, #FFE0B2); }
+        .pine-forest { background: linear-gradient(180deg, #1B5E20, #2E7D32, #C8E6C9); }
+        .water-forest { background: linear-gradient(45deg, #0277BD, #1B5E20, #E3F2FD); }
+        .root-system { background: linear-gradient(45deg, #3E2723, #2E7D32, #8D6E63); }
+
+        .bear-icon {
+            font-size: 60px;
+            opacity: 0.9;
+        }
+        
+        .selection-bar {
+            position: sticky;
+            bottom: 20px;
+            background: rgba(45, 90, 61, 0.95);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .selection-bar h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .selection-instruction {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .variants-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            .variant-preview {
+                width: 90px;
+                height: 90px;
+            }
+            .header h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐻 Manifest Top 3 - 24 Björn-Varianter</h1>
+        <div class="subtitle">Mike's valda stilar utvecklade: Gradient Elegant, Friendly Cute, Nature Integration</div>
+    </div>
+
+    <!-- GRADIENT ELEGANT -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-title">🌅 #5: GRADIENT ELEGANT</div>
+            <div class="category-description">Premium gradients, sophisticated känsla, high-end design</div>
+        </div>
+        <div class="variants-grid">
+            <div class="variant-card">
+                <div class="variant-preview classic-premium">
+                    <span class="bear-icon">🐻</span>
+                </div>
+                <div class="variant-title">5A. Classic Premium</div>
+                <div class="variant-subtitle">Forest Green → White</div>
+                <div class="variant-description">Clean silhouette med radial gradient från center. Klassisk premium-känsla.</div>
+                <div class="variant-vibe">Sophisticated, high-end, trustworthy</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview golden-hour">
+                    <span class="bear-icon">🌅</span>
+                </div>
+                <div class="variant-title">5B. Golden Hour</div>
+                <div class="variant-subtitle">Green → Gold → White</div>
+                <div class="variant-description">Elegant postur med guldaccent, sunset-inspirerad. Diagonal linear gradient.</div>
+                <div class="variant-vibe">Aspirational, warm premium, exclusive</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview deep-forest">
+                    <span class="bear-icon">🌲</span>
+                </div>
+                <div class="variant-title">5C. Deep Forest</div>
+                <div class="variant-subtitle">Dark → Forest → Light Green</div>
+                <div class="variant-description">Minimalist outline, rik skogsdjup med vertikal gradient. Organisk luxury.</div>
+                <div class="variant-vibe">Natural premium, depth, grounded</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview silver-mist">
+                    <span class="bear-icon">🌫️</span>
+                </div>
+                <div class="variant-title">5D. Silver Mist</div>
+                <div class="variant-subtitle">Forest → Silver → White</div>
+                <div class="variant-description">Cool elegance, dimmig skog-känsla med silver accent. Radial från bottom-left.</div>
+                <div class="variant-vibe">Cool sophistication, mysterious, calm</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview aurora-dream">
+                    <span class="bear-icon">✨</span>
+                </div>
+                <div class="variant-title">5E. Aurora Dream</div>
+                <div class="variant-subtitle">Nordic Lights Inspired</div>
+                <div class="variant-description">Stylized profil, norrsken-inspirerad curved gradient. Mystisk och flytande.</div>
+                <div class="variant-vibe">Mystical, Swedish nature, dreamy</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview copper-warmth">
+                    <span class="bear-icon">🔶</span>
+                </div>
+                <div class="variant-title">5F. Copper Warmth</div>
+                <div class="variant-subtitle">Green → Copper → Cream</div>
+                <div class="variant-description">Rundad silhuett, warm metals med artisan-kvalitet. Hantverk-känsla.</div>
+                <div class="variant-vibe">Handcrafted premium, warm, personal</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview monochrome-elite">
+                    <span class="bear-icon">⚫</span>
+                </div>
+                <div class="variant-title">5G. Monochrome Elite</div>
+                <div class="variant-subtitle">Black → Forest → Light Gray</div>
+                <div class="variant-description">Sharp profil, hög kontrast modern luxury. Horizontal linear gradient.</div>
+                <div class="variant-vibe">Elite, minimalist premium, strong</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview pearl-gentle">
+                    <span class="bear-icon">🤍</span>
+                </div>
+                <div class="variant-title">5H. Pearl Gentle</div>
+                <div class="variant-subtitle">Forest → Light Green → White</div>
+                <div class="variant-description">Soft outline, pärla-finish med gentle luxury. Soft radial center.</div>
+                <div class="variant-vibe">Gentle premium, mindful luxury, soft</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FRIENDLY CUTE -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-title">😊 #6: FRIENDLY CUTE</div>
+            <div class="category-description">Vänlig approach, rundade former, approachable design</div>
+        </div>
+        <div class="variants-grid">
+            <div class="variant-card">
+                <div class="variant-preview teddy-classic">
+                    <span class="bear-icon">🧸</span>
+                </div>
+                <div class="variant-title">6A. Teddy Bear Classic</div>
+                <div class="variant-subtitle">Traditional Comfort</div>
+                <div class="variant-description">Rundad björn med snäll blick, rounded ears och gentle eyes. Nostalgisk.</div>
+                <div class="variant-vibe">Safe, childhood, comfort, trust</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview cartoon-friendly">
+                    <span class="bear-icon">😊</span>
+                </div>
+                <div class="variant-title">6B. Cartoon Friendly</div>
+                <div class="variant-subtitle">Modern Playful</div>
+                <div class="variant-description">Cartoon björn från sidan med leende, big friendly eyes och bouncy posture.</div>
+                <div class="variant-vibe">Playful, approachable, joyful, fun</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview kawaii-forest">
+                    <span class="bear-icon">💚</span>
+                </div>
+                <div class="variant-title">6C. Kawaii Forest</div>
+                <div class="variant-subtitle">Japanese Cute Meets Nordic</div>
+                <div class="variant-description">Minimalist cute björn med ♡ känsla, simple eyes (• •) och soft colors.</div>
+                <div class="variant-vibe">Innocent, pure, mindful, sweet</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview watercolor-soft">
+                    <span class="bear-icon">🎨</span>
+                </div>
+                <div class="variant-title">6D. Watercolor Soft</div>
+                <div class="variant-subtitle">Artistic Handmade</div>
+                <div class="variant-description">Hand-painted style friendly björn med watercolor edges och gentle brushstrokes.</div>
+                <div class="variant-vibe">Creative, personal, warm, artistic</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview plushie-texture">
+                    <span class="bear-icon">🤗</span>
+                </div>
+                <div class="variant-title">6E. Plushie Texture</div>
+                <div class="variant-subtitle">Fabric Feel</div>
+                <div class="variant-description">Fabric-textured björn silhouette med soft fabric edges och plush appearance.</div>
+                <div class="variant-vibe">Hugable, comfort, security, cozy</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview gentle-giant">
+                    <span class="bear-icon">🛡️</span>
+                </div>
+                <div class="variant-title">6F. Gentle Giant</div>
+                <div class="variant-subtitle">Protective Guardian</div>
+                <div class="variant-description">Larger björn i protective posture med kind expression och strong but gentle feeling.</div>
+                <div class="variant-vibe">Protection, strength with kindness, reliable</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview forest-friend">
+                    <span class="bear-icon">🦋</span>
+                </div>
+                <div class="variant-title">6G. Forest Friend</div>
+                <div class="variant-subtitle">Storybook Harmony</div>
+                <div class="variant-description">Björn med small forest creatures nearby, storybook illustration style.</div>
+                <div class="variant-vibe">Harmonious, nature connection, peaceful</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview meditation-bear">
+                    <span class="bear-icon">🧘</span>
+                </div>
+                <div class="variant-title">6H. Meditation Bear</div>
+                <div class="variant-subtitle">Zen Mindfulness</div>
+                <div class="variant-description">Calm björn i meditation pose från sidan, closed eyes och peaceful expression.</div>
+                <div class="variant-vibe">Inner peace, meditation, mindfulness, calm</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NATURE INTEGRATION -->
+    <div class="category">
+        <div class="category-header">
+            <div class="category-title">🍃 #8: NATURE INTEGRATION</div>
+            <div class="category-description">Organisk design, björn + forest elements, eco-conscious</div>
+        </div>
+        <div class="variants-grid">
+            <div class="variant-card">
+                <div class="variant-preview leafy-silhouette">
+                    <span class="bear-icon">🍂</span>
+                </div>
+                <div class="variant-title">8A. Leafy Silhouette</div>
+                <div class="variant-subtitle">Nature-Filled Form</div>
+                <div class="variant-description">Björn outline fylld med leaf patterns, löv och kvistar inside silhouette.</div>
+                <div class="variant-vibe">Eco-conscious, harmonious, organic</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview forest-crown">
+                    <span class="bear-icon">👑</span>
+                </div>
+                <div class="variant-title">8B. Forest Crown</div>
+                <div class="variant-subtitle">Majestic Nature King</div>
+                <div class="variant-description">Björn huvud med löv/kvistar som krona, pine needles och oak leaves around head.</div>
+                <div class="variant-vibe">Royal nature, forest guardian, majestic</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview seasonal-cycle">
+                    <span class="bear-icon">🔄</span>
+                </div>
+                <div class="variant-title">8C. Seasonal Cycle</div>
+                <div class="variant-subtitle">Full Year Cycle</div>
+                <div class="variant-description">Björn med växlande säsongs-element: Spring buds → Summer → Autumn → Winter.</div>
+                <div class="variant-vibe">Natural cycles, time passage, growth</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview moss-stone">
+                    <span class="bear-icon">🪨</span>
+                </div>
+                <div class="variant-title">8D. Moss & Stone</div>
+                <div class="variant-subtitle">Earthy Materials</div>
+                <div class="variant-description">Björn composed of moss, stone och bark textures med weathered natural look.</div>
+                <div class="variant-vibe">Ancient, grounded, timeless, solid</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview flower-meadow">
+                    <span class="bear-icon">🌸</span>
+                </div>
+                <div class="variant-title">8E. Flower Meadow</div>
+                <div class="variant-subtitle">Spring Renewal</div>
+                <div class="variant-description">Gentle björn surrounded by small wildflowers, peaceful meadow scene.</div>
+                <div class="variant-vibe">Gentle nature, spring renewal, peaceful</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview pine-forest">
+                    <span class="bear-icon">🌲</span>
+                </div>
+                <div class="variant-title">8F. Pine Forest</div>
+                <div class="variant-subtitle">Swedish Wilderness</div>
+                <div class="variant-description">Björn silhouette med pine tree shapes integrated, tall pines och forest depth.</div>
+                <div class="variant-vibe">Deep forest, mystery, Swedish wilderness</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview water-forest">
+                    <span class="bear-icon">💧</span>
+                </div>
+                <div class="variant-title">8G. Water & Forest</div>
+                <div class="variant-subtitle">Lakeside Tranquility</div>
+                <div class="variant-description">Björn reflecting by forest lake med water ripples och reflected trees.</div>
+                <div class="variant-vibe">Reflection (literal & metaphorical), peace, depth</div>
+            </div>
+            
+            <div class="variant-card">
+                <div class="variant-preview root-system">
+                    <span class="bear-icon">🌿</span>
+                </div>
+                <div class="variant-title">8H. Root System</div>
+                <div class="variant-subtitle">Deep Foundation</div>
+                <div class="variant-description">Björn form skapad av intertwined tree roots, underground network feeling.</div>
+                <div class="variant-vibe">Deep roots, foundation, growth, connection</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="selection-bar">
+        <h3>🎯 Välj dina favoriter!</h3>
+        <div class="selection-instruction">
+            Titta igenom alla 24 varianter och välj 3-5 favoriter för professional asset creation → EAS Build → TestFlight! 🚀
+        </div>
+    </div>
+
+    <script>
+        // Lägg till click-funktionalitet för selection
+        let selectedCards = new Set();
+        
+        document.querySelectorAll('.variant-card').forEach(card => {
+            card.addEventListener('click', function() {
+                if (selectedCards.has(this)) {
+                    selectedCards.delete(this);
+                    this.style.border = '';
+                    this.style.transform = '';
+                } else {
+                    selectedCards.add(this);
+                    this.style.border = '3px solid #2D5A3D';
+                    this.style.transform = 'scale(1.03)';
+                }
+                
+                // Uppdatera selection bar
+                updateSelectionBar();
+            });
+            
+            card.addEventListener('mouseenter', function() {
+                if (!selectedCards.has(this)) {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!selectedCards.has(this)) {
+                    this.style.transform = '';
+                }
+            });
+        });
+        
+        function updateSelectionBar() {
+            const selectionBar = document.querySelector('.selection-instruction');
+            if (selectedCards.size > 0) {
+                selectionBar.innerHTML = `${selectedCards.size} varianter valda! Perfect för professional asset creation! 🎨✨`;
+            } else {
+                selectionBar.innerHTML = 'Titta igenom alla 24 varianter och välj 3-5 favoriter för professional asset creation → EAS Build → TestFlight! 🚀';
+            }
+        }
+    </script>
+</body>
+</html>
