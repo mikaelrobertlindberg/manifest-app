@@ -27,7 +27,7 @@
     "tryAgainButton": "Prøv igjen",
     "okButton": "OK",
     "smartNotificationsEnabled": "✨ Smarte påminnelser aktivert",
-    "smartNotificationsEnabledMessage": "Du får milde, personlige påminnelser om å skrive takknemlighet (maks 2 per dag).\\n\\nHyppigheten tilpasses automatisk etter hvor ofte du bruker appen. Ingen påminnelser hvis du allerede har skrevet noe samme dag.",
+    "smartNotificationsEnabledMessage": "Du får milde, personlige påminnelser om å skrive takknemlighet (maks 2 per dag).\n\nHyppigheten tilpasses automatisk etter hvor ofte du bruker appen. Ingen påminnelser hvis du allerede har skrevet noe samme dag.",
     "permissionDeniedTitle": "Tillatelse nektet",
     "permissionDeniedMessage": "Gå til Innstillinger → Varsler for å aktivere påminnelser for Takknemlighet.",
     "notificationsDisabledTitle": "Påminnelser slått av",
@@ -36,7 +36,7 @@
     "notificationUpdateError": "Kunne ikke oppdatere smarte påminnelser",
     "audioUpdateError": "Kunne ikke oppdatere lydinnstillinger",
     "couldNotOpenEmail": "Kunne ikke åpne e-post",
-    "couldNotOpenEmailMessage": "Send feilrapport til:\\nsupport@tacksamhet.app\\n\\nBeskriv problemet, hva du forventet og hva som skjedde i stedet."
+    "couldNotOpenEmailMessage": "Send feilrapport til:\nsupport@tacksamhet.app\n\nBeskriv problemet, hva du forventet og hva som skjedde i stedet."
   },
   "settings": {
     "title": "⚙️ Innstillinger",
@@ -71,7 +71,7 @@
   },
   "about": {
     "title": "Om Takknemlighet",
-    "message": "Takknemlighet v1.0.0\\n\\nEn app for daglig takknemlighetsøvelse.\\n29 SEK engangskjøp, ingen abonnementer.\\n\\n✨ Minimalistisk design\\n🤖 Smart påminnelsessystem\\n🇸🇪 Helt på svensk\\n🌍 Nå på flere språk\\n\\nUtviklet med ❤️"
+    "message": "Takknemlighet v1.0.0\n\nEn app for daglig takknemlighetsøvelse.\n29 SEK engangskjøp, ingen abonnementer.\n\n✨ Minimalistisk design\n🤖 Smart påminnelsessystem\n🇸🇪 Helt på svensk\n🌍 Nå på flere språk\n\nUtviklet med ❤️"
   },
   "languages": {
     "sv": "🇸🇪 Svensk",

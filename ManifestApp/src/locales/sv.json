@@ -27,7 +27,7 @@
     "tryAgainButton": "Prova igen",
     "okButton": "OK",
     "smartNotificationsEnabled": "✨ Smarta påminnelser aktiverade",
-    "smartNotificationsEnabledMessage": "Du får mjuka, personaliserade påminnelser att skriva tacksamhet (max 2 per dag).\\n\\nFrekvensen anpassas automatiskt efter hur ofta du använder appen. Inga påminnelser om du redan skrivit något samma dag.",
+    "smartNotificationsEnabledMessage": "Du får mjuka, personaliserade påminnelser att skriva tacksamhet (max 2 per dag).\n\nFrekvensen anpassas automatiskt efter hur ofta du använder appen. Inga påminnelser om du redan skrivit något samma dag.",
     "permissionDeniedTitle": "Behörighet nekad",
     "permissionDeniedMessage": "Gå till Inställningar → Notifikationer för att aktivera påminnelser för Tacksamhet.",
     "notificationsDisabledTitle": "Påminnelser avstängda",
@@ -36,7 +36,7 @@
     "notificationUpdateError": "Kunde inte uppdatera smarta påminnelser",
     "audioUpdateError": "Kunde inte uppdatera ljudinställningar",
     "couldNotOpenEmail": "Kunde inte öppna email",
-    "couldNotOpenEmailMessage": "Skicka buggrapport till:\\nsupport@tacksamhet.app\\n\\nBeskriv problemet, vad du förväntade dig, och vad som hände istället."
+    "couldNotOpenEmailMessage": "Skicka buggrapport till:\nsupport@tacksamhet.app\n\nBeskriv problemet, vad du förväntade dig, och vad som hände istället."
   },
   "settings": {
     "title": "⚙️ Inställningar",
@@ -71,7 +71,7 @@
   },
   "about": {
     "title": "Om Tacksamhet",
-    "message": "Tacksamhet v1.0.0\\n\\nEn app för daglig tacksamhetspraktik.\\n29 SEK engångsköp, inga prenumerationer.\\n\\n✨ Minimalistisk design\\n🤖 Smart påminnelsesystem\\n🇸🇪 Helt på svenska\\n🌍 Nu på flera språk\\n\\nUtvecklad med ❤️"
+    "message": "Tacksamhet v1.0.0\n\nEn app för daglig tacksamhetspraktik.\n29 SEK engångsköp, inga prenumerationer.\n\n✨ Minimalistisk design\n🤖 Smart påminnelsesystem\n🇸🇪 Helt på svenska\n🌍 Nu på flera språk\n\nUtvecklad med ❤️"
   },
   "languages": {
     "sv": "🇸🇪 Svenska",

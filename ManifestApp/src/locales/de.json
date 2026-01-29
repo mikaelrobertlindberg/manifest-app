@@ -27,7 +27,7 @@
     "tryAgainButton": "Nochmal versuchen",
     "okButton": "OK",
     "smartNotificationsEnabled": "✨ Intelligente Erinnerungen aktiviert",
-    "smartNotificationsEnabledMessage": "Du erhältst sanfte, personalisierte Erinnerungen zum Schreiben von Dankbarkeit (max. 2 pro Tag).\\n\\nDie Häufigkeit passt sich automatisch an, wie oft du die App nutzt. Keine Erinnerungen, wenn du bereits am selben Tag geschrieben hast.",
+    "smartNotificationsEnabledMessage": "Du erhältst sanfte, personalisierte Erinnerungen zum Schreiben von Dankbarkeit (max. 2 pro Tag).\n\nDie Häufigkeit passt sich automatisch an, wie oft du die App nutzt. Keine Erinnerungen, wenn du bereits am selben Tag geschrieben hast.",
     "permissionDeniedTitle": "Berechtigung verweigert",
     "permissionDeniedMessage": "Gehe zu Einstellungen → Benachrichtigungen, um Erinnerungen für Dankbarkeit zu aktivieren.",
     "notificationsDisabledTitle": "Erinnerungen ausgeschaltet",
@@ -36,7 +36,7 @@
     "notificationUpdateError": "Konnte intelligente Erinnerungen nicht aktualisieren",
     "audioUpdateError": "Konnte Toneinstellungen nicht aktualisieren",
     "couldNotOpenEmail": "Konnte E-Mail nicht öffnen",
-    "couldNotOpenEmailMessage": "Sende Fehlerbericht an:\\nsupport@tacksamhet.app\\n\\nBeschreibe das Problem, was du erwartet hast und was stattdessen passiert ist."
+    "couldNotOpenEmailMessage": "Sende Fehlerbericht an:\nsupport@tacksamhet.app\n\nBeschreibe das Problem, was du erwartet hast und was stattdessen passiert ist."
   },
   "settings": {
     "title": "⚙️ Einstellungen",
@@ -71,7 +71,7 @@
   },
   "about": {
     "title": "Über Dankbarkeit",
-    "message": "Dankbarkeit v1.0.0\\n\\nEine App für tägliche Dankbarkeitspraxis.\\n29 SEK Einmalzahlung, keine Abonnements.\\n\\n✨ Minimalistisches Design\\n🤖 Intelligentes Erinnerungssystem\\n🇸🇪 Komplett auf Schwedisch\\n🌍 Jetzt in mehreren Sprachen\\n\\nMit ❤️ entwickelt"
+    "message": "Dankbarkeit v1.0.0\n\nEine App für tägliche Dankbarkeitspraxis.\n29 SEK Einmalzahlung, keine Abonnements.\n\n✨ Minimalistisches Design\n🤖 Intelligentes Erinnerungssystem\n🇸🇪 Komplett auf Schwedisch\n🌍 Jetzt in mehreren Sprachen\n\nMit ❤️ entwickelt"
   },
   "languages": {
     "sv": "🇸🇪 Schwedisch",

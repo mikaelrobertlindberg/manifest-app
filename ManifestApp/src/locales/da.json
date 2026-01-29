@@ -27,7 +27,7 @@
     "tryAgainButton": "Prøv igen",
     "okButton": "OK",
     "smartNotificationsEnabled": "✨ Smarte påmindelser aktiveret",
-    "smartNotificationsEnabledMessage": "Du får milde, personlige påmindelser om at skrive taknemmelighed (maks 2 om dagen).\\n\\nFrekvensen tilpasser sig automatisk efter hvor ofte du bruger appen. Ingen påmindelser hvis du allerede har skrevet noget samme dag.",
+    "smartNotificationsEnabledMessage": "Du får milde, personlige påmindelser om at skrive taknemmelighed (maks 2 om dagen).\n\nFrekvensen tilpasser sig automatisk efter hvor ofte du bruger appen. Ingen påmindelser hvis du allerede har skrevet noget samme dag.",
     "permissionDeniedTitle": "Tilladelse nægtet",
     "permissionDeniedMessage": "Gå til Indstillinger → Notifikationer for at aktivere påmindelser for Taknemmelighed.",
     "notificationsDisabledTitle": "Påmindelser slået fra",
@@ -36,7 +36,7 @@
     "notificationUpdateError": "Kunne ikke opdatere smarte påmindelser",
     "audioUpdateError": "Kunne ikke opdatere lydindstillinger",
     "couldNotOpenEmail": "Kunne ikke åbne e-mail",
-    "couldNotOpenEmailMessage": "Send fejlrapport til:\\nsupport@tacksamhet.app\\n\\nBeskriv problemet, hvad du forventede og hvad der skete i stedet."
+    "couldNotOpenEmailMessage": "Send fejlrapport til:\nsupport@tacksamhet.app\n\nBeskriv problemet, hvad du forventede og hvad der skete i stedet."
   },
   "settings": {
     "title": "⚙️ Indstillinger",
@@ -71,7 +71,7 @@
   },
   "about": {
     "title": "Om Taknemmelighed",
-    "message": "Taknemmelighed v1.0.0\\n\\nEn app til daglig taknemmeligheds-praksis.\\n29 SEK engangskøb, ingen abonnementer.\\n\\n✨ Minimalistisk design\\n🤖 Smart påmindelsessystem\\n🇸🇪 Helt på svensk\\n🌍 Nu på flere sprog\\n\\nUdviklet med ❤️"
+    "message": "Taknemmelighed v1.0.0\n\nEn app til daglig taknemmeligheds-praksis.\n29 SEK engangskøb, ingen abonnementer.\n\n✨ Minimalistisk design\n🤖 Smart påmindelsessystem\n🇸🇪 Helt på svensk\n🌍 Nu på flere sprog\n\nUdviklet med ❤️"
   },
   "languages": {
     "sv": "🇸🇪 Svensk",

@@ -27,7 +27,7 @@
     "tryAgainButton": "Yritä uudelleen",
     "okButton": "OK",
     "smartNotificationsEnabled": "✨ Älykkäät muistutukset käytössä",
-    "smartNotificationsEnabledMessage": "Saat helliä, henkilökohtaisia muistutuksia kiitollisuuden kirjoittamiseen (max 2 päivässä).\\n\\nTiheys mukautuu automaattisesti siihen, kuinka usein käytät sovellusta. Ei muistutuksia, jos olet jo kirjoittanut samana päivänä.",
+    "smartNotificationsEnabledMessage": "Saat helliä, henkilökohtaisia muistutuksia kiitollisuuden kirjoittamiseen (max 2 päivässä).\n\nTiheys mukautuu automaattisesti siihen, kuinka usein käytät sovellusta. Ei muistutuksia, jos olet jo kirjoittanut samana päivänä.",
     "permissionDeniedTitle": "Lupa evätty",
     "permissionDeniedMessage": "Mene Asetukset → Ilmoitukset aktivoidaksesi muistutukset Kiitollisuudelle.",
     "notificationsDisabledTitle": "Muistutukset pois päältä",
@@ -36,7 +36,7 @@
     "notificationUpdateError": "Älykkäitä muistutuksia ei voitu päivittää",
     "audioUpdateError": "Ääniasetuksia ei voitu päivittää",
     "couldNotOpenEmail": "Sähköpostia ei voitu avata",
-    "couldNotOpenEmailMessage": "Lähetä vikaraportti osoitteeseen:\\nsupport@tacksamhet.app\\n\\nKuvaile ongelma, mitä odotit ja mitä sen sijaan tapahtui."
+    "couldNotOpenEmailMessage": "Lähetä vikaraportti osoitteeseen:\nsupport@tacksamhet.app\n\nKuvaile ongelma, mitä odotit ja mitä sen sijaan tapahtui."
   },
   "settings": {
     "title": "⚙️ Asetukset",
@@ -71,7 +71,7 @@
   },
   "about": {
     "title": "Tietoja Kiitollisuudesta",
-    "message": "Kiitollisuus v1.0.0\\n\\nSovellus päivittäiseen kiitollisuusharjoitukseen.\\n29 SEK kertamaksu, ei tilauksia.\\n\\n✨ Minimalistinen muotoilu\\n🤖 Älykäs muistutusjärjestelmä\\n🇸🇪 Täysin ruotsiksi\\n🌍 Nyt useilla kielillä\\n\\nTehty ❤️:llä"
+    "message": "Kiitollisuus v1.0.0\n\nSovellus päivittäiseen kiitollisuusharjoitukseen.\n29 SEK kertamaksu, ei tilauksia.\n\n✨ Minimalistinen muotoilu\n🤖 Älykäs muistutusjärjestelmä\n🇸🇪 Täysin ruotsiksi\n🌍 Nyt useilla kielillä\n\nTehty ❤️:llä"
   },
   "languages": {
     "sv": "🇸🇪 Ruotsi",
