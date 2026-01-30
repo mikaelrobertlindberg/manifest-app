@@ -162,7 +162,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   const analyzeTextForNegativity = async (text: string) => {
     console.log('✨ MINIMAL: Starting AI analysis for text length:', text.length);
     
-    if (!aiSettings.aiFilterEnabled || text.length < 15) {
+    if (!aiSettings.aiFilterEnabled || text.length < 3) {
       console.log('✨ MINIMAL: AI disabled or text too short, proceeding with save');
       performSave();
       return;

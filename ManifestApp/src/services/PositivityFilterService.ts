@@ -383,7 +383,7 @@ export class PositivityFilterService {
    * Analyserar text för negativa mönster med svenska keywords
    */
   public static analyzeLocalSentiment(text: string): NegativityAnalysis {
-    if (!text || text.trim().length < 15) {
+    if (!text || text.trim().length < 3) {
       return {
         isNegative: false,
         negativityScore: 0,
