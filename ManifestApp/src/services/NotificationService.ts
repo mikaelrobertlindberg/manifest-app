@@ -1,4 +1,5 @@
 import * as Notifications from 'expo-notifications';
+import i18n from '../locales';
 
 export interface NotificationSettings {
   dailyReminders: boolean;
@@ -23,11 +24,11 @@ export class NotificationService {
     eveningTime: '20:00',
     frequency: 'medium',
     
-    // TESTING: Frekventa påminnelser
-    testMode: true,           // På för Mike's testing
-    remindersPerDay: 3,       // 3 påminnelser per dag som start
+    // Påminnelser (Mike's feedback: max 1-2/dag)
+    testMode: true,           // På för testing
+    remindersPerDay: 2,       // MAX 2 påminnelser per dag
     startHour: 9,            // Första 09:00
-    endHour: 21              // Sista 21:00
+    endHour: 20              // Sista 20:00
   };
 
   // Kontrollera notifikationsbehörigheter utan att begära nya
@@ -114,11 +115,16 @@ export class NotificationService {
         minute: parseInt(settings.morningTime.split(':')[1])
       };
 
+      // Hämta språkspecifikt meddelande för morgon
+      const currentLanguage = i18n.language;
+      const morningMessages = this.getWarmReminderMessages(currentLanguage);
+      const randomMorningMessage = morningMessages[Math.floor(Math.random() * morningMessages.length)];
+
       await Notifications.scheduleNotificationAsync({
         identifier: 'daily-morning',
         content: {
-          title: '🌅 God morgon!',
-          body: 'Vad ser du fram emot idag? Ta en stund för tacksamhet.',
+          title: '🌅 Manifest Tacksamhet',
+          body: randomMorningMessage,
           sound: 'default'
         },
         trigger: morningTrigger
@@ -131,11 +137,15 @@ export class NotificationService {
         minute: parseInt(settings.eveningTime.split(':')[1])
       };
 
+      // Hämta språkspecifikt meddelande för kväll  
+      const eveningMessages = this.getWarmReminderMessages(currentLanguage);
+      const randomEveningMessage = eveningMessages[Math.floor(Math.random() * eveningMessages.length)];
+
       await Notifications.scheduleNotificationAsync({
         identifier: 'daily-evening',
         content: {
-          title: '🌙 Kvällens reflektion',
-          body: 'Vad var dagens höjdpunkt? Skriv ned din tacksamhet.',
+          title: '🌙 Manifest Tacksamhet',
+          body: randomEveningMessage,
           sound: 'default'
         },
         trigger: eveningTrigger
@@ -237,15 +247,9 @@ export class NotificationService {
       
       console.log(`🧪 FREQ: ${totalHours}h total, ${intervalHours}h intervall mellan påminnelser`);
       
-      // Svenska tacksamhetsmeddelanden för test
-      const reminderMessages = [
-        'Dags för lite tacksamhet? 🌿',
-        'Vad har gjort dig glad idag? 😊', 
-        'En liten tacksamhet kanske? 💚',
-        'Något fint som hänt? ✨',
-        'Tid för en positiv reflektion 🌟',
-        'Vad värmer ditt hjärta just nu? 💛'
-      ];
+      // Varma välkomnande meddelanden baserat på aktuellt språk (Mike's feedback)
+      const currentLanguage = i18n.language;
+      const reminderMessages = this.getWarmReminderMessages(currentLanguage);
       
       // Schemalägg varje påminnelse
       for (let i = 0; i < remindersPerDay; i++) {
@@ -308,15 +312,71 @@ export class NotificationService {
     }
   }
 
-  // Svenska meddelanden för smarta påminnelser
-  static getSwedishReminderMessages(): string[] {
-    return [
-      'Kom ihåg detta fina ögonblick? 🌿',
-      'Den här tacksamheten från förut... ✨',
-      'Ett ljust minne att reflektera över 💫',
-      'Vad sägs om denna gamla favorit? 🌟',
-      'En vacker reflektion att komma ihåg 💚',
-      'Detta var en fin stund, eller hur? 🌺'
-    ];
+  // VARMA VÄLKOMNANDE TACKSAMHETSMEDDELANDEN (Mike's feedback: 5-10 olika, alla språk)
+  static getWarmReminderMessages(language: string = 'sv'): string[] {
+    const messages = {
+      sv: [
+        'Ett litet ögonblick för tacksamhet? 🌿',
+        'Vad värmer ditt hjärta just nu? 💛',
+        'Dags att fira något vackert i ditt liv ✨', 
+        'Finns det något du känner tacksamhet för idag? 🌸',
+        'Ta en djup andetag och känn tacksamheten 🌊',
+        'Vilken glädje bär du med dig? 🌟',
+        'Ett ögonblick av reflektion och värme 💚',
+        'Vad gör dig lycklig just nu? 😊',
+        'Tid för lite kärlek till dig själv och livet 💕',
+        'Låt tacksamheten fylla ditt hjärta 🌺'
+      ],
+      de: [
+        'Ein kleiner Moment für Dankbarkeit? 🌿',
+        'Was erwärmt gerade dein Herz? 💛', 
+        'Zeit, etwas Schönes in deinem Leben zu feiern ✨',
+        'Gibt es etwas, wofür du heute dankbar bist? 🌸',
+        'Nimm einen tiefen Atemzug und spüre die Dankbarkeit 🌊',
+        'Welche Freude trägst du mit dir? 🌟',
+        'Ein Moment der Reflexion und Wärme 💚',
+        'Was macht dich gerade glücklich? 😊',
+        'Zeit für etwas Selbstliebe und Lebensfreude 💕',
+        'Lass Dankbarkeit dein Herz erfüllen 🌺'
+      ],
+      no: [
+        'Et lite øyeblikk for takknemlighet? 🌿',
+        'Hva varmer hjertet ditt akkurat nå? 💛',
+        'Tid til å feire noe vakkert i livet ditt ✨',
+        'Finnes det noe du er takknemlig for i dag? 🌸',
+        'Ta et dypt pust og kjenn takknemligheten 🌊',
+        'Hvilken glede bærer du med deg? 🌟', 
+        'Et øyeblikk av refleksjon og varme 💚',
+        'Hva gjør deg lykkelig akkurat nå? 😊',
+        'Tid for litt kjærlighet til deg selv og livet 💕',
+        'La takknemlighet fylle hjertet ditt 🌺'
+      ],
+      da: [
+        'Et lille øjeblik for taknemmelighed? 🌿',
+        'Hvad varmer dit hjerte lige nu? 💛',
+        'Tid til at fejre noget smukt i dit liv ✨',
+        'Er der noget, du er taknemlig for i dag? 🌸',
+        'Tag et dybt vejrtræk og mærk taknemmeligheden 🌊',
+        'Hvilken glæde bærer du med dig? 🌟',
+        'Et øjeblik af reflektion og varme 💚', 
+        'Hvad gør dig glad lige nu? 😊',
+        'Tid til lidt kærlighed til dig selv og livet 💕',
+        'Lad taknemmelighed fylde dit hjerte 🌺'
+      ],
+      fi: [
+        'Pieni hetki kiitollisuudelle? 🌿',
+        'Mikä lämmittää sydäntäsi juuri nyt? 💛',
+        'Aika juhlia jotain kaunista elämässäsi ✨',
+        'Onko jotain mistä olet kiitollinen tänään? 🌸',
+        'Ota syvä hengitys ja tunne kiitollisuus 🌊',
+        'Mitä iloa kannat mukanasi? 🌟',
+        'Hetki pohdintaa ja lämpöä 💚',
+        'Mikä tekee sinut onnelliseksi juuri nyt? 😊',
+        'Aikaa vähän rakkaudelle itseäsi ja elämää kohtaan 💕',
+        'Anna kiitollisuuden täyttää sydämesi 🌺'
+      ]
+    };
+    
+    return messages[language] || messages['sv']; // Fallback till svenska
   }
 }
