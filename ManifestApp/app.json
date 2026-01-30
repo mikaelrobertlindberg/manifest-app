@@ -43,10 +43,7 @@
         "expo-notifications",
         {
           "icon": "./assets/notification-icon.png",
-          "color": "#4CAF50",
-          "sounds": [
-            "./assets/sounds/gentle-chime.wav"
-          ]
+          "color": "#4CAF50"
         }
       ]
     ],
@@ -54,6 +51,12 @@
       "eas": {
         "projectId": "8480b39e-cfe3-4f49-939c-795d59ce7323"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8480b39e-cfe3-4f49-939c-795d59ce7323"
     }
   }
 }
