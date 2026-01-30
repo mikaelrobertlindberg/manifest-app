@@ -20,7 +20,8 @@
       "buildNumber": "1",
       "appleTeamId": "J6BB654J29",
       "infoPlist": {
-        "NSUserNotificationsUsageDescription": "Denna app använder notifikationer för att påminna dig om att praktisera tacksamhet."
+        "NSUserNotificationsUsageDescription": "Denna app använder notifikationer för att påminna dig om att praktisera tacksamhet.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
