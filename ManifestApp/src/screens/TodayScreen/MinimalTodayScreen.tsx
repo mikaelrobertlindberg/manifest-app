@@ -134,9 +134,9 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
     handleAIGuidanceClose();
   };
 
-  // === HEART ANIMATION (FULL SCREEN DEBUG VERSION) ===
+  // === HEART ANIMATION (CLEAN FULL SCREEN VERSION) ===
   const showHeartAnimation = () => {
-    console.log('❤️ DEBUG: Starting FULL SCREEN DEBUG heart animation');
+    console.log('❤️ CLEAN: Starting full screen heart animation');
     
     // Show overlay and reset animation values
     setShowHeartModal(true);
@@ -144,46 +144,44 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
     heartOpacity.setValue(0);
     heartY.setValue(0);
     
-    // EXTENDED DEBUG animation to see what happens
+    // Beautiful heart animation sequence
     Animated.sequence([
-      // Show overlay first with long fade in to see positioning
-      Animated.timing(heartOpacity, {
-        toValue: 1,
-        duration: 1000, // LONGER så vi kan se positioning
-        useNativeDriver: true,
-      }),
+      // Fade in and scale up together
+      Animated.parallel([
+        Animated.timing(heartOpacity, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.spring(heartAnim, {
+          toValue: 1,
+          tension: 80,
+          friction: 4,
+          useNativeDriver: true,
+        })
+      ]),
       
-      // Scale up
-      Animated.spring(heartAnim, {
-        toValue: 1,
-        tension: 80,
-        friction: 4,
-        useNativeDriver: true,
-      }),
+      // Short pause to appreciate the heart
+      Animated.delay(600),
       
-      // LONG PAUSE to examine positioning
-      Animated.delay(2000),
-      
-      // SLOW upward movement to see clipping point
-      Animated.timing(heartY, {
-        toValue: -400,  // LONGER movement to see where it clips
-        duration: 3000,  // SLOWER så vi ser var det klipper
-        useNativeDriver: true,
-      }),
-      
-      // Final fade out
-      Animated.timing(heartOpacity, {
-        toValue: 0,
-        duration: 1000,
-        useNativeDriver: true,
-      })
+      // Fly upward with love
+      Animated.parallel([
+        Animated.timing(heartY, {
+          toValue: -150,  // Fly up gracefully
+          duration: 1300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(heartOpacity, {
+          toValue: 0,
+          duration: 1400,
+          useNativeDriver: true,
+        })
+      ])
     ]).start(() => {
-      console.log('❤️ DEBUG: Full screen debug animation completed');
-      // Hide overlay after long debug sequence
-      setTimeout(() => {
-        setShowHeartModal(false);
-        setGratitudeText('');
-      }, 1000);
+      console.log('❤️ CLEAN: Heart animation completed successfully');
+      // Clean up
+      setShowHeartModal(false);
+      setGratitudeText('');
     });
   };
 
@@ -372,12 +370,12 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       </SafeAreaView>
       </LinearGradient>
 
-      {/* HEART OVERLAY - FULL SCREEN DEBUGGING VERSION */}
+      {/* HEART OVERLAY - CLEAN FULL SCREEN VERSION (NO CLIPPING POSSIBLE) */}
       {showHeartModal && (
         <View style={styles.heartFullScreenOverlay} pointerEvents="none">
           <Animated.View
             style={[
-              styles.heartDebugContainer,
+              styles.heartCleanContainer,
               {
                 opacity: heartOpacity,
                 transform: [
@@ -397,12 +395,6 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
           >
             <FigmaBody style={styles.heartText}>❤️</FigmaBody>
           </Animated.View>
-          
-          {/* DEBUGGING INFO - VISIBLE BOUNDS */}
-          <View style={styles.debugBounds} pointerEvents="none">
-            <FigmaBody style={styles.debugText}>DEBUG: FULL SCREEN OVERLAY</FigmaBody>
-            <FigmaBody style={styles.debugText}>Heart should be visible here</FigmaBody>
-          </View>
         </View>
       )}
     </View>
@@ -512,45 +504,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // === HEART ANIMATION (FULL SCREEN DEBUG VERSION) ===
+  // === HEART ANIMATION (CLEAN FULL SCREEN VERSION) ===
   heartFullScreenOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0, 
     bottom: 0,
-    backgroundColor: 'rgba(255, 0, 0, 0.1)', // DEBUG: Rød toning för att se bounds
     zIndex: 999999,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 999,
+    backgroundColor: 'transparent', // Clean - no debug colors
   },
   
-  heartDebugContainer: {
+  heartCleanContainer: {
     position: 'absolute',
-    bottom: 200,      // Start position
+    bottom: 200,      // Start position (same as debug version that worked)
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,
     height: 80,
-    backgroundColor: 'rgba(0, 255, 0, 0.3)', // DEBUG: Grön för hjärta-container
-  },
-  
-  debugBounds: {
-    position: 'absolute',
-    top: 50,
-    left: 20,
-    right: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    padding: 10,
-    borderRadius: 8,
-  },
-  
-  debugText: {
-    color: 'white',
-    fontSize: 12,
-    textAlign: 'center',
+    // No background color - clean version
   },
   
   heartText: {
