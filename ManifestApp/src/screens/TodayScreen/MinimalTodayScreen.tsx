@@ -73,8 +73,12 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   const [currentGuidance, setCurrentGuidance] = useState<AIGuidance | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   
-  // Heart Modal State
+  // Heart Modal State  
   const [showHeartModal, setShowHeartModal] = useState(false);
+  
+  // ICON TESTING: Olika ikoner att testa
+  const testIcons = ['🌟', '✨', '💫', '🎉', '🌸', '💚', '🌿', '⭐', '💎', '🔥'];
+  const [currentIconIndex, setCurrentIconIndex] = useState(0);
 
   // === EFFECTS ===
   useEffect(() => {
@@ -134,9 +138,12 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
     handleAIGuidanceClose();
   };
 
-  // === HEART ANIMATION (CLEAN FULL SCREEN VERSION) ===
+  // === HEART ANIMATION (ICON TESTING VERSION) ===
   const showHeartAnimation = () => {
-    console.log('❤️ CLEAN: Starting full screen heart animation');
+    console.log(`✨ ICON TEST: Starting animation with icon ${testIcons[currentIconIndex]}`);
+    
+    // Cycle to next icon for testing
+    setCurrentIconIndex((prev) => (prev + 1) % testIcons.length);
     
     // Show overlay and reset animation values
     setShowHeartModal(true);
@@ -178,7 +185,8 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
         })
       ])
     ]).start(() => {
-      console.log('❤️ CLEAN: Heart animation completed successfully');
+      console.log(`✨ ICON TEST: Animation completed with icon ${testIcons[currentIconIndex]}`);
+      console.log('Next icon will be:', testIcons[(currentIconIndex + 1) % testIcons.length]);
       // Clean up
       setShowHeartModal(false);
       setGratitudeText('');
@@ -393,7 +401,8 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
             ]}
             pointerEvents="none"
           >
-            <FigmaBody style={styles.heartText}>❤️</FigmaBody>
+            <FigmaBody style={styles.heartText}>{testIcons[currentIconIndex]}</FigmaBody>
+            {/* ICON CYCLING: Tryck flera gånger för att testa olika ikoner */}
           </Animated.View>
         </View>
       )}
