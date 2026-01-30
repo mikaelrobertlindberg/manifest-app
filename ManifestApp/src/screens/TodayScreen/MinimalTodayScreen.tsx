@@ -134,54 +134,56 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
     handleAIGuidanceClose();
   };
 
-  // === HEART ANIMATION (MODAL VERSION) ===
+  // === HEART ANIMATION (FULL SCREEN DEBUG VERSION) ===
   const showHeartAnimation = () => {
-    console.log('❤️ DEBUG: Starting MODAL heart animation from BOTTOM position');
+    console.log('❤️ DEBUG: Starting FULL SCREEN DEBUG heart animation');
     
-    // Show modal and reset animation values
+    // Show overlay and reset animation values
     setShowHeartModal(true);
     heartAnim.setValue(0);
     heartOpacity.setValue(0);
     heartY.setValue(0);
     
-    // Sequence of animations: fade in -> scale up -> move up and fade out
+    // EXTENDED DEBUG animation to see what happens
     Animated.sequence([
-      // Fade in och scale up med extra bounce för hjärta
-      Animated.parallel([
-        Animated.timing(heartOpacity, {
-          toValue: 1,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-        Animated.spring(heartAnim, {
-          toValue: 1,
-          tension: 80,
-          friction: 4,
-          useNativeDriver: true,
-        })
-      ]),
+      // Show overlay first with long fade in to see positioning
+      Animated.timing(heartOpacity, {
+        toValue: 1,
+        duration: 1000, // LONGER så vi kan se positioning
+        useNativeDriver: true,
+      }),
       
-      // Kort paus
-      Animated.delay(600),
+      // Scale up
+      Animated.spring(heartAnim, {
+        toValue: 1,
+        tension: 80,
+        friction: 4,
+        useNativeDriver: true,
+      }),
       
-      // Flyg iväg upp från botten som ett hjärta med kärlek  
-      Animated.parallel([
-        Animated.timing(heartY, {
-          toValue: -150,  // Flyg uppåt från botten - garanterat synligt
-          duration: 1300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(heartOpacity, {
-          toValue: 0,
-          duration: 1400,
-          useNativeDriver: true,
-        })
-      ])
+      // LONG PAUSE to examine positioning
+      Animated.delay(2000),
+      
+      // SLOW upward movement to see clipping point
+      Animated.timing(heartY, {
+        toValue: -400,  // LONGER movement to see where it clips
+        duration: 3000,  // SLOWER så vi ser var det klipper
+        useNativeDriver: true,
+      }),
+      
+      // Final fade out
+      Animated.timing(heartOpacity, {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver: true,
+      })
     ]).start(() => {
-      console.log('❤️ DEBUG: MODAL Animation completed, hiding modal and clearing text');
-      // Hide modal and clear text
-      setShowHeartModal(false);
-      setGratitudeText('');
+      console.log('❤️ DEBUG: Full screen debug animation completed');
+      // Hide overlay after long debug sequence
+      setTimeout(() => {
+        setShowHeartModal(false);
+        setGratitudeText('');
+      }, 1000);
     });
   };
 
@@ -370,37 +372,39 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       </SafeAreaView>
       </LinearGradient>
 
-      {/* HEART AS MODAL OVERLAY - IMPOSSIBLE TO CLIP */}
-      <Modal
-        visible={showHeartModal}
-        transparent={true}
-        animationType="none"
-        pointerEvents="none"
-        statusBarTranslucent={true}
-      >
-        <Animated.View
-          style={[
-            styles.heartModalContainer,
-            {
-              opacity: heartOpacity,
-              transform: [
-                {
-                  scale: heartAnim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0.2, 1.2],
-                  })
-                },
-                {
-                  translateY: heartY
-                }
-              ]
-            }
-          ]}
-          pointerEvents="none"
-        >
-          <FigmaBody style={styles.heartText}>❤️</FigmaBody>
-        </Animated.View>
-      </Modal>
+      {/* HEART OVERLAY - FULL SCREEN DEBUGGING VERSION */}
+      {showHeartModal && (
+        <View style={styles.heartFullScreenOverlay} pointerEvents="none">
+          <Animated.View
+            style={[
+              styles.heartDebugContainer,
+              {
+                opacity: heartOpacity,
+                transform: [
+                  {
+                    scale: heartAnim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0.2, 1.2],
+                    })
+                  },
+                  {
+                    translateY: heartY
+                  }
+                ]
+              }
+            ]}
+            pointerEvents="none"
+          >
+            <FigmaBody style={styles.heartText}>❤️</FigmaBody>
+          </Animated.View>
+          
+          {/* DEBUGGING INFO - VISIBLE BOUNDS */}
+          <View style={styles.debugBounds} pointerEvents="none">
+            <FigmaBody style={styles.debugText}>DEBUG: FULL SCREEN OVERLAY</FigmaBody>
+            <FigmaBody style={styles.debugText}>Heart should be visible here</FigmaBody>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
@@ -508,17 +512,45 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // === HEART ANIMATION (MODAL VERSION) ===
-  heartModalContainer: {
+  // === HEART ANIMATION (FULL SCREEN DEBUG VERSION) ===
+  heartFullScreenOverlay: {
     position: 'absolute',
-    bottom: 200,      // Start LÄNGRE NER så det alltid syns när det animeras uppåt
-    left: '50%',
-    marginLeft: -40,  // Centrerad för 60px hjärta
+    top: 0,
+    left: 0,
+    right: 0, 
+    bottom: 0,
+    backgroundColor: 'rgba(255, 0, 0, 0.1)', // DEBUG: Rød toning för att se bounds
+    zIndex: 999999,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 80,        // Explicit container storlek
-    height: 80,       // Explicit container storlek
-    // MODAL = automatic highest z-index, no clipping possible
+    elevation: 999,
+  },
+  
+  heartDebugContainer: {
+    position: 'absolute',
+    bottom: 200,      // Start position
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    height: 80,
+    backgroundColor: 'rgba(0, 255, 0, 0.3)', // DEBUG: Grön för hjärta-container
+  },
+  
+  debugBounds: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    right: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    padding: 10,
+    borderRadius: 8,
+  },
+  
+  debugText: {
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
   },
   
   heartText: {
