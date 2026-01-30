@@ -5,7 +5,7 @@
  * Allt annat flyttat till Settings för Mike's vision
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   View, 
   StyleSheet, 
@@ -58,9 +58,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   const [gratitudeText, setGratitudeText] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [heartAnim] = useState(new Animated.Value(0));
-  const [heartOpacity] = useState(new Animated.Value(0));
-  const [heartY] = useState(new Animated.Value(0));
+  const textOpacity = useRef(new Animated.Value(1)).current;
 
   // AI State
   const [aiSettings, setAiSettings] = useState<AISettings>({
@@ -73,12 +71,8 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   const [currentGuidance, setCurrentGuidance] = useState<AIGuidance | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   
-  // Heart Modal State  
-  const [showHeartModal, setShowHeartModal] = useState(false);
-  
-  // ICON TESTING: Olika ikoner att testa
-  const testIcons = ['🌟', '✨', '💫', '🎉', '🌸', '💚', '🌿', '⭐', '💎', '🔥'];
-  const [currentIconIndex, setCurrentIconIndex] = useState(0);
+  // Text fade animation state
+  const [isTextFading, setIsTextFading] = useState(false);
 
   // === EFFECTS ===
   useEffect(() => {
@@ -139,57 +133,28 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   };
 
   // === HEART ANIMATION (ICON TESTING VERSION) ===
-  const showHeartAnimation = () => {
-    console.log(`✨ ICON TEST: Starting animation with icon ${testIcons[currentIconIndex]}`);
+  const showTextFadeOut = () => {
+    console.log('✨ SIMPLE: Starting elegant text fade-out');
     
-    // Cycle to next icon for testing
-    setCurrentIconIndex((prev) => (prev + 1) % testIcons.length);
+    setIsTextFading(true);
     
-    // Show overlay and reset animation values
-    setShowHeartModal(true);
-    heartAnim.setValue(0);
-    heartOpacity.setValue(0);
-    heartY.setValue(0);
-    
-    // Beautiful heart animation sequence
+    // Beautiful fade-out sequence
     Animated.sequence([
-      // Fade in and scale up together
-      Animated.parallel([
-        Animated.timing(heartOpacity, {
-          toValue: 1,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-        Animated.spring(heartAnim, {
-          toValue: 1,
-          tension: 80,
-          friction: 4,
-          useNativeDriver: true,
-        })
-      ]),
+      // Brief pause to show success
+      Animated.delay(300),
       
-      // Short pause to appreciate the heart
-      Animated.delay(600),
-      
-      // Fly upward with love
-      Animated.parallel([
-        Animated.timing(heartY, {
-          toValue: -80,  // SHORTER movement to stay within safe bounds
-          duration: 1300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(heartOpacity, {
-          toValue: 0,
-          duration: 1400,
-          useNativeDriver: true,
-        })
-      ])
+      // Gentle fade out
+      Animated.timing(textOpacity, {
+        toValue: 0,
+        duration: 800,
+        useNativeDriver: true,
+      })
     ]).start(() => {
-      console.log(`✨ ICON TEST: Animation completed with icon ${testIcons[currentIconIndex]}`);
-      console.log('Next icon will be:', testIcons[(currentIconIndex + 1) % testIcons.length]);
-      // Clean up
-      setShowHeartModal(false);
+      console.log('✨ SIMPLE: Text fade completed, clearing input');
+      // Clear text and reset opacity
       setGratitudeText('');
+      textOpacity.setValue(1);
+      setIsTextFading(false);
     });
   };
 
@@ -252,7 +217,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       await SoundService.playSuccessHarmony();
       
       // Visa hjärta som flyger iväg med kärlek
-      showHeartAnimation();
+      showTextFadeOut();
       
     } catch (error) {
       console.error('❌ MINIMAL: Save error:', error);
@@ -272,21 +237,19 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
 
   // === RENDER ===
   return (
-    <>
-      {/* MAIN SCREEN */}
-      <View style={styles.fullScreenContainer}>
-        <LinearGradient
-          colors={[
-            '#FFFFFF',           // Pure white at top
-            '#FFF5F0',          // Warmer cream tone
-            '#FFE4D6',          // Richer orange/peach 
-            '#FFCCCB',          // Warmer coral/pink
-            '#FFE5E5',          // Warm pink base
-          ]}
-          style={styles.container}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-        >
+    <View style={styles.fullScreenContainer}>
+      <LinearGradient
+        colors={[
+          '#FFFFFF',           // Pure white at top
+          '#FFF5F0',          // Warmer cream tone
+          '#FFE4D6',          // Richer orange/peach 
+          '#FFCCCB',          // Warmer coral/pink
+          '#FFE5E5',          // Warm pink base
+        ]}
+        style={styles.container}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+      >
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
         
@@ -314,14 +277,23 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
                 {getDailyPrompt()} 🌿
               </FigmaBody>
               
-              <FigmaInput
-                value={gratitudeText}
-                onChangeText={setGratitudeText}
-                placeholder={t('general.placeholder')}
-                multiline
-                style={styles.gratitudeInput}
-                disabled={isSaving || isAnalyzing}
-              />
+              <Animated.View
+                style={[
+                  styles.inputWrapper,
+                  {
+                    opacity: textOpacity
+                  }
+                ]}
+              >
+                <FigmaInput
+                  value={gratitudeText}
+                  onChangeText={setGratitudeText}
+                  placeholder={t('general.placeholder')}
+                  multiline
+                  style={styles.gratitudeInput}
+                  disabled={isSaving || isAnalyzing}
+                />
+              </Animated.View>
               
               {/* AI Analysis Indicator */}
               {isAnalyzing && aiSettings.aiFilterEnabled && (
@@ -379,36 +351,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       
       </SafeAreaView>
       </LinearGradient>
-      </View>
-
-      {/* FLOATING HEART - COMPLETELY OUTSIDE ALL CONTAINERS */}
-      {showHeartModal && (
-        <View style={styles.floatingHeartOverlay} pointerEvents="none">
-          <Animated.View
-            style={[
-              styles.floatingHeartContainer,
-              {
-                opacity: heartOpacity,
-                transform: [
-                  {
-                    scale: heartAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [0.2, 1.2],
-                    })
-                  },
-                  {
-                    translateY: heartY
-                  }
-                ]
-              }
-            ]}
-            pointerEvents="none"
-          >
-            <FigmaBody style={styles.heartText}>{testIcons[currentIconIndex]}</FigmaBody>
-          </Animated.View>
-        </View>
-      )}
-    </>
+    </View>
   );
 };
 
@@ -515,41 +458,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // === FLOATING HEART (SIBLING TO MAIN SCREEN - ULTIMATE FREEDOM) ===
-  floatingHeartOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0, 
-    bottom: 0,
-    zIndex: 9999999,     // HIGHEST POSSIBLE Z-INDEX
-    elevation: 9999,     // HIGHEST ANDROID ELEVATION
-    backgroundColor: 'transparent',
-    justifyContent: 'flex-end', // Start from bottom
-    alignItems: 'center',
-    pointerEvents: 'none',
-  },
-  
-  floatingHeartContainer: {
-    position: 'absolute',
-    bottom: 150,         // Start well within safe area
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 100,          // Bigger container for more space
-    height: 100,         // Bigger container for more space
-    backgroundColor: 'rgba(255, 255, 255, 0.1)', // Subtle debug background
-  },
-  
-  heartText: {
-    fontSize: 60,
-    textAlign: 'center',
-    lineHeight: 60,
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
-    textShadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    textShadowRadius: 4,
+  // === INPUT WRAPPER FOR FADE ANIMATION ===
+  inputWrapper: {
+    width: '100%',
   },
 });
 
