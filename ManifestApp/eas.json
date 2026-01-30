@@ -27,6 +27,15 @@
       "android": {
         "buildType": "app-bundle"
       }
+    },
+    "ios-beta": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
+      }
+    },
+    "ios-production": {
+      "distribution": "store"
     }
   },
   "submit": {
