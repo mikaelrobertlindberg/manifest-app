@@ -32,7 +32,8 @@
       "versionCode": 1,
       "permissions": [
         "NOTIFICATIONS"
-      ]
+      ],
+      "jsEngine": "jsc"
     },
     "web": {
       "favicon": "./assets/favicon.png"
