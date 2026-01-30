@@ -5,7 +5,7 @@
  * Allt annat flyttat till Settings för Mike's vision
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   View, 
   StyleSheet, 
@@ -58,7 +58,6 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
   const [gratitudeText, setGratitudeText] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [fadeAnim] = useState(new Animated.Value(0));
-  const textOpacity = useRef(new Animated.Value(1)).current;
 
   // AI State
   const [aiSettings, setAiSettings] = useState<AISettings>({
@@ -134,28 +133,16 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
 
   // === HEART ANIMATION (ICON TESTING VERSION) ===
   const showTextFadeOut = () => {
-    console.log('✨ SIMPLE: Starting elegant text fade-out');
+    console.log('✨ SIMPLE: Starting gentle text clear');
     
     setIsTextFading(true);
     
-    // Beautiful fade-out sequence
-    Animated.sequence([
-      // Brief pause to show success
-      Animated.delay(300),
-      
-      // Gentle fade out
-      Animated.timing(textOpacity, {
-        toValue: 0,
-        duration: 800,
-        useNativeDriver: true,
-      })
-    ]).start(() => {
-      console.log('✨ SIMPLE: Text fade completed, clearing input');
-      // Clear text and reset opacity
+    // Simple delay then clear (no visual animation to avoid input field issues)
+    setTimeout(() => {
+      console.log('✨ SIMPLE: Clearing input after success');
       setGratitudeText('');
-      textOpacity.setValue(1);
       setIsTextFading(false);
-    });
+    }, 800);
   };
 
   // === AI ANALYSIS ===
@@ -277,23 +264,14 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
                 {getDailyPrompt()} 🌿
               </FigmaBody>
               
-              <Animated.View
-                style={[
-                  styles.inputWrapper,
-                  {
-                    opacity: textOpacity
-                  }
-                ]}
-              >
-                <FigmaInput
-                  value={gratitudeText}
-                  onChangeText={setGratitudeText}
-                  placeholder={t('general.placeholder')}
-                  multiline
-                  style={styles.gratitudeInput}
-                  disabled={isSaving || isAnalyzing}
-                />
-              </Animated.View>
+              <FigmaInput
+                value={gratitudeText}
+                onChangeText={setGratitudeText}
+                placeholder={t('general.placeholder')}
+                multiline
+                style={styles.gratitudeInput}
+                disabled={isSaving || isAnalyzing}
+              />
               
               {/* AI Analysis Indicator */}
               {isAnalyzing && aiSettings.aiFilterEnabled && (
@@ -458,10 +436,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // === INPUT WRAPPER FOR FADE ANIMATION ===
-  inputWrapper: {
-    width: '100%',
-  },
+  // Input wrapper style removed - caused input field disappearing bug
 });
 
 export default MinimalTodayScreen;
