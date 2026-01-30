@@ -174,7 +174,7 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       // Fly upward with love
       Animated.parallel([
         Animated.timing(heartY, {
-          toValue: -150,  // Fly up gracefully
+          toValue: -80,  // SHORTER movement to stay within safe bounds
           duration: 1300,
           useNativeDriver: true,
         }),
@@ -272,19 +272,21 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
 
   // === RENDER ===
   return (
-    <View style={styles.fullScreenContainer}>
-      <LinearGradient
-        colors={[
-          '#FFFFFF',           // Pure white at top
-          '#FFF5F0',          // Warmer cream tone
-          '#FFE4D6',          // Richer orange/peach 
-          '#FFCCCB',          // Warmer coral/pink
-          '#FFE5E5',          // Warm pink base
-        ]}
-        style={styles.container}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      >
+    <>
+      {/* MAIN SCREEN */}
+      <View style={styles.fullScreenContainer}>
+        <LinearGradient
+          colors={[
+            '#FFFFFF',           // Pure white at top
+            '#FFF5F0',          // Warmer cream tone
+            '#FFE4D6',          // Richer orange/peach 
+            '#FFCCCB',          // Warmer coral/pink
+            '#FFE5E5',          // Warm pink base
+          ]}
+          style={styles.container}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        >
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
         
@@ -377,13 +379,14 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
       
       </SafeAreaView>
       </LinearGradient>
+      </View>
 
-      {/* HEART OVERLAY - CLEAN FULL SCREEN VERSION (NO CLIPPING POSSIBLE) */}
+      {/* FLOATING HEART - COMPLETELY OUTSIDE ALL CONTAINERS */}
       {showHeartModal && (
-        <View style={styles.heartFullScreenOverlay} pointerEvents="none">
+        <View style={styles.floatingHeartOverlay} pointerEvents="none">
           <Animated.View
             style={[
-              styles.heartCleanContainer,
+              styles.floatingHeartContainer,
               {
                 opacity: heartOpacity,
                 transform: [
@@ -402,11 +405,10 @@ export const MinimalTodayScreen: React.FC<MinimalTodayScreenProps> = ({
             pointerEvents="none"
           >
             <FigmaBody style={styles.heartText}>{testIcons[currentIconIndex]}</FigmaBody>
-            {/* ICON CYCLING: Tryck flera gånger för att testa olika ikoner */}
           </Animated.View>
         </View>
       )}
-    </View>
+    </>
   );
 };
 
@@ -513,29 +515,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // === HEART ANIMATION (CLEAN FULL SCREEN VERSION) ===
-  heartFullScreenOverlay: {
+  // === FLOATING HEART (SIBLING TO MAIN SCREEN - ULTIMATE FREEDOM) ===
+  floatingHeartOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0, 
     bottom: 0,
-    zIndex: 999999,
-    justifyContent: 'center',
+    zIndex: 9999999,     // HIGHEST POSSIBLE Z-INDEX
+    elevation: 9999,     // HIGHEST ANDROID ELEVATION
+    backgroundColor: 'transparent',
+    justifyContent: 'flex-end', // Start from bottom
     alignItems: 'center',
-    elevation: 999,
-    backgroundColor: 'transparent', // Clean - no debug colors
+    pointerEvents: 'none',
   },
   
-  heartCleanContainer: {
+  floatingHeartContainer: {
     position: 'absolute',
-    bottom: 200,      // Start position (same as debug version that worked)
-    alignSelf: 'center',
+    bottom: 150,         // Start well within safe area
     justifyContent: 'center',
     alignItems: 'center',
-    width: 80,
-    height: 80,
-    // No background color - clean version
+    width: 100,          // Bigger container for more space
+    height: 100,         // Bigger container for more space
+    backgroundColor: 'rgba(255, 255, 255, 0.1)', // Subtle debug background
   },
   
   heartText: {
