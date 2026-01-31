@@ -30,7 +30,7 @@
         "backgroundColor": "#1a1a2e"
       },
       "package": "com.littlebear.tacksamhet",
-      "versionCode": 10,
+      "versionCode": 15,
       "permissions": [
         "NOTIFICATIONS"
       ],
@@ -45,12 +45,6 @@
         {
           "icon": "./assets/notification-icon.png",
           "color": "#4CAF50"
-        }
-      ],
-      [
-        "expo-av",
-        {
-          "microphonePermission": false
         }
       ]
     ],
