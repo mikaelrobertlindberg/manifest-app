@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tacksamhet",
     "slug": "tacksamhet-svenska-aurora",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -30,7 +30,7 @@
         "backgroundColor": "#1a1a2e"
       },
       "package": "com.littlebear.tacksamhet",
-      "versionCode": 9,
+      "versionCode": 10,
       "permissions": [
         "NOTIFICATIONS"
       ],
@@ -45,6 +45,12 @@
         {
           "icon": "./assets/notification-icon.png",
           "color": "#4CAF50"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": false
         }
       ]
     ],
