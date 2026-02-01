@@ -1,13 +1,13 @@
 {
-  "name": "manifest-svenska-tacksamhet",
+  "name": "tacksamhet-svenska-aurora",
   "version": "1.0.0",
-  "description": "Sveriges första tacksamhetsapp på svenska - utveckla daglig tacksamhet med svensk lagom-filosofi",
-  "author": "Little Bear <littlebear.apps@gmail.com>",
+  "description": "Enkel tacksamhet med AI-stöd - mindre stress, mer glädje",
+  "author": "Lilla Björn Apps <kontakt@lillabjorn.se>",
   "license": "MIT",
-  "homepage": "https://manifest-app.se",
+  "homepage": "https://lillabjorn.se",
   "repository": {
     "type": "git",
-    "url": "https://github.com/littlebear/manifest-app"
+    "url": "https://github.com/mikaelrobertlindberg/manifest-app"
   },
   "keywords": [
     "tacksamhet",

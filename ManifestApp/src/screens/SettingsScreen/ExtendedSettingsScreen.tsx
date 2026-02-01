@@ -812,7 +812,7 @@ Gratitudes: ${appStats.gratitudesCount}
           
           <TouchableOpacity onPress={handleDeveloperTap} activeOpacity={0.7} style={styles.developerCredit}>
             <FigmaBody color={DesignTokens.colors.gray[600]} align="center">
-              🐻 Utvecklad av Little Bear
+              🐻 Utvecklad av Lilla Björn
               {developerTaps > 0 && ` (${developerTaps}/5)`}
             </FigmaBody>
             <FigmaCaption color={DesignTokens.colors.gray[500]} align="center">

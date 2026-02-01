@@ -1,8 +1,8 @@
 # Privacy Policy för Manifest - Tacksamhet
 
 **Gäller från:** 31 januari 2026  
-**Utvecklare:** Little Bear Apps  
-**Kontakt:** mike@littlebear.se
+**Utvecklare:** Lilla Björn Apps  
+**Kontakt:** kontakt@lillabjorn.se
 
 ## Översikt
 
@@ -66,7 +66,7 @@ Vi kommer att uppdatera denna policy vid behov. Ändringar kommer att meddelas i
 ## Kontakt
 
 För frågor om denna integritetspolicy, kontakta:
-**E-post:** mike@littlebear.se
+**E-post:** kontakt@lillabjorn.se
 
 ---
 

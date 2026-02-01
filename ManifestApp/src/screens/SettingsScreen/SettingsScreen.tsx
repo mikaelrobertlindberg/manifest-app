@@ -153,7 +153,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
       if (newValue) {
         Alert.alert(
           '🤖 AI Coach Aktiverad',
-          'Little Bear kommer nu hjälpa dig skriva positiva tacksamheter genom att varsamt föreslå omformuleringar när du skriver negativa tankar.',
+          'Lilla Björn kommer nu hjälpa dig skriva positiva tacksamheter genom att varsamt föreslå omformuleringar när du skriver negativa tankar.',
           [{ text: 'Underbart! 💚' }]
         );
       } else {
@@ -429,7 +429,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
           
           <View style={styles.settingRow}>
             <View style={styles.settingInfo}>
-              <Text style={styles.settingLabel}>Little Bear AI Coach</Text>
+              <Text style={styles.settingLabel}>Lilla Björn AI Coach</Text>
               <Text style={styles.settingDescription}>
                 Får vänliga förslag när du skriver negativa tacksamheter
               </Text>
@@ -528,7 +528,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
             Utvecklad med kärlek och svensk lagom-filosofi
           </Text>
           <Text style={styles.footerDeveloper}>
-            🐻 Utvecklad av Little Bear
+            🐻 Utvecklad av Lilla Björn
           </Text>
         </View>
 

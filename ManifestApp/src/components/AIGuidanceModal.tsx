@@ -1,6 +1,6 @@
 /**
  * 🤖 AI GUIDANCE MODAL - CLEAN VERSION
- * Little Bear's gentle coaching med smooth fade transitions
+ * Lilla Björns gentle coaching med smooth fade transitions
  * CLEAN & MINIMAL - inget "klotter", bara nödvändigt
  */
 
@@ -65,7 +65,7 @@ export const AIGuidanceModal: React.FC<AIGuidanceModalProps> = ({
       >
         {/* === CLEAN HEADER === */}
         <View style={styles.header}>
-          {/* Björnikon och Little Bear text borttagen per Mike's request */}
+          {/* Björnikon och Lilla Björn text borttagen per Mike's request */}
         </View>
 
         {/* === MAIN MESSAGE - CLEAN === */}

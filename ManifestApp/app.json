@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.littlebear.tacksamhet",
+      "bundleIdentifier": "com.lillabjorn.tacksamhet",
       "buildNumber": "1",
       "appleTeamId": "J6BB654J29",
       "infoPlist": {
@@ -29,7 +29,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1a1a2e"
       },
-      "package": "com.littlebear.tacksamhet",
+      "package": "com.lillabjorn.tacksamhet",
       "versionCode": 15,
       "permissions": [
         "NOTIFICATIONS"

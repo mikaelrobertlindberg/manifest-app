@@ -21,7 +21,7 @@ export interface AIGuidance {
 }
 
 /**
- * 🐻 LITTLE BEAR AI COACH
+ * 🐻 LILLA BJÖRN AI COACH
  * Hjälper användare omformulera negativa tankar till tacksamhet
  */
 export class PositivityFilterService {
@@ -492,7 +492,7 @@ export class PositivityFilterService {
   }
 
   /**
-   * 🐻 GENERERA LITTLE BEAR GUIDANCE
+   * 🐻 GENERERA LILLA BJÖRN GUIDANCE
    * Skapar varm, hjälpsam coaching baserat på analys
    */
   public static generateGuidance(analysis: NegativityAnalysis, useCloud: boolean = false): AIGuidance {

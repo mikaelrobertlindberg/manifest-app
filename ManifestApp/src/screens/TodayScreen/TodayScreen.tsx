@@ -393,7 +393,7 @@ export const TodayScreen: React.FC<TodayScreenProps> = ({ onShowHistory, onShowS
         <View style={styles.littleBearContainer}>
           <Text style={styles.littleBearEmoji}>🐻</Text>
           <Text style={styles.littleBearText}>Välkommen till din tacksamhetsresa! 🌿</Text>
-          <Text style={styles.littleBearSubtext}>Little Bear Premium Graphics Loading...</Text>
+          <Text style={styles.littleBearSubtext}>Lilla Björn Premium Graphics Loading...</Text>
         </View>
           
           <View style={styles.inputCard}>
@@ -417,7 +417,7 @@ export const TodayScreen: React.FC<TodayScreenProps> = ({ onShowHistory, onShowS
             {isAnalyzing && aiSettings.aiFilterEnabled && (
               <View style={styles.aiIndicator}>
                 <Text style={styles.aiIndicatorText}>
-                  🤖 Little Bear analyserar... 
+                  🤖 Lilla Björn analyserar... 
                 </Text>
               </View>
             )}
@@ -453,7 +453,7 @@ export const TodayScreen: React.FC<TodayScreenProps> = ({ onShowHistory, onShowS
             </Text>
             <TouchableOpacity onPress={handleDeveloperTap} activeOpacity={0.7}>
               <Text style={styles.developerCredit}>
-                🐻 Utvecklad av Little Bear {developerTaps > 0 && `(${developerTaps}/5)`}
+                🐻 Utvecklad av Lilla Björn {developerTaps > 0 && `(${developerTaps}/5)`}
               </Text>
             </TouchableOpacity>
             

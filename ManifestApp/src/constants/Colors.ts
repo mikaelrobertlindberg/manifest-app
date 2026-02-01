@@ -1,4 +1,4 @@
-// Calm-inspired Color Palette for Little Bear's Manifest App
+// Calm-inspired Color Palette for Lilla Björns Tacksamhet App
 export const Colors = {
   // Primary Calm colors
   calmBlueLight: '#E8F4FD',

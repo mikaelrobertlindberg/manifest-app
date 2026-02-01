@@ -140,8 +140,8 @@ export const DeveloperTestScreen: React.FC<DeveloperTestScreenProps> = ({ onBack
           return true;
 
         case 9: // Swedish Language
-          const swedishWords = ['tacksamhet', 'måndag', 'Manifest', 'Little Bear'];
-          const swedishTestText = "Svensk tacksamhet måndag test för Little Bear";
+          const swedishWords = ['tacksamhet', 'måndag', 'Tacksamhet', 'Lilla Björn'];
+          const swedishTestText = "Svensk tacksamhet måndag test för Lilla Björn";
           const swedishEntry = await LocalStorageService.saveGratitude(swedishTestText);
           
           let foundSwedishWords = 0;
@@ -191,7 +191,7 @@ export const DeveloperTestScreen: React.FC<DeveloperTestScreenProps> = ({ onBack
         allPassed ? '🎉 All Tests Passed!' : '⚠️ Some Tests Failed',
         `${passedCount}/${totalTests} tests passed\n\n${
           allPassed 
-            ? 'Little Bear\'s Manifest App is working perfectly!' 
+            ? 'Lilla Björns Tacksamhet App is working perfectly!' 
             : 'Check failed tests below for details.'
         }`,
         [{ text: 'OK' }]
@@ -303,7 +303,7 @@ export const DeveloperTestScreen: React.FC<DeveloperTestScreenProps> = ({ onBack
         <View style={styles.infoPanel}>
           <Text style={styles.infoTitle}>🔧 Developer Test Suite</Text>
           <Text style={styles.infoText}>
-            Detta testar alla kritiska komponenter i Little Bear's Manifest App direkt på din iPhone:
+            Detta testar alla kritiska komponenter i Lilla Björns Tacksamhet App direkt på din iPhone:
           </Text>
           <Text style={styles.infoText}>
             • Backend storage operations{'\n'}
@@ -313,7 +313,7 @@ export const DeveloperTestScreen: React.FC<DeveloperTestScreenProps> = ({ onBack
             • Swedish language support
           </Text>
           <Text style={styles.infoFooter}>
-            🐻 Developed by Little Bear for Manifest App
+            🐻 Developed by Lilla Björn for Tacksamhet App
           </Text>
         </View>
 

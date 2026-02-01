@@ -173,7 +173,7 @@ export const FigmaSettingsScreen: React.FC<FigmaSettingsScreenProps> = ({ onBack
       `📱 Platform: React Native\n` +
       `🤖 AI: Positivitetsfilter\n` +
       `🇸🇪 Språk: Svenska\n\n` +
-      `Utvecklad med kärlek av Little Bear 🐻`,
+      `Utvecklad med kärlek av Lilla Björn 🐻`,
       [{ text: 'Stäng', style: 'default' }]
     );
   };
@@ -370,7 +370,7 @@ export const FigmaSettingsScreen: React.FC<FigmaSettingsScreenProps> = ({ onBack
             🎨 Cosmic Sunset theme • Pixel-perfect components
           </FigmaCaption>
           <FigmaCaption color={DesignTokens.colors.gray[500]} align="center">
-            🐻 Utvecklad av Little Bear
+            🐻 Utvecklad av Lilla Björn
           </FigmaCaption>
         </View>
       </ScrollView>

@@ -177,7 +177,7 @@ export class NotificationService {
       await Notifications.scheduleNotificationAsync({
         identifier: 'test-notification',
         content: {
-          title: '🧪 Test från Little Bear',
+          title: '🧪 Test från Lilla Björn',
           body: 'Notifikationer fungerar! Din Manifest App är redo för daglig användning. 🌿',
           sound: 'default'
         },
