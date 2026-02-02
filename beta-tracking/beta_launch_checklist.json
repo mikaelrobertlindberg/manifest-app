@@ -1,0 +1,189 @@
+{
+  "created_date": "2026-02-01",
+  "target_beta_date": "2026-02-08",
+  "progress": {
+    "overall_completion": 0,
+    "ios_completion": 0,
+    "android_completion": 0
+  },
+  "tasks": {
+    "preparation": {
+      "weight": 20,
+      "completed": 0,
+      "total": 8,
+      "items": [
+        {
+          "task": "Verify Apple Developer Account active",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Verify Google Play Developer Account active",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "App icon finalized (Aurora goddess)",
+          "completed": false,
+          "priority": "HIGH"
+        },
+        {
+          "task": "Swedish translations 100% reviewed",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Privacy policy published in Swedish",
+          "completed": false,
+          "priority": "HIGH"
+        },
+        {
+          "task": "Analytics and crash reporting configured",
+          "completed": false,
+          "priority": "MEDIUM"
+        },
+        {
+          "task": "In-app feedback mechanism implemented",
+          "completed": false,
+          "priority": "MEDIUM"
+        },
+        {
+          "task": "Beta tester recruitment form created",
+          "completed": false,
+          "priority": "HIGH"
+        }
+      ]
+    },
+    "ios_testflight": {
+      "weight": 30,
+      "completed": 0,
+      "total": 7,
+      "items": [
+        {
+          "task": "App identifier registered in App Store Connect",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Distribution provisioning profile created",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "iOS build created and archived",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Build uploaded to App Store Connect",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "TestFlight metadata completed (Swedish)",
+          "completed": false,
+          "priority": "HIGH"
+        },
+        {
+          "task": "Beta testers added to TestFlight",
+          "completed": false,
+          "priority": "HIGH"
+        },
+        {
+          "task": "External testing submitted for review",
+          "completed": false,
+          "priority": "HIGH"
+        }
+      ]
+    },
+    "android_playstore": {
+      "weight": 30,
+      "completed": 0,
+      "total": 6,
+      "items": [
+        {
+          "task": "App bundle signed with upload key",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Android build created (AAB)",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Bundle uploaded to Play Console",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Store listing drafted with Swedish metadata",
+          "completed": false,
+          "priority": "HIGH"
+        },
+        {
+          "task": "Internal testing track created",
+          "completed": false,
+          "priority": "HIGH"
+        },
+        {
+          "task": "Beta testers added to internal track",
+          "completed": false,
+          "priority": "MEDIUM"
+        }
+      ]
+    },
+    "tester_recruitment": {
+      "weight": 20,
+      "completed": 0,
+      "total": 5,
+      "items": [
+        {
+          "task": "Personal network testers recruited (10 people)",
+          "completed": false,
+          "priority": "HIGH"
+        },
+        {
+          "task": "Online community posts for testers",
+          "completed": false,
+          "priority": "MEDIUM"
+        },
+        {
+          "task": "Professional network outreach",
+          "completed": false,
+          "priority": "MEDIUM"
+        },
+        {
+          "task": "25+ committed beta testers confirmed",
+          "completed": false,
+          "priority": "CRITICAL"
+        },
+        {
+          "task": "Beta testing instructions prepared (Swedish)",
+          "completed": false,
+          "priority": "HIGH"
+        }
+      ]
+    }
+  },
+  "milestones": {
+    "day1_setup": {
+      "completed": false,
+      "target_date": "2026-02-01"
+    },
+    "day3_builds": {
+      "completed": false,
+      "target_date": "2026-02-03"
+    },
+    "day5_testers": {
+      "completed": false,
+      "target_date": "2026-02-05"
+    },
+    "day7_beta_live": {
+      "completed": false,
+      "target_date": "2026-02-07"
+    }
+  },
+  "blockers": [],
+  "notes": []
+}
