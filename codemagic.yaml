@@ -1,6 +1,6 @@
 workflows:
-  react-native-ios-standard:
-    name: React Native iOS (Standard Bundle ID)
+  react-native-ios-dev:
+    name: React Native iOS (Development Test)
     max_build_duration: 40
     environment:
       groups:
@@ -8,65 +8,45 @@ workflows:
       node: 18
       xcode: 15.2
       ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.littlebear.tacksamhet  # Original bundle ID
+        distribution_type: development
+        bundle_identifier: com.lillabjorn.tacksamhet
     scripts:
       - name: Environment Check
         script: |
           echo "=== Environment Check ==="
           echo "Node: $(node --version)"
-          echo "NPM: $(npm --version)"
-          echo "Using bundle ID: com.littlebear.tacksamhet"
+          echo "Using development signing for test"
           
       - name: Install Dependencies  
         script: |
           cd ManifestApp
-          echo "=== Installing Dependencies ==="
           npm ci
-          
-      - name: Update Bundle ID
-        script: |
-          cd ManifestApp
-          echo "=== Updating Bundle ID to Standard ==="
-          # Update app.json temporarily for build
-          sed -i.bak 's/"com.lillabjorn.tacksamhet"/"com.littlebear.tacksamhet"/g' app.json
-          echo "Updated bundle ID for build compatibility"
           
       - name: Expo Prebuild
         script: |
           cd ManifestApp  
-          echo "=== Running Expo Prebuild ==="
           npx expo prebuild --platform ios --clean
           
       - name: Install iOS Dependencies
         script: |
           cd ManifestApp/ios
-          echo "=== Installing CocoaPods ==="
           pod install --repo-update
           
-      - name: Build iOS App
+      - name: Build iOS App (Development)
         script: |
           cd ManifestApp/ios
-          echo "=== Building iOS App ==="
+          echo "=== Building iOS App (Development) ==="
           
-          # Build archive
+          # Build archive with development signing
           xcodebuild \
             -workspace ManifestApp.xcworkspace \
             -scheme ManifestApp \
-            -configuration Release \
+            -configuration Debug \
             -destination "generic/platform=iOS" \
             -archivePath build/ManifestApp.xcarchive \
             archive
             
-          # Export for App Store
-          xcodebuild \
-            -exportArchive \
-            -archivePath build/ManifestApp.xcarchive \
-            -exportPath build/ipa \
-            -exportOptionsPlist ../ExportOptions.plist
-            
-          # Verify IPA
-          ls -la build/ipa/
+          echo "Development build completed"
           
     artifacts:
-      - ManifestApp/ios/build/ipa/*.ipa
+      - ManifestApp/ios/build/ManifestApp.xcarchive
