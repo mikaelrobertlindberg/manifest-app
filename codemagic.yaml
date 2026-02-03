@@ -18,26 +18,26 @@ workflows:
           echo "NPM: $(npm --version)"
           echo "Xcode: $(xcode-select --print-path)"
           echo "Bundle ID: com.lillabjorn.tacksamhet"
-          
+
       - name: Install Dependencies
         script: |
           cd ManifestApp
           echo "=== Installing Dependencies ==="
           npm ci
-          
+
       - name: Expo Prebuild for Native
         script: |
           cd ManifestApp
           echo "=== Running Expo Prebuild ==="
-          
+
           # Generate native iOS project from Expo config
           npx expo prebuild --platform ios --clean
-          
+
       - name: Create Export Options
         script: |
           cd ManifestApp/ios
           echo "=== Creating Export Options ==="
-          
+
           cat > ExportOptions.plist << EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -61,21 +61,21 @@ workflows:
           </dict>
           </plist>
           EOF
-          
+
       - name: Install iOS Dependencies
         script: |
           cd ManifestApp/ios
           echo "=== Installing CocoaPods ==="
           pod install --repo-update
-          
+
       - name: Build iOS App Archive
         script: |
           cd ManifestApp/ios
           echo "=== Building iOS App with Xcode ==="
-          
+
           # Clean build folder
           rm -rf build/
-          
+
           # Build archive
           xcodebuild \
             -workspace ManifestApp.xcworkspace \
@@ -84,7 +84,7 @@ workflows:
             -destination "generic/platform=iOS" \
             -archivePath build/ManifestApp.xcarchive \
             archive
-            
+
       - name: Export IPA
         script: |
           cd ManifestApp/ios
@@ -96,14 +96,17 @@ workflows:
             -archivePath build/ManifestApp.xcarchive \
             -exportPath build/ipa \
             -exportOptionsPlist ExportOptions.plist
-            
+          
           # Verify IPA was created
           ls -la build/ipa/
-          
+""
+
     artifacts:
       - ManifestApp/ios/build/ipa/*.ipa
     publishing:
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
-        submit_to_app_store: false
+      email:
+        recipients:
+          - mikael@lillabjorn.se
+        notify:
+          success: true
+          failure: true
