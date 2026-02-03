@@ -4,8 +4,6 @@ workflows:
     max_build_duration: 30
     environment:
       node: 18
-    integrations:
-      app_store_connect: APPLE_ID_INTEGRATION
     scripts:
       - name: Install npm dependencies
         script: |
@@ -17,7 +15,3 @@ workflows:
           npx eas-cli@latest build --platform ios --profile ios-beta --non-interactive
     artifacts:
       - ManifestApp/build/**/*.ipa
-    publishing:
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
