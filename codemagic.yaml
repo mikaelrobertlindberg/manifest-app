@@ -1,6 +1,6 @@
 workflows:
   react-native-ios-simple:
-    name: React Native iOS (Simple NPX)
+    name: React Native iOS (Simple NPX) 
     max_build_duration: 40
     environment:
       groups:
