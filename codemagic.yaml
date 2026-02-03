@@ -1,25 +1,168 @@
 workflows:
   react-native-ios:
     name: React Native iOS
-    max_build_duration: 30
+    max_build_duration: 40
     environment:
-      node: 18
+      groups:
+        - expo_credentials  # Create this group in Codemagic with EXPO_TOKEN
+      node: 18.20.4
+      xcode: 15.4
+      cocoapods: 1.15.2
+    cache:
+      cache_paths:
+        - $HOME/.npm
+        - ManifestApp/node_modules
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
+        - pattern: develop
+          include: true
+          source: true
     scripts:
-      - name: Debug Environment
+      - name: Environment Debug
         script: |
-          echo "Checking EXPO_TOKEN environment variable..."
+          echo "=== Environment Debug ==="
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Current directory: $(pwd)"
+          echo "Available environment variables:"
+          env | grep -E "(EXPO|EAS)" | sort || echo "No EXPO/EAS variables found"
+          
           if [ -z "$EXPO_TOKEN" ]; then
-            echo "ERROR: EXPO_TOKEN is not set!"
+            echo "❌ ERROR: EXPO_TOKEN environment variable is not set!"
+            echo "Please check Codemagic environment variables configuration"
+            exit 1
           else
-            echo "EXPO_TOKEN is set (length: ${#EXPO_TOKEN})"
+            echo "✅ EXPO_TOKEN is set (length: ${#EXPO_TOKEN} characters)"
+            echo "Token starts with: ${EXPO_TOKEN:0:10}..."
           fi
-      - name: Install npm dependencies
+      
+      - name: Install Global Dependencies
+        script: |
+          echo "=== Installing EAS CLI ==="
+          npm install -g @expo/eas-cli@13.9.0
+          echo "EAS CLI version: $(eas --version)"
+          
+      - name: Verify EAS Authentication
+        script: |
+          echo "=== Verifying EAS Authentication ==="
+          # Set the token explicitly for EAS CLI
+          export EAS_TOKEN="$EXPO_TOKEN"
+          
+          # Verify authentication
+          if ! eas whoami; then
+            echo "❌ EAS authentication failed"
+            echo "Attempting to authenticate with EXPO_TOKEN..."
+            
+            # Try alternative authentication method
+            echo "$EXPO_TOKEN" | eas auth:login --token-stdin || {
+              echo "❌ Token-based authentication failed"
+              exit 1
+            }
+          fi
+          
+          echo "✅ EAS authentication successful"
+          eas whoami
+          
+      - name: Install Project Dependencies
+        script: |
+          echo "=== Installing Project Dependencies ==="
+          cd ManifestApp
+          
+          # Clear any existing node_modules if cache is corrupt
+          if [ -d "node_modules" ]; then
+            echo "Node modules exist, checking integrity..."
+          fi
+          
+          npm ci --production=false
+          echo "✅ Dependencies installed successfully"
+      
+      - name: Pre-build Setup
         script: |
           cd ManifestApp
-          npm install
-      - name: Build iOS
+          echo "=== Pre-build Setup ==="
+          
+          # Verify EAS project configuration
+          echo "Project ID: $(cat app.json | grep -o '"projectId": "[^"]*' | cut -d'"' -f4)"
+          
+          # Check eas.json configuration
+          if [ -f "eas.json" ]; then
+            echo "✅ eas.json found"
+            echo "Available build profiles:"
+            cat eas.json | grep -A 1 '"build"' | grep -o '"[^"]*"' | grep -v '"build"' | head -10
+          else
+            echo "❌ eas.json not found"
+            exit 1
+          fi
+          
+      - name: Build iOS App
         script: |
           cd ManifestApp
-          npx eas-cli@latest build --platform ios --profile ios-beta --non-interactive
+          echo "=== Starting iOS Build ==="
+          
+          # Ensure environment variables are available for EAS
+          export EAS_TOKEN="$EXPO_TOKEN"
+          
+          # Build with explicit parameters
+          eas build \
+            --platform ios \
+            --profile ios-beta \
+            --non-interactive \
+            --no-wait \
+            --json > build_output.json
+          
+          # Display build information
+          if [ -f "build_output.json" ]; then
+            echo "✅ Build initiated successfully"
+            cat build_output.json
+          else
+            echo "❌ Build failed - no output file generated"
+            exit 1
+          fi
+          
     artifacts:
-      - ManifestApp/build/**/*.ipa
+      - ManifestApp/build_output.json
+      - ManifestApp/**/*.ipa
+    publishing:
+      email:
+        recipients:
+          - mikael@lillabjorn.se
+        notify:
+          success: true
+          failure: true
+
+  # Alternative workflow for debugging authentication only
+  debug-auth:
+    name: Debug EAS Authentication
+    max_build_duration: 10
+    environment:
+      groups:
+        - expo_credentials
+      node: 18.20.4
+    scripts:
+      - name: Test Authentication Only
+        script: |
+          echo "=== Authentication Test ==="
+          
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "❌ EXPO_TOKEN not found in environment"
+            exit 1
+          fi
+          
+          npm install -g @expo/eas-cli@13.9.0
+          
+          export EAS_TOKEN="$EXPO_TOKEN"
+          
+          echo "Testing EAS whoami..."
+          eas whoami || {
+            echo "Direct whoami failed, trying alternative auth..."
+            echo "$EXPO_TOKEN" | eas auth:login --token-stdin
+            eas whoami
+          }
+          
+          echo "✅ Authentication test successful"
