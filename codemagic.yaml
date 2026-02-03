@@ -10,7 +10,6 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.littlebear.tacksamhet  # Original bundle ID
-        automatic_provisioning: true
     scripts:
       - name: Environment Check
         script: |
