@@ -1,0 +1,95 @@
+workflows:
+  react-native-ios-hybrid:
+    name: React Native iOS (Hybrid - EAS + Codemagic)
+    max_build_duration: 40
+    environment:
+      groups:
+        - expo_credentials  # EXPO_TOKEN here
+        - apple_credentials  # Add Apple Dev credentials group
+      node: 18
+      xcode: 15.2
+    scripts:
+      - name: Environment Check
+        script: |
+          echo "=== Environment Check ==="
+          echo "Node: $(node --version)"
+          echo "NPM: $(npm --version)"
+          
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "❌ EXPO_TOKEN not found"
+            exit 1
+          fi
+          echo "✅ EXPO_TOKEN is set (${#EXPO_TOKEN} chars)"
+          
+      - name: Install Dependencies
+        script: |
+          cd ManifestApp
+          echo "=== Installing Dependencies ==="
+          npm ci
+          
+      - name: Setup EAS Credentials Store
+        script: |
+          cd ManifestApp
+          echo "=== Setting up EAS Credentials Store ==="
+          
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          
+          # Create temporary credentials.json for EAS CLI
+          cat > credentials-temp.json << EOF
+          {
+            "ios": {
+              "com.lillabjorn.tacksamhet": {
+                "distributionCertificate": {
+                  "certP12": "$CM_CERTIFICATE",
+                  "certPassword": "$CM_CERTIFICATE_PASSWORD",
+                  "teamId": "J6BB654J29"
+                },
+                "provisioningProfile": {
+                  "provisioningProfile": "$CM_PROVISIONING_PROFILE",
+                  "teamId": "J6BB654J29"
+                }
+              }
+            }
+          }
+          EOF
+          
+          # Import credentials to EAS store
+          npx eas-cli@latest credentials import \
+            --platform ios \
+            --profile ios-beta \
+            --non-interactive \
+            --from-file credentials-temp.json
+            
+          # Clean up temporary file
+          rm credentials-temp.json
+          
+      - name: Build with EAS CLI
+        script: |
+          cd ManifestApp
+          echo "=== Building with EAS CLI ==="
+          
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          
+          # Build with imported credentials
+          npx eas-cli@latest build \
+            --platform ios \
+            --profile ios-beta \
+            --non-interactive \
+            --local
+            
+      - name: Submit to TestFlight
+        script: |
+          cd ManifestApp
+          echo "=== Submitting to TestFlight ==="
+          
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          
+          # Submit the built IPA
+          npx eas-cli@latest submit \
+            --platform ios \
+            --profile production \
+            --non-interactive \
+            --latest
+            
+    artifacts:
+      - ManifestApp/**/*.ipa

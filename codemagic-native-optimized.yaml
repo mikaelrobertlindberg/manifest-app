@@ -1,0 +1,109 @@
+workflows:
+  react-native-ios-native-optimized:
+    name: React Native iOS (Pure Native - No EAS CLI)
+    max_build_duration: 40
+    environment:
+      groups:
+        - expo_credentials  # For expo prebuild if needed
+      node: 18
+      xcode: 15.2
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.lillabjorn.tacksamhet
+    scripts:
+      - name: Environment Check
+        script: |
+          echo "=== Environment Check ==="
+          echo "Node: $(node --version)"
+          echo "NPM: $(npm --version)"
+          echo "Xcode: $(xcode-select --print-path)"
+          echo "Bundle ID: com.lillabjorn.tacksamhet"
+          
+      - name: Install Dependencies
+        script: |
+          cd ManifestApp
+          echo "=== Installing Dependencies ==="
+          npm ci
+          
+      - name: Expo Prebuild for Native
+        script: |
+          cd ManifestApp
+          echo "=== Running Expo Prebuild ==="
+          
+          # Generate native iOS project from Expo config
+          npx expo prebuild --platform ios --clean
+          
+      - name: Create Export Options
+        script: |
+          cd ManifestApp/ios
+          echo "=== Creating Export Options ==="
+          
+          cat > ExportOptions.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>app-store</string>
+              <key>teamID</key>
+              <string>J6BB654J29</string>
+              <key>uploadBitcode</key>
+              <false/>
+              <key>uploadSymbols</key>
+              <true/>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                  <key>com.lillabjorn.tacksamhet</key>
+                  <string>\$XCODE_SCHEME_PROVISIONING_PROFILE_NAME</string>
+              </dict>
+          </dict>
+          </plist>
+          EOF
+          
+      - name: Install iOS Dependencies
+        script: |
+          cd ManifestApp/ios
+          echo "=== Installing CocoaPods ==="
+          pod install --repo-update
+          
+      - name: Build iOS App Archive
+        script: |
+          cd ManifestApp/ios
+          echo "=== Building iOS App with Xcode ==="
+          
+          # Clean build folder
+          rm -rf build/
+          
+          # Build archive
+          xcodebuild \
+            -workspace ManifestApp.xcworkspace \
+            -scheme ManifestApp \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath build/ManifestApp.xcarchive \
+            archive
+            
+      - name: Export IPA
+        script: |
+          cd ManifestApp/ios
+          echo "=== Exporting IPA ==="
+          
+          # Export IPA for App Store
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/ManifestApp.xcarchive \
+            -exportPath build/ipa \
+            -exportOptionsPlist ExportOptions.plist
+            
+          # Verify IPA was created
+          ls -la build/ipa/
+          
+    artifacts:
+      - ManifestApp/ios/build/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false

@@ -1,0 +1,94 @@
+workflows:
+  react-native-ios-eas-local:
+    name: React Native iOS (EAS Local Build)
+    max_build_duration: 40
+    environment:
+      groups:
+        - expo_credentials  # EXPO_TOKEN here
+      node: 18
+      xcode: 15.2
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.lillabjorn.tacksamhet
+    scripts:
+      - name: Environment Check
+        script: |
+          echo "=== Environment Check ==="
+          echo "Node: $(node --version)"
+          echo "NPM: $(npm --version)"
+          echo "Xcode: $(xcode-select --print-path)"
+          
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "❌ EXPO_TOKEN not found"
+            exit 1
+          fi
+          echo "✅ EXPO_TOKEN is set"
+          
+      - name: Install Dependencies
+        script: |
+          cd ManifestApp
+          echo "=== Installing Dependencies ==="
+          npm ci
+          
+      - name: Configure Local Credentials
+        script: |
+          cd ManifestApp
+          echo "=== Configuring Local Credentials ==="
+          
+          # Create credentials directory
+          mkdir -p secrets/
+          
+          # Export Codemagic certificates to local files
+          echo "$CM_CERTIFICATE" | base64 --decode > secrets/dist-cert.p12
+          echo "$CM_PROVISIONING_PROFILE" | base64 --decode > secrets/profile.mobileprovision
+          
+          # Set EAS environment variables for local build
+          export EXPO_APPLE_DISTRIBUTION_CERTIFICATE_PATH="./secrets/dist-cert.p12"
+          export EXPO_APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD="$CM_CERTIFICATE_PASSWORD"
+          export EXPO_APPLE_PROVISIONING_PROFILE_PATH="./secrets/profile.mobileprovision"
+          export EXPO_NO_CAPABILITY_SYNC=1
+          
+      - name: EAS Local Build
+        script: |
+          cd ManifestApp
+          echo "=== EAS Local Build ==="
+          
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          export EXPO_APPLE_DISTRIBUTION_CERTIFICATE_PATH="./secrets/dist-cert.p12"
+          export EXPO_APPLE_DISTRIBUTION_CERTIFICATE_PASSWORD="$CM_CERTIFICATE_PASSWORD"
+          export EXPO_APPLE_PROVISIONING_PROFILE_PATH="./secrets/profile.mobileprovision"
+          export EXPO_NO_CAPABILITY_SYNC=1
+          
+          # Build locally with EAS CLI
+          npx eas-cli@latest build \
+            --platform ios \
+            --profile ios-beta \
+            --local \
+            --non-interactive \
+            --clear-cache
+            
+      - name: Upload to TestFlight
+        script: |
+          cd ManifestApp
+          echo "=== Uploading to TestFlight ==="
+          
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          
+          # Find the built IPA
+          IPA_PATH=$(find . -name "*.ipa" | head -1)
+          
+          if [ -n "$IPA_PATH" ]; then
+            echo "Found IPA: $IPA_PATH"
+            
+            # Submit to TestFlight
+            npx eas-cli@latest submit \
+              --platform ios \
+              --path "$IPA_PATH" \
+              --non-interactive
+          else
+            echo "❌ No IPA file found"
+            exit 1
+          fi
+          
+    artifacts:
+      - ManifestApp/**/*.ipa
