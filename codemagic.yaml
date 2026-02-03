@@ -5,9 +5,7 @@ workflows:
     environment:
       groups:
         - expo_credentials  # Create this group in Codemagic with EXPO_TOKEN
-      node: 18.20.4
-      xcode: 15.4
-      cocoapods: 1.15.2
+      node: 18
     cache:
       cache_paths:
         - $HOME/.npm
