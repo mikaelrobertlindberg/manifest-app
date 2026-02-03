@@ -1,0 +1,71 @@
+workflows:
+  react-native-ios-native:
+    name: React Native iOS (Native Codemagic)
+    max_build_duration: 40
+    environment:
+      groups:
+        - expo_credentials  # EXPO_TOKEN here
+      node: 18
+      xcode: 15.2
+    scripts:
+      - name: Environment Check
+        script: |
+          echo "=== Environment Check ==="
+          echo "Node: $(node --version)"
+          echo "NPM: $(npm --version)"
+          echo "Xcode: $(xcode-select --print-path)"
+          
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "❌ EXPO_TOKEN not found"
+            exit 1
+          fi
+          echo "✅ EXPO_TOKEN is set"
+          
+      - name: Install Dependencies
+        script: |
+          cd ManifestApp
+          echo "=== Installing Dependencies ==="
+          npm ci
+          
+      - name: Expo Prebuild for Native
+        script: |
+          cd ManifestApp
+          echo "=== Running Expo Prebuild ==="
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          
+          # Generate native iOS project from Expo config
+          npx expo prebuild --platform ios --clean
+          
+      - name: Install iOS Dependencies
+        script: |
+          cd ManifestApp/ios
+          echo "=== Installing CocoaPods ==="
+          pod install
+          
+      - name: Build iOS App
+        script: |
+          cd ManifestApp/ios
+          echo "=== Building iOS App with Xcode ==="
+          
+          # Build for device
+          xcodebuild \
+            -workspace ManifestApp.xcworkspace \
+            -scheme ManifestApp \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath build/ManifestApp.xcarchive \
+            archive
+            
+          # Export IPA
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/ManifestApp.xcarchive \
+            -exportPath build/ipa \
+            -exportOptionsPlist ExportOptions.plist
+            
+    artifacts:
+      - ManifestApp/ios/build/**/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
