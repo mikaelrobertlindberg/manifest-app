@@ -1,6 +1,6 @@
 workflows:
-  react-native-ios-basic:
-    name: React Native iOS (Basic Bundle ID)
+  react-native-ios-dev:
+    name: React Native iOS (Development Test)
     max_build_duration: 40
     environment:
       groups:
@@ -9,26 +9,18 @@ workflows:
       xcode: 15.2
       ios_signing:
         distribution_type: development
-        bundle_identifier: com.mikaellindberg.tacksamhet  # Personal domain
+        bundle_identifier: com.lillabjorn.tacksamhet
     scripts:
       - name: Environment Check
         script: |
           echo "=== Environment Check ==="
           echo "Node: $(node --version)"
-          echo "Using basic bundle ID: com.mikaellindberg.tacksamhet"
+          echo "Using development signing for test"
           
       - name: Install Dependencies  
         script: |
           cd ManifestApp
           npm ci
-          
-      - name: Update Bundle ID for Test
-        script: |
-          cd ManifestApp
-          echo "=== Updating Bundle ID for test ==="
-          # Update app.json for build test
-          sed -i.bak 's/"com.lillabjorn.tacksamhet"/"com.mikaellindberg.tacksamhet"/g' app.json
-          echo "Updated to test bundle ID"
           
       - name: Expo Prebuild
         script: |
@@ -40,12 +32,12 @@ workflows:
           cd ManifestApp/ios
           pod install --repo-update
           
-      - name: Build iOS App
+      - name: Build iOS App (Development)
         script: |
           cd ManifestApp/ios
-          echo "=== Building iOS App ==="
+          echo "=== Building iOS App (Development) ==="
           
-          # Build archive
+          # Build archive with development signing
           xcodebuild \
             -workspace ManifestApp.xcworkspace \
             -scheme ManifestApp \
@@ -54,7 +46,7 @@ workflows:
             -archivePath build/ManifestApp.xcarchive \
             archive
             
-          echo "Basic test build completed"
+          echo "Development build completed"
           
     artifacts:
       - ManifestApp/ios/build/ManifestApp.xcarchive
