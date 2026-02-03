@@ -5,6 +5,14 @@ workflows:
     environment:
       node: 18
     scripts:
+      - name: Debug Environment
+        script: |
+          echo "Checking EXPO_TOKEN environment variable..."
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "ERROR: EXPO_TOKEN is not set!"
+          else
+            echo "EXPO_TOKEN is set (length: ${#EXPO_TOKEN})"
+          fi
       - name: Install npm dependencies
         script: |
           cd ManifestApp
