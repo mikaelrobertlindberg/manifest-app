@@ -16,7 +16,10 @@
       "channel": "preview"
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+      "ios": {
+        "buildType": "release"
+      }
     },
     "production-apk": {
       "android": {
@@ -31,14 +34,37 @@
     "ios-beta": {
       "distribution": "store",
       "ios": {
-        "simulator": false
+        "simulator": false,
+        "buildType": "release",
+        "credentialsSource": "local"
+      },
+      "env": {
+        "EXPO_NO_CAPABILITY_SYNC": "1"
+      }
+    },
+    "ios-beta-managed": {
+      "distribution": "store",
+      "ios": {
+        "simulator": false,
+        "buildType": "release",
+        "credentialsSource": "remote"
       }
     },
     "ios-production": {
-      "distribution": "store"
+      "distribution": "store",
+      "ios": {
+        "credentialsSource": "local"
+      }
     }
   },
   "submit": {
-    "production": {}
+    "production": {},
+    "ios-beta": {
+      "ios": {
+        "ascApiKeyPath": "./secrets/AuthKey.p8",
+        "ascApiKeyId": "REPLACE_WITH_YOUR_KEY_ID",
+        "ascApiKeyIssuerId": "REPLACE_WITH_YOUR_ISSUER_ID"
+      }
+    }
   }
 }

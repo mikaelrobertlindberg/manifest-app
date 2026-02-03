@@ -1,0 +1,65 @@
+workflows:
+  react-native-ios-simple:
+    name: React Native iOS (Simple NPX) 
+    max_build_duration: 40
+    environment:
+      groups:
+        - expo_credentials  # EXPO_TOKEN here
+      node: 18
+    scripts:
+      - name: Environment Check
+        script: |
+          echo "=== Environment Check ==="
+          echo "Node: $(node --version)"
+          echo "NPM: $(npm --version)"
+          
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "❌ EXPO_TOKEN not found"
+            exit 1
+          fi
+          echo "✅ EXPO_TOKEN is set (${#EXPO_TOKEN} chars)"
+          
+      - name: Install Dependencies
+        script: |
+          cd ManifestApp
+          echo "=== Installing Dependencies ==="
+          npm ci
+          
+      - name: Configure EAS Credentials
+        script: |
+          cd ManifestApp
+          echo "=== Configuring EAS Credentials ==="
+          
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          
+          # Set EAS to use Codemagic managed credentials
+          npx eas-cli@latest credentials configure \
+            --platform ios \
+            --profile ios-beta \
+            --non-interactive \
+            --clear-credentials || echo "Credential config failed, continuing..."
+            
+      - name: Direct NPX Build
+        script: |
+          cd ManifestApp
+          echo "=== Direct NPX EAS Build ==="
+          
+          export EXPO_TOKEN="$EXPO_TOKEN"
+          
+          # Build with credential bypass options
+          npx eas-cli@latest build \
+            --platform ios \
+            --profile ios-beta \
+            --non-interactive \
+            --skip-credentials-check \
+            --auto-submit || {
+              echo "Auto-submit failed, trying without auto-submit..."
+              npx eas-cli@latest build \
+                --platform ios \
+                --profile ios-beta \
+                --non-interactive \
+                --skip-credentials-check
+            }
+            
+    artifacts:
+      - ManifestApp/**/*.ipa

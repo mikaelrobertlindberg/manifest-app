@@ -1,23 +1,23 @@
 workflows:
-  react-native-ios-simple:
-    name: React Native iOS (Simple NPX) 
+  react-native-ios-native-optimized:
+    name: React Native iOS (Pure Native - No EAS CLI)
     max_build_duration: 40
     environment:
       groups:
-        - expo_credentials  # EXPO_TOKEN here
+        - expo_credentials  # For expo prebuild if needed
       node: 18
+      xcode: 15.2
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.lillabjorn.tacksamhet
     scripts:
       - name: Environment Check
         script: |
           echo "=== Environment Check ==="
           echo "Node: $(node --version)"
           echo "NPM: $(npm --version)"
-          
-          if [ -z "$EXPO_TOKEN" ]; then
-            echo "❌ EXPO_TOKEN not found"
-            exit 1
-          fi
-          echo "✅ EXPO_TOKEN is set (${#EXPO_TOKEN} chars)"
+          echo "Xcode: $(xcode-select --print-path)"
+          echo "Bundle ID: com.lillabjorn.tacksamhet"
           
       - name: Install Dependencies
         script: |
@@ -25,41 +25,85 @@ workflows:
           echo "=== Installing Dependencies ==="
           npm ci
           
-      - name: Configure EAS Credentials
+      - name: Expo Prebuild for Native
         script: |
           cd ManifestApp
-          echo "=== Configuring EAS Credentials ==="
+          echo "=== Running Expo Prebuild ==="
           
-          export EXPO_TOKEN="$EXPO_TOKEN"
+          # Generate native iOS project from Expo config
+          npx expo prebuild --platform ios --clean
           
-          # Set EAS to use Codemagic managed credentials
-          npx eas-cli@latest credentials configure \
-            --platform ios \
-            --profile ios-beta \
-            --non-interactive \
-            --clear-credentials || echo "Credential config failed, continuing..."
-            
-      - name: Direct NPX Build
+      - name: Create Export Options
         script: |
-          cd ManifestApp
-          echo "=== Direct NPX EAS Build ==="
+          cd ManifestApp/ios
+          echo "=== Creating Export Options ==="
           
-          export EXPO_TOKEN="$EXPO_TOKEN"
+          cat > ExportOptions.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>app-store</string>
+              <key>teamID</key>
+              <string>J6BB654J29</string>
+              <key>uploadBitcode</key>
+              <false/>
+              <key>uploadSymbols</key>
+              <true/>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>provisioningProfiles</key>
+              <dict>
+                  <key>com.lillabjorn.tacksamhet</key>
+                  <string>\$XCODE_SCHEME_PROVISIONING_PROFILE_NAME</string>
+              </dict>
+          </dict>
+          </plist>
+          EOF
           
-          # Build with credential bypass options
-          npx eas-cli@latest build \
-            --platform ios \
-            --profile ios-beta \
-            --non-interactive \
-            --skip-credentials-check \
-            --auto-submit || {
-              echo "Auto-submit failed, trying without auto-submit..."
-              npx eas-cli@latest build \
-                --platform ios \
-                --profile ios-beta \
-                --non-interactive \
-                --skip-credentials-check
-            }
+      - name: Install iOS Dependencies
+        script: |
+          cd ManifestApp/ios
+          echo "=== Installing CocoaPods ==="
+          pod install --repo-update
+          
+      - name: Build iOS App Archive
+        script: |
+          cd ManifestApp/ios
+          echo "=== Building iOS App with Xcode ==="
+          
+          # Clean build folder
+          rm -rf build/
+          
+          # Build archive
+          xcodebuild \
+            -workspace ManifestApp.xcworkspace \
+            -scheme ManifestApp \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath build/ManifestApp.xcarchive \
+            archive
             
+      - name: Export IPA
+        script: |
+          cd ManifestApp/ios
+          echo "=== Exporting IPA ==="
+          
+          # Export IPA for App Store
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/ManifestApp.xcarchive \
+            -exportPath build/ipa \
+            -exportOptionsPlist ExportOptions.plist
+            
+          # Verify IPA was created
+          ls -la build/ipa/
+          
     artifacts:
-      - ManifestApp/**/*.ipa
+      - ManifestApp/ios/build/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
