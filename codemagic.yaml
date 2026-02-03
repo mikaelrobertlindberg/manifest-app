@@ -33,11 +33,16 @@ workflows:
           # Export token
           export EXPO_TOKEN="$EXPO_TOKEN"
           
+          # Check EAS configuration
+          echo "EAS configuration:"
+          cat eas.json | grep -A 5 -B 5 "ios-beta"
+          
           # Build directly with npx (no global install needed)
           npx eas-cli@latest build \
             --platform ios \
             --profile ios-beta \
-            --non-interactive
+            --non-interactive \
+            --auto-submit
             
     artifacts:
       - ManifestApp/**/*.ipa
