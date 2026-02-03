@@ -1,6 +1,6 @@
 workflows:
-  react-native-ios-standard:
-    name: React Native iOS (Standard Bundle ID)
+  react-native-ios-native:
+    name: React Native iOS (Pure Native - Clean)
     max_build_duration: 40
     environment:
       groups:
@@ -9,29 +9,20 @@ workflows:
       xcode: 15.2
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.littlebear.tacksamhet  # Original bundle ID
-        automatic_provisioning: true
+        bundle_identifier: com.lillabjorn.tacksamhet
     scripts:
       - name: Environment Check
         script: |
           echo "=== Environment Check ==="
           echo "Node: $(node --version)"
           echo "NPM: $(npm --version)"
-          echo "Using bundle ID: com.littlebear.tacksamhet"
+          echo "Xcode: $(xcode-select --print-path)"
           
       - name: Install Dependencies  
         script: |
           cd ManifestApp
           echo "=== Installing Dependencies ==="
           npm ci
-          
-      - name: Update Bundle ID
-        script: |
-          cd ManifestApp
-          echo "=== Updating Bundle ID to Standard ==="
-          # Update app.json temporarily for build
-          sed -i.bak 's/"com.lillabjorn.tacksamhet"/"com.littlebear.tacksamhet"/g' app.json
-          echo "Updated bundle ID for build compatibility"
           
       - name: Expo Prebuild
         script: |
