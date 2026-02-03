@@ -1,0 +1,47 @@
+name: iOS TestFlight Deploy
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: ManifestApp/package-lock.json
+    
+    - name: Install dependencies
+      run: |
+        cd ManifestApp
+        npm install
+    
+    - name: Setup EAS CLI
+      run: npm install -g @expo/eas-cli
+    
+    - name: Build iOS
+      env:
+        EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        APPLE_ID: ${{ secrets.APPLE_ID }}
+        APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+      run: |
+        cd ManifestApp
+        eas build --platform ios --profile ios-beta --non-interactive
+    
+    - name: Upload to TestFlight
+      env:
+        APPLE_ID: ${{ secrets.APPLE_ID }}
+        APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+        APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      run: |
+        # Download IPA from EAS
+        # Upload to TestFlight via altool
+        xcrun altool --upload-app -f "*.ipa" -u "$APPLE_ID" -p "$APPLE_APP_SPECIFIC_PASSWORD"
