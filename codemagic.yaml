@@ -43,7 +43,9 @@ workflows:
       - name: Install Global Dependencies
         script: |
           echo "=== Installing EAS CLI ==="
-          npm install -g @expo/eas-cli@13.9.0
+          npm install -g eas-cli@13.9.0
+          echo "EAS CLI installed successfully"
+          which eas
           echo "EAS CLI version: $(eas --version)"
           
       - name: Verify EAS Authentication
@@ -141,7 +143,7 @@ workflows:
     environment:
       groups:
         - expo_credentials
-      node: 18.20.4
+      node: 18
     scripts:
       - name: Test Authentication Only
         script: |
@@ -152,7 +154,7 @@ workflows:
             exit 1
           fi
           
-          npm install -g @expo/eas-cli@13.9.0
+          npm install -g eas-cli@13.9.0
           
           export EAS_TOKEN="$EXPO_TOKEN"
           
