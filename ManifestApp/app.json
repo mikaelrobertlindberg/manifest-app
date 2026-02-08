@@ -30,11 +30,10 @@
         "backgroundColor": "#1a1a2e"
       },
       "package": "com.lillabjorn.tacksamhet",
-      "versionCode": 15,
+      "versionCode": 16,
       "permissions": [
         "NOTIFICATIONS"
-      ],
-      "jsEngine": "jsc"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

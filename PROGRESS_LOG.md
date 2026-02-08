@@ -130,7 +130,83 @@
 
 ---
 
-**Logged by:** Balthazar  
-**Session ended:** 2026-01-28 01:57  
-**Restarted:** 2026-01-28 08:04  
-**Next session:** Mike testar appen utanför hemmalanet
+## 2026-02-08 - CRASH BUGFIX & REBUILD
+
+### Sessionsöversikt
+**Problem:** Appen kraschar direkt vid uppstart på Android (internal testing via Google Play).
+**Miljö:** Windows-dator, Redmi 25028RN03Y kopplad via USB, ADB-felsökning.
+
+### 01:00 - ADB SETUP & ANSLUTNING
+- Installerat ADB via ADB & Fastboot++ (`C:\Program Files (x86)\ADB & Fastboot++`)
+- Xiaomi/Redmi krävde extra steg:
+  - Utvecklaralternativ: Inställningar > Ytterligare inställningar > Utvecklaralternativ
+  - USB-felsökning: ON
+  - USB-felsökning (Säkerhetsinställningar): ON
+  - Installera via USB: ON
+  - USB-läge: Filöverföring/MTP (inte bara laddning)
+- **Enhet ansluten:** `9b01005930533036340041902c344c` (Redmi 25028RN03Y)
+
+### 01:07 - KRASCH IDENTIFIERAD VIA LOGCAT
+**Felmeddelande:**
+```
+com.facebook.soloader.SoLoaderDSONotFoundError: couldn't find DSO to load: libhermestooling.so
+```
+
+**Rotorsak:** `app.json` innehöll `"jsEngine": "jsc"` under android-konfigurationen.
+React Native 0.81 + Expo SDK 54 kräver Hermes som JS-engine. JSC (JavaScriptCore) stöds inte längre och native-biblioteken inkluderas inte i bygget. Resultatet: appen försöker ladda Hermes men hittar inte `libhermestooling.so` → FATAL EXCEPTION vid uppstart.
+
+### 01:15 - FIX APPLICERAD
+- **Borttaget:** `"jsEngine": "jsc"` från `app.json` (rad 37)
+- **Bumpat:** `versionCode` 15 → 16
+- Hermes (standard) används nu automatiskt
+
+### 01:20 - NY BUILD MED EAS
+- Installerat EAS CLI globalt (`eas-cli/16.32.0`)
+- `npm install` kört i ManifestApp/
+- Fixat ogiltiga `buildType: "release"` fält i `eas.json` (iOS-profiler)
+- Autentiserat via EXPO_TOKEN
+- Byggt med `eas build --platform android --profile production-aab`
+- **Build lyckades:** `https://expo.dev/artifacts/eas/uDx9VMrso3MG1nT1RK6atJ.aab`
+- AAB nedladdad lokalt: `tacksamhet-v0.9.1-vc16.aab` (65 MB)
+
+### 01:40 - KEYSTORE-PROBLEM VID UPLOAD
+- **Problem:** Bygget skapade en NY keystore (EAS frågade "Generate new Keystore?" och scriptet svarade Y automatiskt)
+- Google Play vägrade AAB:n - fel signeringsnyckel:
+  - **Förväntat:** SHA1 `49:7C:7A:56:C9:DE:B9:BE:93:0F:7D:21:26:0B:93:DE:D0:2B:15:1A`
+  - **Ny nyckel:** SHA1 `41:D2:A3:EF:E6:85:F8:22:5B:80:91:F6:FC:62:34:C8:FA:9D:47:CD`
+
+### 01:50 - UPLOAD KEY RESET BEGÄRD
+- Extraherat PEM-certifikat från AAB: `upload_certificate.pem`
+- Navigerat till Google Play Console > Appsignering
+- Klickat "Begär återställning av uppladdningsnyckel"
+- Laddat upp `upload_certificate.pem`
+- **Status:** Inväntar Googles godkännande (vanligtvis några timmar - 48h)
+
+### Filer ändrade
+| Fil | Ändring |
+|-----|---------|
+| `ManifestApp/app.json` | Borttaget `"jsEngine": "jsc"`, bumpat versionCode 15→16 |
+| `ManifestApp/eas.json` | Borttaget ogiltiga `"buildType": "release"` från iOS-profiler |
+
+### TODO efter nyckel-reset godkänns
+1. Ladda upp `tacksamhet-v0.9.1-vc16.aab` till Play Console > Intern testning
+2. Skapa ny release och starta utrullning
+3. Uppdatera appen på Redmi via Play Butiken
+4. Verifiera att krashen är fixad
+
+### Viktiga filer
+- **AAB-fil:** `tacksamhet-v0.9.1-vc16.aab` (rotmappen)
+- **PEM-certifikat:** `upload_certificate.pem` (rotmappen)
+- **EAS Build:** `https://expo.dev/accounts/m1ck3/projects/tacksamhet-svenska-aurora/builds/e7fd99eb-cf50-4369-86cd-334efcc46924`
+
+### Kända keystores på EAS
+| Namn | SHA1 | Status |
+|------|------|--------|
+| Build Credentials sLI27Ccnf0 (Default) | `41:D2:A3:EF:E6:85:F8:22:5B:80:91:F6:FC:62:34:C8:FA:9D:47:CD` | Aktiv, väntar på Play Console-godkännande |
+| Ursprunglig (borttappad) | `49:7C:7A:56:C9:DE:B9:BE:93:0F:7D:21:26:0B:93:DE:D0:2B:15:1A` | Finns inte längre på EAS |
+
+---
+
+**Logged by:** Claude (Opus 4.6)
+**Session:** 2026-02-08
+**Nästa steg:** Ladda upp AAB efter nyckel-reset godkänns, verifiera fix på enhet

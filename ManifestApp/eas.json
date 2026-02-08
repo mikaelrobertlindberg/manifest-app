@@ -16,10 +16,7 @@
       "channel": "preview"
     },
     "production": {
-      "channel": "production",
-      "ios": {
-        "buildType": "release"
-      }
+      "channel": "production"
     },
     "production-apk": {
       "android": {
@@ -35,7 +32,6 @@
       "distribution": "store",
       "ios": {
         "simulator": false,
-        "buildType": "release",
         "credentialsSource": "local"
       },
       "env": {
@@ -46,7 +42,6 @@
       "distribution": "store",
       "ios": {
         "simulator": false,
-        "buildType": "release",
         "credentialsSource": "remote"
       }
     },
